@@ -5,7 +5,7 @@ const serieRoutes = express.Router();
 
 var serie = require('../controllers/serie');
 
-// Renvoie toute les activités de la base de donnees
+// Renvoie toutes les séries de la base de donnees
 serieRoutes.get('/getAllSeries',(req, res) => {
     console.log("La route GetAll");
     serie.getAllSeries(req, series => {
@@ -13,6 +13,7 @@ serieRoutes.get('/getAllSeries',(req, res) => {
     });
 });
 
+// Renvoie la série qui correspond à l'id passé en paramètre
 serieRoutes.get('/:id', (req,res) => {
     console.log("serieRouter");
     console.log("Param req: " + req.param('id'));
@@ -21,10 +22,7 @@ serieRoutes.get('/:id', (req,res) => {
         return res.status(200).json(serie);
     });
 });
-/*
-tagRoutes.put   ('/:id', auth, tag.update_tag);
-tagRoutes.delete('/:id', auth, tag.delete_tag);
-*/
+
 
 
 module.exports = serieRoutes;
