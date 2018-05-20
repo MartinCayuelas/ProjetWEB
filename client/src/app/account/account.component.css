@@ -1,0 +1,13 @@
+.stats{
+    background-color: #ffbb33;
+    color: #343a40;
+}
+
+.infos{
+    background-color: #343a40;
+    color:#ffbb33;
+}
+.avatar{
+    height: 150px;
+    width: 150px;
+}

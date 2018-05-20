@@ -1,0 +1,37 @@
+
+<div class="container mt-5">
+  <div class="text-center">
+    <h3 class="text-dark">
+      Toutes les séries
+    </h3>
+    <hr>
+  </div>
+</div>
+
+<div class="album py-5 " >
+  <div class="container" >
+    <div class="row" >
+      <div class="col-md-4" *ngFor="let serie of series">
+        <div class="card mb-4 bg-dark" >
+          <img class="card-img-top imageCatalogue" src="../../assets/images/{{serie.imageSerie}}" alt="Card image cap">
+          <div class="card-body text-warning">
+            <h5> {{serie.titre}}</h5>
+            <p class="card-text description"> {{serie.description}}</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a class="btn btn-sm btn-outline-info" routerLink="/catalogue/{{serie.idSerie}}" routerLinkActive="active">Voir</a>
+                <button type="button"  class="btn btn-sm btn-outline-warning">Edit</button>
+              </div>
+              <small>{{serie.dateSortie}}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="featurette-divider">
+  </div>
+</div>
+
+
+
+

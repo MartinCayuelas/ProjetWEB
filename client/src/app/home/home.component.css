@@ -1,0 +1,10 @@
+.imgTop{
+    width: 350px;
+    height: 220px;
+}
+
+.thumbnail:hover{
+    box-shadow: 5px 5px #ffbb33;
+}
+
+

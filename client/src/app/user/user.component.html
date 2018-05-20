@@ -1,0 +1,24 @@
+<div class="table-wrapper  mx-auto">
+  <table class="table table-responsive-md text-center">
+    <thead class="bg-warning text-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Login</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Prénom</th>
+      <th scope="col">email</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let user of users" class="bg-dark text-warning">
+    <tr>
+      <td>{{user.idUser}}</td>
+      <td>{{user.login}}</td>
+      <td>{{user.nom}}</td>
+      <td>{{user.prenom}}</td>
+      <td>{{user.email}}</td>
+
+    </tr>
+    </tbody>
+  </table>
+
+</div>

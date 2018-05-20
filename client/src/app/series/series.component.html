@@ -1,0 +1,20 @@
+
+
+<div class="table-wrapper mx-auto">
+    <table class="table table-responsive-md text-center">
+    <thead class="bg-warning text-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Titre</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let serie of series" class="bg-dark text-warning">
+    <tr>
+      <td>{{serie.idSerie}}</td>
+      <td>{{serie.titre}}</td>
+
+    </tr>
+    </tbody>
+  </table>
+
+    </div>

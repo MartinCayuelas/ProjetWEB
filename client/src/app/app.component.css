@@ -1,0 +1,32 @@
+.active{
+
+    border: solid #ffbb33 2px;
+    border-radius: 5px;
+
+}
+
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .featurette-heading {
+        font-size: 50px;
+    }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .carousel-caption p {
+        margin-bottom:20px;
+        font-size: 20px;
+        line-height: 1.4;
+    }
+
+    .featurette-heading {
+        margin-top: 7rem;
+    }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+
+}
