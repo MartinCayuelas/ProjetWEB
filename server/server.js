@@ -26,7 +26,7 @@ myConnection = require('express-myconnection'); // express-myconnection module
 dbOptions = {
   host: 'localhost',
   user: 'root',
-  password: 'Lord-legolas',
+  password: '**',
   database: 'watchSeries'
 };
 
