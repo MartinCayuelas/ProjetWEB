@@ -1,5 +1,7 @@
 // server.js
 
+require('dotenv').config(); // Pour les variables d'environnements (tel que connection BD)
+
 var express = require('express'),
   path = require('path'),
   bodyParser = require('body-parser'),
@@ -24,10 +26,10 @@ const mysql = require('mysql');
 myConnection = require('express-myconnection'); // express-myconnection module
 
 dbOptions = {
-  host: 'localhost',
-  user: 'root',
-  password: '**',
-  database: 'watchSeries'
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
 };
 
 app.use(myConnection(mysql, dbOptions, 'single'));
@@ -48,9 +50,9 @@ app.use('/api/', api);
 
 
 
-
 app.use(express.static(path.join(__dirname, '../dist')));
-app.get('*', function (req, res) {
+app.get('*', function (req, res, next) {
+  
     res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
