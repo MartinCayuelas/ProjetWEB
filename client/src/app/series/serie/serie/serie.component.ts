@@ -18,6 +18,8 @@ public serie: Serie;
 
 public id: number;
 
+private sub: any;
+
 constructor(private route: ActivatedRoute, private serieService: SerieService) { }
 
   ngOnInit() {

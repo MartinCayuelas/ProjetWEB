@@ -1,5 +1,5 @@
 .form-addSerie{
-    background-color: #706e6e;
+    background-color: #343a40;
     border-radius: 5px;
     color: #ffc107!important;
 }
@@ -9,10 +9,13 @@
 }
 
 .l-connect{
-    
-    font-size:20px;
+    font-size: 20px;
 }
 
+.input-connect{
+    background-color: #ffbb33;
+    color: #343a40;
+}
 .field{
     border: 2px solid #ffc107;
     border-radius: 5px;

@@ -20,9 +20,9 @@
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
                 <a class="btn btn-sm btn-outline-info" routerLink="/catalogue/{{serie.idSerie}}" routerLinkActive="active">Voir</a>
-                <button type="button"  class="btn btn-sm btn-outline-warning">Edit</button>
+                <button type="button"  class="btn btn-sm btn-outline-warning">Editer</button>
               </div>
-              <small>{{serie.dateSortie}}</small>
+              <small>{{serie.dateSortie | date:'yyyy-MM-dd'}}</small>
             </div>
           </div>
         </div>

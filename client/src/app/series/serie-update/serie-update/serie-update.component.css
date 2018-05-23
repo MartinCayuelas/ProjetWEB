@@ -1,0 +1,14 @@
+.field{
+    color: dark;
+    border: solid 2px  #343a40;
+    border-radius: 5px;
+}
+
+.l-connect{
+    font-size: 20px;
+}
+
+.input-connect{
+    background-color: #343a40;
+    color: #ffbb33;
+}

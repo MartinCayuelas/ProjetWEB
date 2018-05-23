@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SerieService } from '../../../share/services/serie.service';
 import { Serie } from '../../../share/models/serie.model';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-serie-update',
@@ -10,17 +12,16 @@ import { Serie } from '../../../share/models/serie.model';
 })
 export class SerieUpdateComponent implements OnInit {
 
-  route: any;
-  public form: FormGroup;
+
 
   public serie: Serie;
   public id: number;
 
-  constructor(private fb: FormBuilder, private serieService: SerieService) { }
+  constructor(private route: ActivatedRoute, private serieService: SerieService) { }
 
   ngOnInit() {
 
-    this.id = parseInt(this.route.snapshot.paramMap.get('updateSerie/idSerie'), 0); // Récupération du paramètre dans l'URL
+    this.id = parseInt(this.route.snapshot.paramMap.get('idSerie'), 0); // Récupération du paramètre dans l'URL
 
     this.serieService.getSerie(this.id).subscribe(series => {
       this.serie = series;
@@ -28,14 +29,8 @@ export class SerieUpdateComponent implements OnInit {
         this.serie.imageSerie = 'fav.png';
       }
 
-    });
-
-    this.form = this.fb.group({
-      nbEpisodes: [this.serie.nbEpisodes, Validators.required],
-      nbSaisons: [this.serie.nbSaisons, Validators.required],
-      description: [this.serie.description, Validators.required],
-      imageSerie: [this.serie.imageSerie, Validators.required]
-
+      console.log(this.serie.titre);
+      console.log(this.serie.imageSerie);
     });
   }
 
@@ -47,13 +42,24 @@ export class SerieUpdateComponent implements OnInit {
     for (let i = 0, f; f = files[i]; i++) {
 
       console.log('files: ' + f.name);
-      this.form.get('imageSerie').setValue(f.name);
+      this.serie.imageSerie = f.name;
     }
   }
 
+  setNbSaisons(evt) {
+    this.serie.nbSaisons = evt.target.value;
+  }
+
+  setNbEpisodes(evt) {
+    this.serie.nbEpisodes = evt.target.value;
+  }
+  setDescription(event) {
+    this.serie.description = event.target.value;
+  }
 
   updateSerie() {
-    this.serieService.updateSerie(this.form.value).subscribe();
+    this.serieService.updateSerie(this.serie).subscribe();
+
   }
 
 

@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">Saisons
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu bg-secondary text-white" >
+      <li  *ngFor="let episode of episodes">
+        <p> Titre: {{episode.nomEpisode}}</p>
+        <a class="btn btn-sm btn-success">Vu</a>
+       
+      </li>
+      
+     
+    </ul>
+  </div>
+</div>

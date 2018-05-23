@@ -1,55 +1,38 @@
 <div class=" container mt-5 text-center">
-    <form class="form-addSerie" [formGroup]="form" novalidate>
-        <div class="text-center">
-            <h3 class="text-warning">
-                Mise à jour Série
-            </h3>
-        </div>
-
-        <fieldset class="p-5 m-4 field">
-
-            <h3>Informations Générales</h3>
-
-            <div class="form-group">
-             <h3>{{serie.titre}}</h3>  
+    <form class="form-addSerie  text-dark">
+        <fieldset class="p-5 m-4 bg-warning field">
+            <div class="m-3 container">
+                <h3>
+                    Mise à jour Série
+                </h3>
+                <h5>Informations Générales</h5>
+                <hr>
             </div>
-            <div class="form-group">
-                <label for="imageSerie" class="l-connect">Affiche</label>
-                <input type="file" formControlName="imageSerie" class="form-control-file" id="imageSerie" (change)="handleFileSelect($event)">
-            </div>
-
+            
+            <h4>Titre: {{serie.titre}}</h4>
 
             <div class="form-row">
+                <div class="col">
+                    <label for="imageSerie" class="l-connect">Affiche</label>
+                    <input type="file" class="form-control-file" id="imageSerie" (change)="handleFileSelect($event)">
+                </div>
                 <div class="col">
                     <label for="description" class="l-connect">Description</label>
-                    <textarea class="form-control" rows="8" formControlName="description"></textarea>
+                    <textarea class="form-control input-connect" rows="8" value="{{serie.description}}" (change)="setDescription($event)"></textarea>
                 </div>
-                <div class="col">
-                       <h4>Date de sortie</h4>
-                       <p>{{serie.dateSortie}}</p>
-                </div>
-            </div>
-
-
-            <div class="form-row">
                 <div class="col">
                     <label for="nbSaisons" class="l-connect">Nombres de Saisons</label>
-                    <input type="text" formControlName="nbSaisons" class="form-control " >
+                    <input type="text" value="{{serie.nbSaisons}}" class="form-control input-connect" (change)="setNbSaisons($event)">
+
                 </div>
                 <div class="col">
                     <label for="nbEpisodes" class="l-connect">Nombres d'Episodes</label>
-                    <input type="text" class="form-control " formControlName="nbEpisodes">
+                    <input type="text" class="form-control input-connect" value="{{serie.nbEpisodes}}" (change)="setNbEpisodes($event)">
                 </div>
             </div>
-
         </fieldset>
-        <fieldset class="m-4 p-5 field">
-            <h3>Réalisation</h3>
-            <p>{{serie.prenomRealisateur}} {{serie.nomRealisateur}}</p>
-        </fieldset>
-
-        <div>
-            <a class="btn btn-md btn-success text-white " (click)="updateSerie()" routerLink="/dashboard" routerLinkActive="active">Ajouter</a>
+        <div class="m2">
+            <a class="btn btn-md btn-success text-white" (click)="updateSerie()" routerLink="/dashboard" routerLinkActive="active">Modifier</a>
         </div>
     </form>
 </div>

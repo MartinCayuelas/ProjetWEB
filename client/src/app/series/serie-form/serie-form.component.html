@@ -12,26 +12,22 @@
 
             <div class="form-group">
                 <label for="titre" class="l-connect">Titre</label>
-                <input type="text" formControlName="titre" class="form-control " id="titre" placeholder="Titre">
+                <input type="text" formControlName="titre" class="form-control input-connect" id="titre" placeholder="Titre">
             </div>
             <div class="form-group">
-
 
                 <label for="imageSerie" class="l-connect">Affiche</label>
                 <input type="file" formControlName="imageSerie" class="form-control-file" id="imageSerie" (change)="handleFileSelect($event)">
 
-
             </div>
-
-
             <div class="form-row">
                 <div class="col">
                     <label for="description" class="l-connect">Description</label>
-                    <textarea class="form-control" rows="8" formControlName="description" placeholder="Décrivez la série..."></textarea>
+                    <textarea class="form-control input-connect" rows="8" formControlName="description" placeholder="Décrivez la série..."></textarea>
                 </div>
                 <div class="col">
-                    <label for="dateSortie" class="l-connect">Date de sorie</label>
-                    <input type="text" class="form-control" formControlName="dateSortie" placeholder="aaaa-mm-jj">
+                    <label for="dateSortie" class="l-connect">Date de sortie</label>
+                    <input type="text" class="form-control input-connect" formControlName="dateSortie" placeholder="aaaa-mm-jj">
                 </div>
             </div>
 
@@ -39,11 +35,11 @@
             <div class="form-row">
                 <div class="col">
                     <label for="nbSaisons" class="l-connect">Nombres de Saisons</label>
-                    <input type="text" formControlName="nbSaisons" class="form-control " placeholder="1">
+                    <input type="text" formControlName="nbSaisons" class="form-control input-connect" placeholder="1">
                 </div>
                 <div class="col">
                     <label for="nbEpisodes" class="l-connect">Nombres d'Episodes</label>
-                    <input type="text" class="form-control " formControlName="nbEpisodes" placeholder="10">
+                    <input type="text" class="form-control input-connect" formControlName="nbEpisodes" placeholder="10">
                 </div>
             </div>
 
@@ -53,16 +49,16 @@
             <div class="form-row">
                 <div class="col">
                     <label for="prenomRealisateur" class="l-connect">Prénom</label>
-                    <input type="text" formControlName="prenomRealisateur" class="form-control " id="prenomRealisateur" placeholder="Prenom">
+                    <input type="text" formControlName="prenomRealisateur" class="form-control input-connect" id="prenomRealisateur" placeholder="Prenom">
                 </div>
                 <div class="col">
                     <label for="nomRealisateur" class="l-connect">Nom</label>
-                    <input type="text" class="form-control " id="nomRealisateur" formControlName="nomRealisateur" placeholder="Nom">
+                    <input type="text" class="form-control input-connect" id="nomRealisateur" formControlName="nomRealisateur" placeholder="Nom">
                 </div>
             </div>
         </fieldset>
 
-        <div>
+        <div class="m-3">
             <a class="btn btn-md btn-success text-white " (click)="createSerie()" routerLink="/catalogue" routerLinkActive="active">Ajouter</a>
         </div>
     </form>
