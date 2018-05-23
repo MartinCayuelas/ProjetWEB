@@ -3,7 +3,7 @@
 const express = require('express');
 const serieRoutes = express.Router();
 
-var serie = require('../controllers/serie');
+var serie = require('../models/serie');
 
 // Renvoie toute les activités de la base de donnees
 serieRoutes.get('/getAllSeries',(req, res) => {

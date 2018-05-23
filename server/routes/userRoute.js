@@ -3,7 +3,7 @@
 const express = require('express');
 const userRoute = express.Router();
 
-var user = require('../controllers/user');
+var user = require('../models/user');
 
 // Renvoie toute les activités de la base de donnees
 userRoute.get('/getAllUsers',(req, res) => {

@@ -1,19 +1,4 @@
-//var boom = require('boom');
 
-// list of the error messages
-let UNAUTHORIZED_USER = "Unauthorized user";
-let NOT_FOUND = "Serie not found";
-
-
-
-/**
- * get_all
- *
- * get all the tags
- * @param req : get request, without params.
- *
- * @return Json with all the questions.
- */
 module.exports.getAllSeries = function(req, callback) {
     req.getConnection(function (err, connection) { 
         connection.query('select * from Serie ORDER BY titre', function(err, rows, fields) {
@@ -101,7 +86,7 @@ module.exports.deleteSerie = function (req, idSerie, callback) {
 }
 
 module.exports.updateSerie = function (req, idSerie, callback) {
-    let queryD = "UPDATE table SET imageSerie = ?, nbEpisodes = ?, nbSaisons = ?, description = ? WHERE idSerie = ?";
+    let queryD = "UPDATE Serie SET imageSerie = ?, nbEpisodes = ?, nbSaisons = ?, description = ? WHERE idSerie = ?";
     const serie = [
         req.body.imageSerie,
         req.body.nbEpisodes,
