@@ -1,46 +1,60 @@
-<div class="container  ">
-    <div class=" mt-5">
-        <h2>Formulaire d'inscription</h2>
-    </div>
-<div class="col-lg-6  text-center bg-danger">
-  <form>
+<div class="container mt-5">
+
+
+  <form class="form-signup text-center" [formGroup]="form" novalidate>
+
+    <h2 class="text-warning">Formulaire d'inscription</h2>
+    <fieldset class="p-5">
       <div class="form-group">
-          <label for="login">Login</label>
-          <input type="text" class="form-control" id="login" required  [(ngModel)]="model.login" name="login"   #login="ngModel">
+        <label for="login" class="l-connect">Login</label>
+        <input type="text" formControlName="login" class="form-control input-connect" id="login">
       </div>
-    <div class="form-group">
-      <label for="prenom">Prénom</label>
-      <input type="text" class="form-control" id="prenom" required  [(ngModel)]="model.prenom" name="prenom"   #prenom="ngModel">
-    </div>
-
-    <div [hidden]="prenom.valid"
-         class="alert alert-danger">
-      Prénom requis
-    </div>
-
-    <div class="form-group">
-      <label for="nom">Nom</label>
-      <input type="text" class="form-control" id="nom" required [(ngModel)]="model.nom" name="nom"  #nom="ngModel">
-    </div>
-      <div [hidden]="nom.valid"
-           class="alert alert-danger">
-          Nom requis
+      <div class="form-row">
+        <div class="col">
+          <label for="prenom" class="l-connect">Prénom</label>
+          <input type="text" formControlName="prenom" class="form-control input-connect" id="prenom">
+        </div>
+        <div class="col">
+          <label for="nom" class="l-connect">Nom</label>
+          <input type="text" class="form-control input-connect" id="nom" formControlName="nom">
+        </div>
       </div>
-    <div class="form-group">
-      <label for="email">email</label>
-      <input type="email" class="form-control" id="email" required [(ngModel)]="model.email" name="email"  ngModel [email]="true" #email="ngModel">
-    </div>
-      <div [hidden]="email.valid"
-           class="alert alert-danger">
-          email requis
+      <div class="form-row">
+        <div class="col">
+          <label for="pwd" class="l-connect">Mot de Passe</label>
+          <input type="password" formControlName="password" class="form-control input-connect" id="pwd">
+        </div>
+        <div class="col">
+          <label for="pwdVerif" class="l-connect">Confirmation </label>
+
+          <input type="password" class="form-control input-connect" id="pwdVerif" (keyup)="onKey($event)">
+        </div>
+        <div id="matchPwd" class="mt-1">
+        </div>
+
       </div>
 
       <div class="form-group">
-          <label for="avatar">Choisir un Avatar (Optionnel)</label>
-          <input type="file" class="form-control-file" id="avatar">
+        <label for="email" class="l-connect">email</label>
+        <input type="email" class="form-control input-connect" id="email" formControlName="email">
       </div>
-    <button type="submit" class="btn btn-success">Submit</button>
+
+
+      <div class="form-group">
+        <label for="avatar">Choisir un Avatar (Optionnel)</label>
+        <input type="file" formControlName="avatar" class="form-control-file" id="avatar" (change)="handleFileSelect($event)">
+      </div>
+      <div *ngIf="this.form.get('login').value === this.form.get('password').value" class="alert alert-danger">
+        Login doit être différent de Mot de passe
+      </div>
+      <div *ngIf="this.form.get('password').value !== this.valuesConf" class="alert alert-danger">Les mots de passes ne correspondent pas</div>
+
+      <button type="submit" class="btn btn-warning" [disabled]="this.form.get('login').invalid || this.form.get('prenom').invalid || this.form.get('nom').invalid
+      || this.form.get('password').invalid || this.form.get('email').invalid || this.form.get('login').value === this.form.get('password').value
+      || this.form.get('password').value !== this.valuesConf " (click)="onSubmit()" routerLink="/dashboard" routerLinkActive="active">Inscription</button>
+
+
+    </fieldset>
   </form>
-</div>
-    {{diagnostic}} //affiche le contenu des inputs
+
 </div>

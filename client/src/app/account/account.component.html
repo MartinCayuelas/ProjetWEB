@@ -7,17 +7,17 @@
         </h4>
       </div>
       <div>
-        <p class="float-right col-lg-2">23</p>
+        <p class="float-right col-lg-2">{{nbSeries}}</p>
         <p class="col-lg-4"> Mes séries</p>
       </div>
       <hr>
       <div>
-        <p class="float-right col-lg-2">435</p>
+        <p class="float-right col-lg-2">21</p>
         <p class="col-lg-4"> Mes épisodes</p>
       </div>
       <hr>
       <div>
-        <p class="float-right col-lg-2">3788</p>
+        <p class="float-right col-lg-2">234</p>
         <p class="col-lg-4"> Minutes Visionnées</p>
       </div>
     </aside>
@@ -28,31 +28,31 @@
         </h4>
       </div>
       <div class="text-center mb-4">
-        <img class="avatar img-responsive rounded-circle" src="../../assets/images/fav.png">
+        <img class="avatar img-responsive rounded-circle" src="../../assets/images/{{user.avatar}}">
       </div>
       <div>
         <table class="table">
           <tbody>
           <tr>
             <th scope="row">Login</th>
-            <td>Mark</td>
+            <td>{{user.login}}</td>
           </tr>
           <tr>
             <th scope="row">Prénom</th>
-            <td>Thornton</td>
+            <td>{{user.prenom}}</td>
           </tr>
           <tr>
             <th scope="row">Nom</th>
-            <td>Larry</td>
+            <td>{{user.nom}}</td>
           </tr>
           <tr>
             <th scope="row">Email</th>
-            <td>@twitter</td>
+            <td>{{user.email}}</td>
 
           </tr>
           <tr>
             <th scope="row">Inscription</th>
-            <td>12/12/12</td>
+            <td>{{user.dateInscription}}</td>
           </tr>
           <tr>
             <th>

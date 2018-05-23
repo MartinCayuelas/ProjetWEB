@@ -8,39 +8,35 @@ import { tap, switchMap } from 'rxjs/operators';
 @Injectable()
 export class SerieService {
 
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) { }
 
     public getAllSeries(): Observable<any> {
         console.log('Je suis dans le service et je faias un getALL');
         return this.http.get<any>('/api/series/getAllSeries');
-      }
+    }
 
-
-      public getSerieById(idSerie: string): Observable<any> {
-        let params = new HttpParams();
-        params = params.append('id', idSerie);
-
-         return this.http.get('/api/series/' + idSerie, {params: params});
-        }
 
     public getSerie(id: number): Observable<any> {
         console.log('Je fais getBy ID');
         console.log('idgetserie: ' + id);
         return this.http.get<any>('/api/series/' + id);
-      }
+    }
+
 
 
     insertSerie(serie: Serie): Observable<Serie> {
-        return this.http.post<Serie>('http://localhost:8000/api/users/', serie.idSerie);
-    }
-
-    updateSerie(serie: Serie): Observable<void> {
-        return this.http.put<void>('http://localhost:8000/api/users/' + serie.idSerie, serie);
+        return this.http.post<Serie>('/api/series/insert', serie);
     }
 
     deleteSerie(id: number) {
-        return this.http.delete('http://localhost:8000/api/users/' + id);
+        return this.http.delete('/api/series/delete/' + id);
     }
+
+    updateSerie(serie: Serie): Observable<void> {
+        return this.http.put<void>('/api/series/update/' + serie.idSerie, serie);
+    }
+
+
 
 
 }

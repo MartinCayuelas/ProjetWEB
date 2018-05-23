@@ -21,20 +21,16 @@ public id: number;
 constructor(private route: ActivatedRoute, private serieService: SerieService) { }
 
   ngOnInit() {
-    this.id = parseInt(this.route.snapshot.paramMap.get('idSerie'), 0);
-    console.log('Id: ' + this.id);
+    this.id = parseInt(this.route.snapshot.paramMap.get('idSerie'), 0); // Récupération du paramètre dans l'URL
 
-
-
+    console.log('id:' + this.id);
     this.serieService.getSerie(this.id).subscribe(series => {
       this.serie = series;
+      if (this.serie.imageSerie === null) {
+        this.serie.imageSerie = 'fav.png';
+      }
+
     });
-
-    if (this.serie.imageSerie === undefined) {
-      this.serie.imageSerie = 'fav.png';
-    }
-
-
   }
 
 }

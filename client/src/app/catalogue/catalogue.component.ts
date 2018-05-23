@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Serie } from '../share/models/serie.model';
 import { SerieService } from '../share/services/serie.service';
@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 })
 export class CatalogueComponent implements OnInit {
   public series: Observable<Serie[]>;
+
   /*series = [
   new Serie(1, 'Game of Thrones' , 'GOT.jpg' , 'Meilleure series ever' , '23/12/09' ),
       new Serie(2, 'Vikings' , 'vikings.jpg' , 'I\'m Raagnnaaaar' , '12/04/13' ),
@@ -23,11 +24,12 @@ export class CatalogueComponent implements OnInit {
 
   ];
 */
-constructor(private serieService: SerieService) { }
+  constructor(private serieService: SerieService) { }
 
   ngOnInit() {
     this.serieService.getAllSeries().subscribe(series => {
       this.series = series;
+
     });
   }
 

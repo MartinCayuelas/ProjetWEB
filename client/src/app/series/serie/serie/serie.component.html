@@ -1,10 +1,13 @@
-<div class="container mt5">
+<div class="container mt-5">
   <div class="jumbotron">
     <div class="mx-auto">
      <img class="imageSerie" src="../../../../assets/images/{{serie.imageSerie}}">
     </div>
     <div class="container mt-2">
-      <h4 class="text-warning">{{serie.titre}}</h4>
+      <div class="text-center">
+        <h4 class="text-warning">{{serie.titre}}</h4>
+      </div>
+      <hr>
       <p>Réalisateur: {{serie.prenomRealisateur}} <span class="bold">{{serie.nomRealisateur}}</span></p>
       <hr>
       <p><span class="bold">Description:</span> {{serie.description}}</p>
@@ -23,7 +26,7 @@
     <div>
       <a class="btn btn-md btn-danger"> Supprimer de  ma playlist</a>
     </div>
-    <div> </div>
 
+    <a class="btn btn-md btn-info" routerLink="/catalogue" routerLinkActive="active">Retour au catalogue</a>
   </div>
 </div>

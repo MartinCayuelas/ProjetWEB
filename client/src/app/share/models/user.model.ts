@@ -1,12 +1,12 @@
 export interface User {
-     idUser: number;
+    idUser: number;
     login: string;
-     prenom: string;
-     nom: string;
-     password: string;
+    prenom: string;
+    nom: string;
+    password: string;
     email: string;
-     date: string;
-     avatar: string;
+    dateInscription: string;
+    avatar: string;
     role: number;
 
 }

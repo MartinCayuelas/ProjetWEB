@@ -16,14 +16,23 @@ export class SeriesComponent implements OnInit {
   public series: Observable<Serie[]>;
 
 
-    constructor(private serieService: SerieService) { }
+  constructor(private serieService: SerieService) { }
 
 
-    ngOnInit() {
-      this.serieService.getAllSeries().subscribe(series => {
-        this.series = series;
-      });
+  ngOnInit() {
+    this.serieService.getAllSeries().subscribe(series => {
+      this.series = series;
+    });
 
-    }
+
+
+
+  }
+
+  deleteSerie(id: number) {
+    this.serieService.deleteSerie(id).subscribe();
+    alert('Série supprimée');
+  }
+
 
 }

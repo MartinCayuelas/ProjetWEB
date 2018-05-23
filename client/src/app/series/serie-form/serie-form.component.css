@@ -1,0 +1,19 @@
+.form-addSerie{
+    background-color: #706e6e;
+    border-radius: 5px;
+    color: #ffc107!important;
+}
+
+.formAdd{
+    background-color:#ffc107; 
+}
+
+.l-connect{
+    
+    font-size:20px;
+}
+
+.field{
+    border: 2px solid #ffc107;
+    border-radius: 5px;
+}

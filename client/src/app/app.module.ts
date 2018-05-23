@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Components
 import { AppComponent } from './app.component';
@@ -15,23 +15,29 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserComponent } from './user/user.component';
 import { HttpClientModule } from '@angular/common/http';
 
+import { NavbarComponent } from './navbar/navbar.component';
+import { SerieComponent } from './series/serie/serie/serie.component';
+import { SerieFormComponent } from './series/serie-form/serie-form.component';
+
 // Services
 
 import { UserService } from './share/services/user.service';
 import { SerieService } from './share/services/serie.service';
-import { NavbarComponent } from './navbar/navbar.component';
-import { SerieComponent } from './series/serie/serie/serie.component';
+import { SerieUpdateComponent } from './series/serie-update/serie-update/serie-update.component';
 
 const appRoutes: Routes = [
     { path: 'accueil', component: HomeComponent },
-    { path: 'connexion', component: ConnexionComponent },
-    { path: 'inscription', component: InscriptionComponent },
+    { path: 'signin', component: ConnexionComponent },
+    { path: 'signup', component: InscriptionComponent },
     { path: 'catalogue', component: CatalogueComponent },
     { path: 'series', component: SeriesComponent },
+    { path: 'series/add', component: SerieFormComponent },
     { path: 'catalogue/:idSerie', component: SerieComponent },
     { path: 'series/:idSerie', component: SerieComponent },
     { path: 'dashboard', component: DashboardComponent },
-    { path: 'mon-compte/:id', component: AccountComponent },
+    { path: 'dashboard/addSerie', component: SerieFormComponent },
+    { path: 'dashboard/updateSerie/:idSerie', component: SerieUpdateComponent },
+    { path: 'account/:idUser', component: AccountComponent },
     { path: '', component: HomeComponent }
 ];
 
@@ -47,11 +53,14 @@ const appRoutes: Routes = [
     DashboardComponent,
     UserComponent,
     NavbarComponent,
-    SerieComponent
+    SerieComponent,
+    SerieFormComponent,
+    SerieUpdateComponent
   ],
   imports: [
     BrowserModule,
       FormsModule,
+      ReactiveFormsModule,
       HttpClientModule,
       RouterModule.forRoot(appRoutes)
 
