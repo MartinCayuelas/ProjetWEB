@@ -1,16 +1,17 @@
 <div class="container">
-  <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">Saisons
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu bg-secondary text-white" >
-      <li  *ngFor="let episode of episodes">
-        <p> Titre: {{episode.nomEpisode}}</p>
-        <a class="btn btn-sm btn-success">Vu</a>
-       
+    <div class="text-center">
+        <h4> Episodes </h4>
+    </div>
+  <div class="card bg-dark">
+
+    <ul class="text-white">
+      <li *ngFor="let episode of episodes">
+        <p class="text-warning"> {{episode.numeroEpisode}}: {{episode.nomEpisode}} (Saison: {{episode.saison}})</p>
+        <label class="switch" for="checkbox{{episode.idEpisode}}">
+          <input type="checkbox" (onchange)="changeVision(episode.idEpisode)" id="checkbox{{episode.idEpisode}}"/>
+          <div class="slider round"></div>
+        </label>
       </li>
-      
-     
     </ul>
   </div>
-</div>
+  </div>

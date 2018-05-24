@@ -33,17 +33,25 @@
       <div>
         <a class="btn btn-md btn-danger text-white"> Supprimer de ma playlist</a>
       </div>
+    </div>
 
-
-      <div>
+    <div class="row">
+      <div class="col-6">
+        <app-critique>
+          <!--Liste des commentaires-->
+        </app-critique>
+      </div>
+      <div class="col-6">
         <app-episode-list>
-          <!--Liste des épisodes d ela séries-->
+          <!--Liste des épisodes de la séries-->
           <!--Visible uniquement si on visionne la série-->
         </app-episode-list>
       </div>
 
+
+
     </div>
-    <div class="text-center">
+    <div class="text-center mt-5">
       <a class="btn btn-md btn-secondary text-warning" routerLink="/catalogue" routerLinkActive="active">Retour au catalogue</a>
 
     </div>

@@ -24,11 +24,12 @@ import { SerieFormComponent } from './series/serie-form/serie-form.component';
 import { UserService } from './share/services/user.service';
 import { SerieService } from './share/services/serie.service';
 import { EpisodeService } from './share/services/episode.service';
-
+import { CritiqueService } from './share/services/critique.service';
 
 import { SerieUpdateComponent } from './series/serie-update/serie-update/serie-update.component';
 import { EpisodeListComponent } from './episode/episode-list/episode-list.component';
 import { PlaylistUserComponent } from './playlist/playlist-user/playlist-user.component';
+import { CritiqueComponent } from './critique/critique.component';
 
 const appRoutes: Routes = [
   { path: 'accueil', component: HomeComponent },
@@ -62,7 +63,8 @@ const appRoutes: Routes = [
     SerieFormComponent,
     SerieUpdateComponent,
     EpisodeListComponent,
-    PlaylistUserComponent
+    PlaylistUserComponent,
+    CritiqueComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +77,8 @@ const appRoutes: Routes = [
   providers: [
     UserService,
     SerieService,
-    EpisodeService
+    EpisodeService,
+    CritiqueService
   ],
   bootstrap: [AppComponent]
 })

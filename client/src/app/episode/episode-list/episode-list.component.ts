@@ -14,6 +14,7 @@ export class EpisodeListComponent implements OnInit {
   public episodes: Observable<Episode[]>;
   public id;
 
+
   constructor(private route: ActivatedRoute, private episodeService: EpisodeService) { }
 
   ngOnInit() {
@@ -23,6 +24,10 @@ export class EpisodeListComponent implements OnInit {
       this.episodes = eps;
     });
     console.log('episodes reçu');
+  }
+
+  changeVision(id: number) {
+
   }
 
 }
