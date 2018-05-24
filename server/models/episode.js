@@ -4,7 +4,7 @@ module.exports.getAllEpisodes = function (req, idSerie, callback) {
     console.log("GET ALL Episodes");
     console.log("idSerie:" + idSerie);
   req.getConnection(function(err, connection){
-      connection.query('select * from Episode where idSerie = ? ORDER BY idSerie, numeroEpisode', [idSerie], function(err, rows, fields) {
+      connection.query('select * from Episode where idSerie = ? ORDER BY idSerie, numeroEpisode, saison', [idSerie], function(err, rows, fields) {
           if (err) {
               console.log (err);
               return res.status(300).json("Impossible de récupérer les episodes");
