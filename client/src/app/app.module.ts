@@ -32,13 +32,13 @@ import { PlaylistUserComponent } from './playlist/playlist-user/playlist-user.co
 import { CritiqueComponent } from './critique/critique.component';
 
 const appRoutes: Routes = [
-  { path: 'accueil', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'signin', component: ConnexionComponent },
   { path: 'signup', component: InscriptionComponent },
-  { path: 'catalogue', component: CatalogueComponent },
+  { path: 'catalog', component: CatalogueComponent },
   { path: 'series', component: SeriesComponent },
   { path: 'series/add', component: SerieFormComponent },
-  { path: 'catalogue/:idSerie', component: SerieComponent },
+  { path: 'catalog/:idSerie', component: SerieComponent },
   { path: 'series/:idSerie', component: SerieComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'dashboard/addSerie', component: SerieFormComponent },

@@ -1,11 +1,16 @@
 .active{
 
     border: solid #ffbb33 2px;
+    background-color: #ffbb33;
+    color: rgb(0, 0, 0);
     border-radius: 5px;
 
 }
 
-
+.logoBrand{
+    width:30px;
+     height:30px;
+}
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
     .featurette-heading {

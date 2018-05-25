@@ -13,6 +13,21 @@ serieRoutes.get('/getAllSeries',(req, res) => {
     });
 });
 
+serieRoutes.get('/getAllSeriesNews',(req, res) => {
+    console.log("La route GetAllNews");
+    serie.getAllSeriesNews(req, series => {
+        return res.status(200).json(series);
+    });
+});
+
+serieRoutes.get('/getAllSeriesTops',(req, res) => {
+    console.log("La route GetAllTop");
+    serie.getAllSeriesTop(req, series => {
+        return res.status(200).json(series);
+    });
+});
+
+
 serieRoutes.get('/:id', (req,res) => {
     console.log("serieRouter");
     console.log("Param req: " + req.params.id);

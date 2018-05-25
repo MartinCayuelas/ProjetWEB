@@ -2,11 +2,28 @@
     font-weight: bold;
 }
 
-.imageSerie{
-    width: 350px;
-    height: 300px;
+
+
+.buttonRetour{
+    margin-top: 15px;
 }
 
-.divImageSerie{
-    margin: 0 auto;
+@media (min-width: 768px) {
+    .cardSerie{
+        width: 800px;
+        margin: auto;
+    }
+    
+    
+}
+
+
+@media (max-width: 767px) {
+    .cardSerie{
+        width: 400px;
+        margin: auto;
+        
+    }
+    
+    
 }

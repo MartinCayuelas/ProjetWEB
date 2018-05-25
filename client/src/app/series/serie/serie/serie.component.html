@@ -1,59 +1,52 @@
-<div class="container mt-5">
-  <div class="jumbotron">
-    <div class="mx-auto">
-      <img class="imageSerie" src="../../../../assets/images/{{serie.imageSerie}}">
-    </div>
-    <div class="container mt-2">
+<div class="container content">
+  <div class="card cardSerie bg-light" >
+    <img class="card-img-top imageSerie img-responsive" src="../../../../assets/images/{{serie.imageSerie}}" alt={{serie.titre}}>
+    <div class="card-body">
       <div class="text-center">
-        <h4 class="text-dark">{{serie.titre}}</h4>
+        <h4 class="text-dark"><span class="bold">{{serie.titre}}</span></h4>
       </div>
-      <hr>
-      <p>Réalisateur: {{serie.prenomRealisateur}}
-        <span class="bold">{{serie.nomRealisateur}}</span>
-      </p>
-      <hr>
-      <p>
-        <span class="bold">Description:</span> {{serie.description}}</p>
-      <hr>
-      <p>
-        <span class="bold">Nombre de saisons:</span> {{serie.nbSaisons}}</p>
-      <hr>
-      <p>
-        <span class="bold">Nombre de saisons:</span> {{serie.nbEpisodes}}</p>
-      <hr>
-      <p>
-        <span class="bold">Date de sortie:</span> {{serie.dateSortie | date:'yyyy-MM-dd'}}</p>
-    </div>
-
-    <div class="row">
-      <div>
-        <a class="btn btn-md btn-success text-white"> Ajouter à ma playlist</a>
-        <p class="btn btn-warning">Visionnée</p>
-      </div>
-      <div>
-        <a class="btn btn-md btn-danger text-white"> Supprimer de ma playlist</a>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-6">
-        <app-critique>
-          <!--Liste des commentaires-->
-        </app-critique>
-      </div>
-      <div class="col-6">
-        <app-episode-list>
-          <!--Liste des épisodes de la séries-->
-          <!--Visible uniquement si on visionne la série-->
-        </app-episode-list>
-      </div>
-
-
-
-    </div>
-    <div class="text-center mt-5">
-      <a class="btn btn-md btn-secondary text-warning" routerLink="/catalogue" routerLinkActive="active">Retour au catalogue</a>
-
+        <hr>
+        <p>Réalisateur: {{serie.prenomRealisateur}}
+          <span class="bold">{{serie.nomRealisateur}}</span>
+        </p>
+        <hr>
+        <p>
+          <span class="bold">Description:</span> {{serie.description}}</p>
+        <hr>
+        <p>
+          <span class="bold">Nombre de saisons:</span> {{serie.nbSaisons}}</p>
+        <hr>
+        <p>
+          <span class="bold">Nombre de saisons:</span> {{serie.nbEpisodes}}</p>
+        <hr>
+        <p>
+          <span class="bold">Date de sortie:</span> {{serie.dateSortie | date:'yyyy-MM-dd'}}</p>
+         <!-- <div class="row">
+              <div>
+                <a class="btn btn-md btn-success text-white"> Ajouter à ma playlist</a>
+                <p class="btn btn-warning">Visionnée</p>
+              </div>
+              <div>
+                <a class="btn btn-md btn-danger text-white"> Supprimer de ma playlist</a>
+              </div>
+            </div>-->
+            <div class="row">
+              <div class="col-6">
+                <app-critique>
+                  <!--Liste des commentaires-->
+                </app-critique>
+              </div>
+              <div class="col-6">
+                <app-episode-list>
+                  <!--Liste des épisodes de la séries-->
+                  <!--Visible uniquement si on visionne la série-->
+                </app-episode-list>
+              </div>
+            </div>
+            <div class="text-center buttonRetour">
+              <a class="btn btn-md btn-secondary text-warning" routerLink="/catalog" routerLinkActive="active">Retour au catalogue</a>
+            </div>
     </div>
   </div>
+
 </div>

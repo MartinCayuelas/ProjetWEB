@@ -22,6 +22,15 @@ export class SerieService {
         return this.http.get<any>('/api/series/' + id);
     }
 
+    public getNewSeries(): Observable<any> {
+        return this.http.get<any>('/api/series/getAllSeriesNews');
+    }
+
+    public getTopSeries(): Observable<any> {
+        console.log('La route GetAllTop2');
+        return this.http.get<any>('/api/series/getAllSeriesTops');
+    }
+
 
 
     insertSerie(serie: Serie): Observable<Serie> {

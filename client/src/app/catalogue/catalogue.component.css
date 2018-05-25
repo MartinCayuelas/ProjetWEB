@@ -3,69 +3,38 @@
 
 /* Small devices (tablets, 768px and up) */
 
+.cardCatalog{
+    width: 18rem;
+    margin-bottom: 25px;
+}
+.imageCatalogue{
+    width: 300px;
+    height: 200px;
+}
 
-
-@media (min-width: 500px) {
-    .imageCatalogue{
-        width: 505px;
-        height: 250px;
-    }
-
-    .description{
-        width: 495px;
-        height: 180px;
-       overflow: hidden;
-       text-overflow: ellipsis; 
-   }
+.description{
+    width: 250px;
+    height: 75px;
+    overflow: hidden;
+    text-overflow: ellipsis; 
 }
 
 
 
-/* Small devices (tablets, 768px and up) */
+
+@media (min-width: 400px) {
+    .rowSerie{
+       
+        padding-left: 90px;
+    }
+    
+}
+
 @media (min-width: 768px) {
-    .imageCatalogue{
-        width: 210px;
-        height: 180px;
+    .rowSerie{
+       
+        padding-left: 25px;
     }
-    .description{
-        width: 200px;
-        height: 180px;
-       overflow: hidden;
-       text-overflow: ellipsis; 
-   }
-}
-
-
-
-/* Medium devices (desktops, 992px and up) */
-@media (min-width: 992px) {
-
-    .imageCatalogue{
-        width: 290px;
-        height: 200px;
-    }
-    .description{
-        width: 280px;
-        height: 200px;
-       overflow: hidden;
-       text-overflow: ellipsis; 
-   }
-
-
-}
-
-
-
-/* Large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
-    .imageCatalogue{
-        width: 345px;
-        height: 200px;
-    }
-    .description{
-        width: 335px;
-        height: 200px;
-       overflow: hidden;
-       text-overflow: ellipsis; 
-   }
+    
+    
 }

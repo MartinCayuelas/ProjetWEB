@@ -1,56 +1,49 @@
 <header>
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="#"><img src="../assets/images/fav.png" class="logo"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="#">
+      <img src="../assets/images/fav.png" class="logoBrand" alt="Logo">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+      aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link text-warning" routerLink="/accueil" routerLinkActive="active" >Accueil </a>
+          <a class="nav-link " routerLink="/home" routerLinkActive="active">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-warning"   routerLink="/catalogue" routerLinkActive="active" >Catalogue</a>
+          <a class="nav-link " routerLink="/catalog" routerLinkActive="active">Catalog</a>
         </li>
 
         <!-- Il faut être connecté pour voir ça -->
         <li class="nav-item">
-          <a class="nav-link text-warning" href="#">Mes séries</a>
+          <a class="nav-link " href="#">Playlist</a>
         </li>
         <!-- if admin alors on affiche pas les memes choses -->
         <li class="nav-item">
-          <a class="nav-link text-warning" routerLink="/account/:id" routerLinkActive="active" >Mon Compte</a>
+          <a class="nav-link " routerLink="/account/:id" routerLinkActive="active">Account</a>
         </li>
 
         <li class="nav-item">
-        <a class="nav-link text-warning" routerLink="/dashboard" routerLinkActive="active" >Dashboard</a>
+          <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
         </li>
 
 
         <li class="nav-item">
-          <a class="nav-link text-warning" routerLink="/signin" routerLinkActive="active" >Se connecter</a>
+          <a class="nav-link " routerLink="/signin" routerLinkActive="active">SignIn</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link text-warning" routerLink="/signup" routerLinkActive="active" >S'inscrire</a>
+          <a class="nav-link" routerLink="/signup" routerLinkActive="active">SignUp</a>
         </li>
       </ul>
-      <form class="form-inline mt-2 mt-md-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="Serie" aria-label="Search">
-        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Rechercher</button>
-      </form>
     </div>
   </nav>
 </header>
 
-<router-outlet>
-  <!-- Ici que ce fait le routage-->
-</router-outlet>
+  <router-outlet>
+    <!-- Ici que ce fait le routage-->
+  </router-outlet>
 
-
-  <!-- FOOTER -->
-  <footer class="container">
-
-
-    <p class="p-2">&copy; 2017-2018 Martin Cayuelas.</p>
-  </footer>

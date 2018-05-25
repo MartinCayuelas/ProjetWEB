@@ -1,9 +1,9 @@
-<div class="container mt-5">
+<div class="container content">
 
 
   <form class="form-signup text-center" [formGroup]="form" novalidate>
 
-    <h2 class="text-warning">Formulaire d'inscription</h2>
+    <h2 class="text-warning">SignUp</h2>
     <fieldset class="p-5">
       <div class="form-group">
         <label for="login" class="l-connect">Login</label>
@@ -11,21 +11,21 @@
       </div>
       <div class="form-row">
         <div class="col">
-          <label for="prenom" class="l-connect">Prénom</label>
+          <label for="prenom" class="l-connect">FisrtName</label>
           <input type="text" formControlName="prenom" class="form-control input-connect" id="prenom">
         </div>
         <div class="col">
-          <label for="nom" class="l-connect">Nom</label>
+          <label for="nom" class="l-connect">Name</label>
           <input type="text" class="form-control input-connect" id="nom" formControlName="nom">
         </div>
       </div>
       <div class="form-row">
         <div class="col">
-          <label for="pwd" class="l-connect">Mot de Passe</label>
+          <label for="pwd" class="l-connect">Password</label>
           <input type="password" formControlName="password" class="form-control input-connect" id="pwd">
         </div>
         <div class="col">
-          <label for="pwdVerif" class="l-connect">Confirmation </label>
+          <label for="pwdVerif" class="l-connect">Confirmation</label>
 
           <input type="password" class="form-control input-connect" id="pwdVerif" (keyup)="onKey($event)">
         </div>

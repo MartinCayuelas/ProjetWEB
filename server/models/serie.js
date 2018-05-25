@@ -14,6 +14,35 @@ module.exports.getAllSeries = function(req, callback) {
 
 }
 
+module.exports.getAllSeriesNews = function(req, callback) {
+    req.getConnection(function (err, connection) { 
+        connection.query('select * from Serie ORDER BY dateSortie DESC LIMIT 3', function(err, rows, fields) {
+            if (err) {
+                console.log (err);
+                return res.status(300).json("Impossible de récupérer les nouveautés");
+            }
+            console.log("Requete getAllSeries effectuée");
+            console.log(rows);
+            callback(rows);
+        });
+    }); 
+
+}
+module.exports.getAllSeriesTop = function(req, callback) {
+    req.getConnection(function (err, connection) { 
+        connection.query('SELECT Serie.titre, Serie.imageSerie, Serie.idSerie, COUNT(*) as nbVu FROM Serie, regarder WHERE Serie.idSerie = regarder.idSerie GROUP BY Serie.titre, Serie.imageSerie, Serie.idSerie ORDER BY nbVu DESC LIMIT 3', function(err, rows, fields) {
+            if (err) {
+                console.log (err);
+                return res.status(300).json("Impossible de récupérer les nouveautés");
+            }
+            console.log("Requete getAllSeries TOPs effectuée");
+            console.log(rows);
+            callback(rows);
+        });
+    }); 
+
+}
+
 module.exports.getSerieById = function (req, idSerie, callback) {
     console.log("idSerie:" + idSerie);
   req.getConnection(function(err, connection){

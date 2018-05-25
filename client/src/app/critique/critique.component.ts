@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Critique } from '../share/models/critique.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CritiqueService } from '../share/services/critique.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -16,11 +16,9 @@ export class CritiqueComponent implements OnInit {
   public note: number;
   public commentaire: String;
   public id: number;
-
   public form: FormGroup;
 
-
-  constructor(private fb: FormBuilder, private route: ActivatedRoute, private critiqueService: CritiqueService) { }
+  constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router, private critiqueService: CritiqueService) { }
 
   ngOnInit() {
     this.id = parseInt(this.route.snapshot.paramMap.get('idSerie'), 0); // Récupération du paramètre dans l'URL
@@ -38,7 +36,6 @@ export class CritiqueComponent implements OnInit {
     });
   }
 
-
   onChangeNote(event) {
     this.note = event.target.value;
     this.form.get('note').setValue(this.note);
@@ -51,5 +48,13 @@ export class CritiqueComponent implements OnInit {
 
   saveCritique(): void {
     this.critiqueService.createCritique(this.form.value).subscribe();
+    this.getCritiques();
+  }
+
+  getCritiques() {
+    this.critiqueService.getCritiques(this.id).subscribe(critiques => {
+      this.critiques = critiques;
+    });
+
   }
 }

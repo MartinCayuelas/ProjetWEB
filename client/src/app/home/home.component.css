@@ -1,10 +1,34 @@
 .imgTop{
-    width: 350px;
-    height: 220px;
-}
-
-.thumbnail:hover{
-    box-shadow: 5px 5px #ffbb33;
+    width: 300px;
+    height: 200px;
 }
 
 
+
+.contentHome{
+    background-color: #343a40!important;
+    opacity: 0.9;
+    border-radius: 10px;
+}
+
+.rowSerie{
+    padding-bottom: 50px;
+    padding-left: 25px;
+}
+
+@media (min-width: 400px) {
+    .rowSerie{
+        padding-bottom: 50px;
+        padding-left: 75px;
+    }
+    
+}
+
+@media (min-width: 768px) {
+    .rowSerie{
+        padding-bottom: 50px;
+        padding-left: 25px;
+    }
+    
+    
+}

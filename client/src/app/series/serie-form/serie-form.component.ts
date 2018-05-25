@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Serie } from '../../share/models/serie.model';
 import { SerieService } from '../../share/services/serie.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class SerieFormComponent implements OnInit {
 
   public form: FormGroup;
 
-  constructor(private fb: FormBuilder, private serieService: SerieService) {
+  constructor(private fb: FormBuilder, private route: Router, private serieService: SerieService) {
 
   }
 
@@ -45,6 +46,6 @@ export class SerieFormComponent implements OnInit {
 
   createSerie(): void {
     this.serieService.insertSerie(this.form.value).subscribe();
-    alert('Série créée');
+    this.route.navigate(['/dashboard']);
   }
 }

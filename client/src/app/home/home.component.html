@@ -1,84 +1,41 @@
-
-<section class="mt-5">
-  <div class="container">
-      <div class="text-center">
-          <h3 class="text-dark"> Nouveautés <i class="far fa-calendar-check"></i> </h3>
-      </div>
-      <div>
-          <hr>
-          <div class="row">
-              <div class="col-md-4">
-                  <div class="thumbnail">
-                      <a href="#" class="monthub">
-                          <img class="imgTop" src="../../assets/images/vikings.jpg" alt="Lights">
-
-                      </a>
-                  </div>
-              </div>
-              <div class="col-md-4">
-                  <div class="thumbnail">
-                      <a href="/w3images/nature.jpg">
-                          <img class="imgTop" src="../../assets/images/arrow.jpg" alt="Nature" >
-
-                      </a>
-                  </div>
-              </div>
-              <div class="col-md-4">
-                  <div class="thumbnail">
-                      <a href="/w3images/fjords.jpg">
-                          <img class="imgTop" src="../../assets/images/GOT.jpg" alt="Fjords">
-
-                      </a>
-                  </div>
-              </div>
-          </div>
-
-
-
-      </div>
-
-  </div>
+<section class="content">
+    <div class="container contentHome">
+        <div class="text-center pt-3">
+            <h3 class="text-warning">Discover
+                <i class="far fa-calendar-check"></i>
+            </h3>
+        </div>
+        <div>
+            <hr>
+            <div class="row rowSerie">
+                <div class="col-xs-6 col-md-4 thumbnail thumbHome" *ngFor="let serie of series">
+                    <a routerLink="/catalog/{{serie.idSerie}}" routerLinkActive="active" >
+                        <img src="../../assets/images/{{serie.imageSerie}}" alt="{{serie.titre}}" class="imgTop img-fluid thumbnail">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>
 </section>
-    <hr>
+
 
 <section>
-    <div class="container">
-
-        <div>
-            <div class="text-center">
-                <h3 class="text-dark">Top Séries <i class="fas fa-chart-line"></i> </h3>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="thumbnail">
-                        <a href="#" class="monthub">
-                            <img class="imgTop" src="../../assets/images/vikings.jpg" alt="Lights">
-
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="thumbnail">
-                        <a href="/w3images/nature.jpg">
-                            <img class="imgTop" src="../../assets/images/arrow.jpg" alt="Nature" >
-
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="thumbnail">
-                        <a href="/w3images/fjords.jpg">
-                            <img class="imgTop" src="../../assets/images/GOT.jpg" alt="Fjords">
-
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <hr>
-
-
-
+    <div class="container contentHome">
+        <div class="text-center pt-3">
+            <h3 class="text-warning">Top Series
+                <i class="fas fa-chart-line"></i>
+            </h3>
         </div>
+        <hr>
+        <div class="row rowSerie">
+                <div class="col-xs-6 col-md-4 thumbnail thumbHome" *ngFor="let top of topSeries">
+                    <a routerLink="/catalog/{{top.idSerie}}" routerLinkActive="active" >
+                        <img src="../../assets/images/{{top.imageSerie}}" alt="{{top.titre}}" class="imgTop img-fluid thumbnail">
+                    </a>
+                </div>
+            </div>
+        <hr>
     </div>
 
 </section>
