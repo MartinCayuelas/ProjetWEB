@@ -31,11 +31,13 @@ module.exports.getAllUsersNb = function (req, callback) {
 
 }
 
-module.exports.addVision = function (req, callback) {
+// Epsiodes
+
+module.exports.addVision = function (req, idUser,callback) {
     console.log("Requete addVision incoming...");
     let queryInsert = "INSERT INTO visionne VALUES (?, ?)";
     const ep = [
-        req.body.idUser,
+        idUser,
         req.body.idE,
 
     ]
@@ -52,14 +54,15 @@ module.exports.addVision = function (req, callback) {
     });
 }
 
-module.exports.removeVision = function (req, callback) {
+module.exports.removeVision = function (req, idUser,callback) {
     const ep = [
-        req.body.idUser,
-        req.body.idE,
+        idUser,
+        req.params.idE,
 
     ]
     req.getConnection(function (err, connection) {
-
+        console.log('idUser RemoveVision' + idUser);
+        console.log('idE RemoveVision' + req.params.idE);
         var sqlS = "DELETE FROM visionne WHERE idUser = ? AND idEpisode = ?";
         connection.query(sqlS, ep, function (err, rows, fields) {
             if (err) {
@@ -72,6 +75,74 @@ module.exports.removeVision = function (req, callback) {
         });
     });
 }
+
+
+// Series
+
+module.exports.addRegarder = function (req, idUser,callback) {
+    console.log("Requete addVision incoming...");
+    let queryInsert = "INSERT INTO regarder VALUES (?, ?)";
+    const serie = [
+        req.body.idSerie,
+        idUser,
+        
+
+    ]
+    req.getConnection(function (err, connection) {
+        connection.query(queryInsert, serie, function (err, rows, fields) {
+            if (err) {
+                console.log(err);
+                return res.status(500).json('erreur Insertion');
+            }
+            console.log("Requete Insert Regarder effectuée");
+            callback(rows);
+        });
+
+    });
+}
+
+module.exports.removeRegarder = function (req, idUser,callback) {
+    const serie = [
+        idUser,
+        req.params.idSerie,
+    ]
+    req.getConnection(function (err, connection) {
+        console.log('idUser RemoveVision' + idUser);
+        console.log('idE RemoveVision' + req.params.idSerie);
+        var sqlS = "DELETE FROM regarder WHERE idUser = ? AND idSerie = ?";
+        connection.query(sqlS, serie, function (err, rows, fields) {
+            if (err) {
+                console.log(err);
+                return res.status(300).json("Impossible de supprimer le 'regardage' de serie");
+            }
+            console.log("Requete deleteRegarder OK");
+            console.log(rows);
+            callback(rows[0]);
+        });
+    });
+}
+
+
+
+module.exports.isSeenSerie = function (req, idUser, callback) {
+    console.log("iduser getNbSeriesById:" + idUser);
+    const serie = [
+        idUser,
+        req.params.idSerie,
+    ]
+    req.getConnection(function (err, connection) {
+        connection.query('SELECT regarder.idUser, COUNT(*) AS vu  from regarder WHERE  regarder.idUser = ? AND regarder.idSerie = ?', serie, function (err, rows, fields) {
+            if (err) {
+                console.log(err);
+                return res.status(300).json("Impossible de récupérer le isSeen");
+            }
+            console.log("Requete isSeen OK");
+            // console.log(rows);
+            callback(rows[0]);
+        });
+    });
+}
+
 
 module.exports.getUserById = function (req, idUser, callback) {
     console.log("iduser:" + idUser);
