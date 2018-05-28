@@ -15,13 +15,14 @@ export class EpisodeListComponent implements OnInit {
   public id;
   public idUser;
 
+
   req: any = {};
 
   constructor(private route: ActivatedRoute, private episodeService: EpisodeService) { }
 
   ngOnInit() {
     this.id = parseInt(this.route.snapshot.paramMap.get('idSerie'), 0); // Récupération du paramètre dans l'URL
-    this.idUser = parseInt(this.route.snapshot.paramMap.get('idUser'), 0);
+    // this.idUser = parseInt(this.route.snapshot.paramMap.get('idUser'), 0);
     console.log('episodes en demande');
     this.episodeService.getAllEpisodesBySerie(this.id).subscribe(eps => {
       this.episodes = eps;
@@ -36,9 +37,9 @@ export class EpisodeListComponent implements OnInit {
       console.log('idU:' + this.idUser);
       console.log('idE:' + id);
 
-
       this.episodeService.addVision(this.req).subscribe();
     } else {
+      console.log('idE:' + this.req.idE);
       this.episodeService.removeVision(this.req).subscribe();
     }
   }

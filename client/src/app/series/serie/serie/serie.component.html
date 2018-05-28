@@ -1,9 +1,9 @@
 <div class="container content">
-  <div class="card cardSerie bg-light" >
+  <div class="card cardSerie bg-light" *ngIf="serie !== undefined" >
     <img class="card-img-top imageSerie img-responsive" src="../../../../assets/images/{{serie.imageSerie}}" alt={{serie.titre}}>
     <div class="card-body">
       <div class="text-center">
-        <h4 class="text-dark"><span class="bold">{{serie.titre}}</span></h4>
+        <h4 class="text-dark"><span class="bold">{{serie.titre}}</span> <span *ngIf="isSeen && authService.loggedIn()" class="badge bg-warning">Seen</span></h4>
       </div>
         <hr>
         <p>Created by: {{serie.prenomRealisateur}}
@@ -21,15 +21,16 @@
         <hr>
         <p>
           <span class="bold">Original release:</span> {{serie.dateSortie | date:'yyyy-MM-dd'}}</p>
-         <!-- <div class="row">
+          <div class="row">
               <div>
-                <a class="btn btn-md btn-success text-white"> Ajouter à ma playlist</a>
-                <p class="btn btn-warning">Visionnée</p>
+                <a *ngIf="authService.loggedIn() &&!isSeen" class="btn btn-md btn-success text-white" (click)="addInPlaylist()"> Add in Playlist</a>
+               
+                
               </div>
               <div>
-                <a class="btn btn-md btn-danger text-white"> Supprimer de ma playlist</a>
+                <a *ngIf="authService.loggedIn() && isSeen" class="btn btn-md btn-danger text-white" (click)="removeInPlaylist()"> Remove from Playlist</a>
               </div>
-            </div>-->
+            </div>
             <div class="row">
               <div class="col-6">
                 <app-critique>
@@ -37,7 +38,7 @@
                 </app-critique>
               </div>
               
-              <div class="col-6">
+              <div class="col-6" *ngIf="isSeen">
                 <app-episode-list>
                   <!--Liste des épisodes de la séries-->
                   <!--Visible uniquement si on visionne la série-->

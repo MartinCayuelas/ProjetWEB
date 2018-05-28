@@ -6,6 +6,8 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../../share/services/auth.service';
+import { UserService } from '../../../share/services/user.service';
 
 
 @Component({
@@ -14,21 +16,54 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./serie.component.css']
 })
 export class SerieComponent implements OnInit {
-public serie: Serie;
+  public serie: Serie;
 
-public id: number;
+  public id: number;
 
-private sub: any;
+  private sub: any;
+  public isSeen = false;
+  public seen: number;
 
-constructor(private route: ActivatedRoute, private serieService: SerieService) { }
+  public req: any = {};
+
+  constructor(private route: ActivatedRoute, private serieService: SerieService,
+    private userService: UserService, public authService: AuthService) { }
 
   ngOnInit() {
     this.id = parseInt(this.route.snapshot.paramMap.get('idSerie'), 0); // Récupération du paramètre dans l'URL
 
-    console.log('id:' + this.id);
     this.serieService.getSerie(this.id).subscribe(series => {
       this.serie = series;
+    });
+    this.req.idUser = null;
+    this.req.idSerie = this.id;
+    this.isSeenSerie();
+
+  }
+
+  addInPlaylist() {
+    this.serieService.addRegarder(this.req).subscribe();
+    this.isSeen = true;
+  }
+
+  removeInPlaylist() {
+    this.serieService.removeRegarder(this.req).subscribe();
+    this.isSeen = false;
+  }
+
+  isSeenSerie(): void {
+    this.userService.isSeenSerieByUser(this.req).subscribe(res => {
+      this.seen = res.vu;
+      console.log('seen? 1 ou 0:' + this.seen);
+
+      if (this.seen > 0) {
+        this.isSeen = true;
+      } else {
+        this.isSeen = false;
+      }
     });
   }
 
 }
+
+

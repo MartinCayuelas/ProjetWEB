@@ -37,7 +37,15 @@ export class SerieService {
         return this.http.get<any>('/api/series/getAllSeriesTops');
     }
 
+    public addRegarder(req: any): Observable<any> {
 
+        return this.http.post<any>('/api/users/' + req.idUser + '/addSerieRegarder/' + req.idSerie, req);
+    }
+
+    public removeRegarder(req: any): Observable<any> {
+
+        return this.http.delete<any>('/api/users/' + req.idUser + '/deleteSerieRegarder/' + req.idSerie);
+    }
 
     insertSerie(serie: Serie): Observable<Serie> {
         return this.http.post<Serie>('/api/series/insert', serie);

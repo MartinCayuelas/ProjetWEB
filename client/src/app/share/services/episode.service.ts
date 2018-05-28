@@ -24,6 +24,6 @@ export class EpisodeService {
 
   public removeVision(req: any): Observable<any> {
 
-    return this.http.delete<any>('/api/users/' + req.idUser + '/deleteEpisodeVisionne/' + req.idE, req);
+    return this.http.delete<any>('/api/users/' + req.idUser + '/deleteEpisodeVisionne/' + req.idE); // , req
   }
 }
