@@ -1,17 +1,20 @@
+<div class=" text-center mt-5" >
+    <h4 *ngIf="serie.nb !== undefined">List of Series: {{serie.nb}} Series</h4>
+</div>
 <div class="table-wrapper mx-auto">
   <table class="table table-responsive-md text-center">
     <thead class="bg-warning text-dark">
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Titre</th>
+        <th scope="col">Title</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody *ngFor="let serie of series" class="bg-dark text-warning">
       <tr>
-        <td>{{serie.idSerie}}</td>
-        <td>{{serie.titre}}</td>
-        <td><a class="btn btn-md btn-danger text-white" (click)="deleteSerie(serie.idSerie)"> <i class="fas fa-times-circle"></i></a>
+        <td *ngIf="serie !== undefined">{{serie.idSerie}}</td>
+        <td *ngIf="serie !== undefined">{{serie.titre}}</td>
+        <td *ngIf="serie !== undefined"><a class="btn btn-md btn-danger text-white" (click)="deleteSerie(serie.idSerie)"> <i class="fas fa-times-circle"></i></a>
           <a class="btn btn-md colorBtn text-white" routerLink="/dashboard/updateSerie/{{serie.idSerie}}" routerLinkActive ="active"> <i class="fas fa-pen-square"></i></a></td>
 
       </tr>

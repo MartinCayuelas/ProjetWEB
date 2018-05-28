@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Serie } from '../share/models/serie.model';
 import { SerieService } from '../share/services/serie.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
@@ -14,24 +14,54 @@ import { Router } from '@angular/router';
 
 export class SeriesComponent implements OnInit {
   public series: Observable<Serie[]>;
+  public serie: any;
 
-
-  constructor(private serieService: SerieService) { }
+  constructor(private router: Router, private serieService: SerieService) { }
 
 
   ngOnInit() {
-    this.serieService.getAllSeries().subscribe(series => {
-      this.series = series;
-    });
 
-
-
+    this.getAllSeriesDashboard();
+    this.getNbSeries();
 
   }
 
+  public getNbSeries() {
+    this.serieService.getAllSeriesNb().subscribe(stats => {
+      this.serie = stats;
+    },
+      err => {
+        if (err instanceof HttpErrorResponse) {
+          if (err.status === 401) {
+            this.router.navigate(['/signin']);
+          }
+        }
+      });
+  }
+
+
+
   deleteSerie(id: number) {
     this.serieService.deleteSerie(id).subscribe();
-    alert('Série supprimée');
+
+    this.getAllSeriesDashboard();
+    this.getNbSeries();
+  }
+
+  getAllSeriesDashboard() {
+    this.serieService.getAllSeriesDashboard().subscribe(series => {
+      this.series = series;
+    }
+      ,
+      err => {
+        if (err instanceof HttpErrorResponse) {
+          if (err.status === 401) {
+            this.router.navigate(['/signin']);
+          }
+        }
+
+      });
+
   }
 
 

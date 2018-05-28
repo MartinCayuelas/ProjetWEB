@@ -1,13 +1,20 @@
-.stats{
-    background-color: #ffbb33;
-    color: #343a40;
-}
 
-.infos{
-    background-color: #343a40;
-    color:#ffbb33;
-}
-.avatar{
+.imageAvatar{
     height: 150px;
     width: 150px;
+}
+
+.bold{
+    font-weight: bold;
+}
+.containerImg{
+    margin: auto;
+}
+.cardAccount{
+    
+    margin-bottom: 10px;
+}
+.titleStats{
+    margin-top: 20px;
+    margin-bottom: 20px;
 }

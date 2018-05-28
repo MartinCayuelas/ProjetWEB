@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../share/models/user.model';
 import { UserService } from '../share/services/user.service';
 import { Observable } from 'rxjs/Observable';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-account',
@@ -11,30 +12,40 @@ import { Observable } from 'rxjs/Observable';
 })
 export class AccountComponent implements OnInit {
 
-  public user: User;
 
-  public nbSeries: Observable<number>;
+  public nbSeries: any;
+  public nbEpisodes: any;
   public id: number;
-
-  constructor(private route: ActivatedRoute, private userService: UserService) { }
+  public userCurrent: User;
+  constructor(private route: ActivatedRoute, private router: Router, private userService: UserService) { }
 
   ngOnInit() {
-    this.id = parseInt(this.route.snapshot.paramMap.get('idUser'), 0); // Récupération du paramètre dans l'URL
-
-    this.userService.getUser(this.id).subscribe(users => {
-      this.user = users;
-      if (this.user.avatar === null) {
-        this.user.avatar = 'fav.png';
-      }
-    });
-
-    this.userService.getNbSeries(this.id).subscribe(stats => {
-      this.nbSeries = stats;
-
-      console.log('number' + this.nbSeries);
-    });
+    // this.id = parseInt(this.route.snapshot.paramMap.get('idUser'), 0); // Récupération du paramètre dans l'URL
 
 
+    this.userService.getCurrent().subscribe(user => {
+      this.userCurrent = user;
+      console.log('idUser Get Curennt Account:' + this.userCurrent.idUser);
+
+      this.userService.getNbEpisodes(this.userCurrent.idUser).subscribe(stats => {
+        this.nbEpisodes = stats.nbVus;
+        console.log('nbepisodes:' + this.nbEpisodes);
+
+      });
+      this.userService.getNbSeries(this.userCurrent.idUser).subscribe(stats => {
+        this.nbSeries = stats.nbVus;
+        console.log('nbepisodes:' + this.nbSeries);
+
+
+      });
+    },
+      err => {
+        if (err instanceof HttpErrorResponse) {
+          if (err.status === 401) {
+            this.router.navigate(['/signin']);
+          }
+        }
+      });
 
   }
 

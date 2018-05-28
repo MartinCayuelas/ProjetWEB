@@ -6,7 +6,7 @@
         <h4 class="text-dark"><span class="bold">{{serie.titre}}</span></h4>
       </div>
         <hr>
-        <p>Réalisateur: {{serie.prenomRealisateur}}
+        <p>Created by: {{serie.prenomRealisateur}}
           <span class="bold">{{serie.nomRealisateur}}</span>
         </p>
         <hr>
@@ -14,13 +14,13 @@
           <span class="bold">Description:</span> {{serie.description}}</p>
         <hr>
         <p>
-          <span class="bold">Nombre de saisons:</span> {{serie.nbSaisons}}</p>
+          <span class="bold">Number of seasons:</span> {{serie.nbSaisons}}</p>
         <hr>
         <p>
-          <span class="bold">Nombre de saisons:</span> {{serie.nbEpisodes}}</p>
+          <span class="bold">Number of episodes:</span> {{serie.nbEpisodes}}</p>
         <hr>
         <p>
-          <span class="bold">Date de sortie:</span> {{serie.dateSortie | date:'yyyy-MM-dd'}}</p>
+          <span class="bold">Original release:</span> {{serie.dateSortie | date:'yyyy-MM-dd'}}</p>
          <!-- <div class="row">
               <div>
                 <a class="btn btn-md btn-success text-white"> Ajouter à ma playlist</a>
@@ -36,6 +36,7 @@
                   <!--Liste des commentaires-->
                 </app-critique>
               </div>
+              
               <div class="col-6">
                 <app-episode-list>
                   <!--Liste des épisodes de la séries-->

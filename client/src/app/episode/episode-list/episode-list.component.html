@@ -8,10 +8,11 @@
       <li *ngFor="let episode of episodes">
         <p class="text-warning"> {{episode.numeroEpisode}}: {{episode.nomEpisode}} (Saison: {{episode.saison}})</p>
         <label class="switch" for="checkbox{{episode.idEpisode}}">
-          <input type="checkbox" (onchange)="changeVision(episode.idEpisode)" id="checkbox{{episode.idEpisode}}"/>
+          <input type="checkbox" (click)="changeVision($event,episode.idEpisode)" id="checkbox{{episode.idEpisode}}"/>
           <div class="slider round"></div>
         </label>
       </li>
+      
     </ul>
   </div>
   </div>

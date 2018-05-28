@@ -1,51 +1,39 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { RouterModule, Routes, Route } from '@angular/router';
 
 // Components
 import { AppComponent } from './app.component';
-import { RouterModule, Routes, Route } from '@angular/router';
 import { SeriesComponent } from './series/series.component';
-import { CatalogueComponent } from './catalogue/catalogue.component';
+import { CatalogueComponent } from './catalog/catalogue.component';
 import { HomeComponent } from './home/home.component';
 import { AccountComponent } from './account/account.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserComponent } from './user/user.component';
-import { HttpClientModule } from '@angular/common/http';
-
+import { SerieUpdateComponent } from './series/serie-update/serie-update/serie-update.component';
+import { EpisodeListComponent } from './episode/episode-list/episode-list.component';
+import { PlaylistUserComponent } from './playlist/playlist-user/playlist-user.component';
+import { CritiqueComponent } from './critique/critique.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SerieComponent } from './series/serie/serie/serie.component';
 import { SerieFormComponent } from './series/serie-form/serie-form.component';
-
 // Services
 
 import { UserService } from './share/services/user.service';
 import { SerieService } from './share/services/serie.service';
 import { EpisodeService } from './share/services/episode.service';
 import { CritiqueService } from './share/services/critique.service';
+import { AuthService } from './share/services/auth.service';
 
-import { SerieUpdateComponent } from './series/serie-update/serie-update/serie-update.component';
-import { EpisodeListComponent } from './episode/episode-list/episode-list.component';
-import { PlaylistUserComponent } from './playlist/playlist-user/playlist-user.component';
-import { CritiqueComponent } from './critique/critique.component';
+import { TokenInterceptorService } from './share/services/token-interceptor.service';
 
-const appRoutes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: 'signin', component: ConnexionComponent },
-  { path: 'signup', component: InscriptionComponent },
-  { path: 'catalog', component: CatalogueComponent },
-  { path: 'series', component: SeriesComponent },
-  { path: 'series/add', component: SerieFormComponent },
-  { path: 'catalog/:idSerie', component: SerieComponent },
-  { path: 'series/:idSerie', component: SerieComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'dashboard/addSerie', component: SerieFormComponent },
-  { path: 'dashboard/updateSerie/:idSerie', component: SerieUpdateComponent },
-  { path: 'account/:idUser', component: AccountComponent },
-  { path: '', component: HomeComponent }
-];
+import { appRoutes } from './app.routes';
+import { AuthGuard } from './share/auth.guard';
 
 @NgModule({
   declarations: [
@@ -64,7 +52,8 @@ const appRoutes: Routes = [
     SerieUpdateComponent,
     EpisodeListComponent,
     PlaylistUserComponent,
-    CritiqueComponent
+    CritiqueComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,7 +67,16 @@ const appRoutes: Routes = [
     UserService,
     SerieService,
     EpisodeService,
-    CritiqueService
+    CritiqueService,
+    AuthService,
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
+
+
   ],
   bootstrap: [AppComponent]
 })

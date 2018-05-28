@@ -1,77 +1,83 @@
 <section class="content">
   <div class="container">
-    <aside class="float-right stats  col-lg-6">
-      <div class="text-center p-3">
-        <h4>
-          Statistiques
-        </h4>
-      </div>
-      <div>
-        <p class="float-right col-lg-2">{{nbSeries}}</p>
-        <p class="col-lg-4"> Mes séries</p>
-      </div>
-      <hr>
-      <div>
-        <p class="float-right col-lg-2">21</p>
-        <p class="col-lg-4"> Mes épisodes</p>
-      </div>
-      <hr>
-      <div>
-        <p class="float-right col-lg-2">234</p>
-        <p class="col-lg-4"> Minutes Visionnées</p>
-      </div>
-    </aside>
-    <article class="infos col-lg-6">
-      <div class="text-center p-3">
-        <h4>
-          Mes Informations
-        </h4>
-      </div>
-      <div class="text-center mb-4">
-        <img class="avatar img-responsive rounded-circle" src="../../assets/images/{{user.avatar}}">
-      </div>
-      <div>
-        <table class="table">
-          <tbody>
-          <tr>
-            <th scope="row">Login</th>
-            <td>{{user.login}}</td>
-          </tr>
-          <tr>
-            <th scope="row">Prénom</th>
-            <td>{{user.prenom}}</td>
-          </tr>
-          <tr>
-            <th scope="row">Nom</th>
-            <td>{{user.nom}}</td>
-          </tr>
-          <tr>
-            <th scope="row">Email</th>
-            <td>{{user.email}}</td>
 
-          </tr>
-          <tr>
-            <th scope="row">Inscription</th>
-            <td>{{user.dateInscription}}</td>
-          </tr>
-          <tr>
-            <th>
-
-            </th>
-            <td>
-
-            </td>
-          </tr>
-          </tbody>
-        </table>
-
-        <div class="text-center ">
-          <a href="" class="btn btn-md btn-outline-warning mb-2">Modifier</a>
+    <div class="row rowSerie">
+      <!--Infos-->
+      <div class="col-md-6">
+          <div class="card cardAccount bg-dark">
+            <div class="containerImg">
+                <img class="card-img-top img-fluid imageAvatar" src="../../assets/images/fav.png" alt="Image LoginUser"
+                />
+            </div>
+            
+            <div class="card-body  text-warning">
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <th scope="row">Login</th>
+                    <td>{{userCurrent.login}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Prénom</th>
+                    <td>{{userCurrent.prenom}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Nom</th>
+                    <td>{{userCurrent.nom}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Email</th>
+                    <td>{{userCurrent.email}}</td>
+  
+                  </tr>
+                  <tr>
+                    <th scope="row">Inscription</th>
+                    <td>{{userCurrent.inscription | date:'yyyy-MM-dd'}}</td>
+                  </tr>
+                  <tr>
+                    <th>
+                    </th>
+                    <td>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
 
+
+      <!--Stats-->
+      <div class="col-md-6">
+        <div class="card cardAccount bg-warning">
+          <div class="card-body text-dark">
+              <div class="text-center titleStats">
+                  <h4>
+                    Statistiques <i class="fas fa-chart-bar"></i>
+                  </h4>
+                </div>
+                <div class="row">
+                  <p class="col-md-6"> <span class="bold">Séries Visionnées</span></p>
+                  <p class="col-md-6">{{nbSeries}}</p>
+                </div>
+                <hr>
+                <div class="row">
+                  <p class="col-md-6"><span class="bold"> Episodes Visionnés</span></p>
+                  <p class="col-md-6">{{nbEpisodes}}</p>
+                </div>
+                <hr>
+                <div class="row">
+                  <p class="col-md-6"> <span class="bold">Minutes Visionnées</span></p>
+                  <p class="col-md-6">21</p>
+                </div>
+          </div>
+        </div>
       </div>
 
-    </article>
+    </div>
+
   </div>
+
+
 </section>
 <hr>

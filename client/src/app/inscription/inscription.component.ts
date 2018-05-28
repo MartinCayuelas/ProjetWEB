@@ -4,6 +4,8 @@ import { DatePipe } from '@angular/common';
 import { UserService } from '../share/services/user.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../share/services/auth.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-inscription',
@@ -11,16 +13,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./inscription.component.css']
 })
 export class InscriptionComponent implements OnInit {
-  model = new User(null, '', '', '', '', '', '', '', 0);
-  submitted = false;
+
 
   valid = false;
-
+  emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$';
   valuesConf = '';
+
+  public errorSignUp = { 'submitted': true, 'message': '' };
+
 
   public form: FormGroup;
 
-  constructor(private fb: FormBuilder, private userService: UserService, private router: Router) { }
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -29,8 +33,8 @@ export class InscriptionComponent implements OnInit {
       prenom: ['', Validators.required],
       nom: ['', Validators.required],
       password: ['', Validators.required],
-      email: ['', Validators.required],
-      dateInscription: [''],
+      email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
+      inscription: [''],
       avatar: [null],
       role: [0],
 
@@ -50,22 +54,44 @@ export class InscriptionComponent implements OnInit {
   }
   onSubmit(): void {
     console.log('Je vais appeler le service');
-    this.userService.signUp(this.form.value).subscribe();
+    this.authService.signUp(this.form.value).subscribe(
+      res => {
 
-    this.submitted = true;
+        alert('You are registered!');
+        this.router.navigate(['/signin']);
+      },
+      error => {
+        if (error instanceof HttpErrorResponse) {
+          this.errorSignUp = error.error;
+          this.errorSignUp.message = error.error.message;
+          this.errorSignUp.submitted = error.error.submitted;
+          this.form = this.fb.group({
+            idUser: [],
+            login: [this.form.get('login').value, Validators.required],
+            prenom: [this.form.get('prenom').value, Validators.required],
+            nom: [this.form.get('nom').value, Validators.required],
+            password: ['', Validators.required],
+            email: [this.form.get('email').value, [Validators.required, Validators.pattern(this.emailPattern)]],
+            inscription: [ this.form.get('avatar').value],
+            avatar: [null],
+            role: [0],
 
+          });
+
+          this.valuesConf = null;
+        }
+      });
   }
+
+
 
   onKey(event: any) {
     this.valuesConf = '';
     this.valuesConf += event.target.value;
-
-    console.log('valu: ' + this.valuesConf);
-    console.log('pwd: ' + this.form.get('password').value);
-
-
   }
 
-
+  clearMessage() {
+    this.errorSignUp.submitted = true;
+  }
 
 }

@@ -12,13 +12,28 @@ export class UserComponent implements OnInit {
 
   public users: Observable<User[]>;
 
+  public user: any;
+
   constructor(private userService: UserService) { }
 
 
-    ngOnInit() {
-      this.userService.getAllUsers().subscribe(users => {
-        this.users = users;
-      });
+  ngOnInit() {
+    this.userService.getAllUsers().subscribe(users => {
+      this.users = users;
+    });
 
-    }
+
+    this.userService.getAllUsersNb().subscribe(stats => {
+      this.user = stats;
+    });
+
+  }
+
+  public getNbUsers() {
+    this.userService.getAllUsersNb().subscribe(stats => {
+      this.user = stats;
+
+    });
+  }
+
 }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Serie } from '../share/models/serie.model';
 import { SerieService } from '../share/services/serie.service';
+import { User } from '../share/models/user.model';
+import { UserService } from '../share/services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -12,8 +14,9 @@ export class HomeComponent implements OnInit {
 
   public series: Observable<Serie[]>;
   public topSeries: Observable<any>;
+  public user: User;
 
-  constructor(private serieService: SerieService) { }
+  constructor(private serieService: SerieService, private userService: UserService) { }
 
   ngOnInit() {
     this.serieService.getNewSeries().subscribe(series => {
@@ -27,7 +30,12 @@ export class HomeComponent implements OnInit {
 
     });
 
-    console.log('obj:' + this.topSeries);
+  }
+
+  getCurrent() {
+    this.userService.getCurrent().subscribe(user => {
+      this.user = user;
+    });
 
   }
 

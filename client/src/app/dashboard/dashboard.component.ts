@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SerieService } from '../share/services/serie.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+
+  public userNb: any;
+  constructor(private serieService: SerieService) { }
 
   ngOnInit() {
+
+
   }
+
+
 
 }

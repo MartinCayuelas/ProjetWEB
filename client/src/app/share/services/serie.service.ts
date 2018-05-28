@@ -10,15 +10,22 @@ export class SerieService {
 
     constructor(private http: HttpClient) { }
 
+    public getAllSeriesDashboard(): Observable<any> {
+        console.log('Je suis dans le service et je faias un getALLSerieDashboard');
+        return this.http.get<any>('/api/series/getAllSeriesDashboard');
+    }
+
     public getAllSeries(): Observable<any> {
-        console.log('Je suis dans le service et je faias un getALL');
+        console.log('Je suis dans le service et je faias un getALLSerie');
         return this.http.get<any>('/api/series/getAllSeries');
     }
 
 
+    public getAllSeriesNb(): Observable<any> {
+        return this.http.get<any>('/api/series/getAllSeriesNb');
+    }
+
     public getSerie(id: number): Observable<any> {
-        console.log('Je fais getBy ID');
-        console.log('idgetserie: ' + id);
         return this.http.get<any>('/api/series/' + id);
     }
 
@@ -27,7 +34,6 @@ export class SerieService {
     }
 
     public getTopSeries(): Observable<any> {
-        console.log('La route GetAllTop2');
         return this.http.get<any>('/api/series/getAllSeriesTops');
     }
 

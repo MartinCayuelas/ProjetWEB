@@ -19,31 +19,36 @@
 
         <!-- Il faut être connecté pour voir ça -->
         <li class="nav-item">
-          <a class="nav-link " href="#">Playlist</a>
+          <a class="nav-link " *ngIf="authService.loggedIn()" routerLink="/playlist" routerLinkActive="active">Playlist</a>
         </li>
         <!-- if admin alors on affiche pas les memes choses -->
         <li class="nav-item">
-          <a class="nav-link " routerLink="/account/:id" routerLinkActive="active">Account</a>
+          <a class="nav-link " *ngIf="authService.loggedIn()" routerLink="/account" routerLinkActive="active">Account</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+          <a class="nav-link" *ngIf="authService.loggedIn()" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
         </li>
 
 
         <li class="nav-item">
-          <a class="nav-link " routerLink="/signin" routerLinkActive="active">SignIn</a>
+          <a class="nav-link " *ngIf="!authService.loggedIn()" routerLink="/signin" routerLinkActive="active">SignIn</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" routerLink="/signup" routerLinkActive="active">SignUp</a>
+          <a class="nav-link" *ngIf="!authService.loggedIn()" routerLink="/signup" routerLinkActive="active">SignUp</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link text-warning" *ngIf="authService.loggedIn()" (click)="authService.logout()" routerLinkActive="active">Logout</a>
+        </li>
+
+
       </ul>
     </div>
   </nav>
 </header>
 
-  <router-outlet>
-    <!-- Ici que ce fait le routage-->
-  </router-outlet>
 
+<router-outlet>
+  <!-- Ici que ce fait le routage-->
+</router-outlet>

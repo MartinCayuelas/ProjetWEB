@@ -28,10 +28,6 @@ constructor(private route: ActivatedRoute, private serieService: SerieService) {
     console.log('id:' + this.id);
     this.serieService.getSerie(this.id).subscribe(series => {
       this.serie = series;
-      if (this.serie.imageSerie === null) {
-        this.serie.imageSerie = 'fav.png';
-      }
-
     });
   }
 

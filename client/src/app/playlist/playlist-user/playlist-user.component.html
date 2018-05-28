@@ -1,3 +1,21 @@
-<p>
-  playlist-user works!
-</p>
+<div class="container content">
+  <div class="text-center">
+    <h3 class="text-dark">
+      My Playlist
+    </h3>
+    <hr>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item d-flex bg-dark justify-content-between align-items-center" *ngFor="let play of playlist">
+      <span class="text-warning">{{play.titre}}
+        <a id="{{play.idSerie}}" routerLink="/playlist/{{this.idUser}}/serie/{{play.idSerie}}"  routerLinkActive="active">
+          <i class="far fa-arrow-alt-circle-down"></i>
+        </a>
+      </span>
+      <span class="badge badge-warning badge-pill">14</span>
+     
+      
+    </li>
+
+  </ul>
+</div>

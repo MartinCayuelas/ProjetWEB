@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
+import { element } from 'protractor';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./catalogue.component.css']
 })
 export class CatalogueComponent implements OnInit {
-  public series: Observable<Serie[]>;
+  public series: Observable<Serie>;
 
   /*series = [
   new Serie(1, 'Game of Thrones' , 'GOT.jpg' , 'Meilleure series ever' , '23/12/09' ),
@@ -31,6 +32,12 @@ export class CatalogueComponent implements OnInit {
       this.series = series;
 
     });
+
+
+
+
   }
+
+
 
 }

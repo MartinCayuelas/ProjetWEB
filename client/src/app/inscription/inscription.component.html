@@ -1,17 +1,13 @@
 <div class="container content">
-
-
   <form class="form-signup text-center" [formGroup]="form" novalidate>
-
-    <h2 class="text-warning">SignUp</h2>
     <fieldset class="p-5">
       <div class="form-group">
-        <label for="login" class="l-connect">Login</label>
-        <input type="text" formControlName="login" class="form-control input-connect" id="login">
+        <label for="login" class="l-connect" >Login</label>
+        <input type="text" formControlName="login" (click)="clearMessage()" class="form-control input-connect" id="login">
       </div>
       <div class="form-row">
         <div class="col">
-          <label for="prenom" class="l-connect">FisrtName</label>
+          <label for="prenom" class="l-connect">FirstName</label>
           <input type="text" formControlName="prenom" class="form-control input-connect" id="prenom">
         </div>
         <div class="col">
@@ -29,29 +25,28 @@
 
           <input type="password" class="form-control input-connect" id="pwdVerif" (keyup)="onKey($event)">
         </div>
-        <div id="matchPwd" class="mt-1">
-        </div>
 
       </div>
 
       <div class="form-group">
         <label for="email" class="l-connect">email</label>
-        <input type="email" class="form-control input-connect" id="email" formControlName="email">
+        <input type="email" (click)="clearMessage()" class="form-control input-connect" id="email" formControlName="email">
       </div>
 
 
       <div class="form-group">
-        <label for="avatar">Choisir un Avatar (Optionnel)</label>
+        <label for="avatar">Choose an Avantar (Optionnal)</label>
         <input type="file" formControlName="avatar" class="form-control-file" id="avatar" (change)="handleFileSelect($event)">
       </div>
       <div *ngIf="this.form.get('login').value === this.form.get('password').value" class="alert alert-danger">
-        Login doit être différent de Mot de passe
+        Login and Password must be different!
       </div>
-      <div *ngIf="this.form.get('password').value !== this.valuesConf" class="alert alert-danger">Les mots de passes ne correspondent pas</div>
-
+      <div *ngIf="this.form.get('password').value !== this.valuesConf" class="alert alert-danger">passwords do not match</div>
+      <div *ngIf="!errorSignUp.submitted" class="alert alert-danger" >Error : {{errorSignUp.message}}</div>
+      
       <button type="submit" class="btn btn-warning" [disabled]="this.form.get('login').invalid || this.form.get('prenom').invalid || this.form.get('nom').invalid
       || this.form.get('password').invalid || this.form.get('email').invalid || this.form.get('login').value === this.form.get('password').value
-      || this.form.get('password').value !== this.valuesConf " (click)="onSubmit()" routerLink="/dashboard" routerLinkActive="active">Inscription</button>
+      || this.form.get('password').value !== this.valuesConf " (click)="onSubmit()">SignUp</button>
 
 
     </fieldset>

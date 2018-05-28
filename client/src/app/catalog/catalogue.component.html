@@ -1,19 +1,19 @@
 <div class="container content">
   <div class="text-center">
     <h3 class="text-dark">
-      Toutes les séries
+      Catalog of Series
     </h3>
     <hr>
   </div>
 </div>
 
-<div class="album py-5 ">
+<div class="album py-5">
   <div class="container">
     <div class="row rowSerie">
 
       <div class="col-md-4" *ngFor="let serie of series">
-        <div class="card cardCatalog">
-          <img class="card-img-top img-fluid imageCatalogue" src="../../assets/images/{{serie.imageSerie}}" alt="Image Affiche Série" />
+        <div class="card cardCatalog" *ngIf="serie !== undefined">
+          <img  class="card-img-top img-fluid imageCatalogue" src="../../assets/images/{{serie.imageSerie}}" alt="Image Affiche Série" />
 
           <div class="card-body bg-dark text-warning">
             <h5 class="card-title">{{serie.titre}}</h5>

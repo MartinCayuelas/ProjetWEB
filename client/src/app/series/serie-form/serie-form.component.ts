@@ -28,7 +28,7 @@ export class SerieFormComponent implements OnInit {
       nbEpisodes: ['', Validators.required],
       nbSaisons: ['', Validators.required],
       description: ['', Validators.required],
-      imageSerie: [null, Validators.required]
+      imageSerie: ['fav.png', Validators.required]
 
     });
   }
