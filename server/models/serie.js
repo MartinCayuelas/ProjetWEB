@@ -11,6 +11,20 @@ module.exports.getAllSeries = function(req, callback) {
             callback(rows);
         });
     }); 
+}
+
+module.exports.getAllSeriesNb = function(req, callback) {
+    req.getConnection(function (err, connection) { 
+        connection.query('select COUNT(*) AS nb from Serie', function(err, rows, fields) {
+            if (err) {
+                console.log (err);
+                return res.status(300).json("Impossible de récupérer les series");
+            }
+            console.log("Requete getAllSeries effectuée");
+            console.log(rows);
+            callback(rows[0]);
+        });
+    }); 
 
 }
 

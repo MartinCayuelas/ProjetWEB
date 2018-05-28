@@ -6,14 +6,12 @@ var express = require('express'),
   path = require('path'),
   bodyParser = require('body-parser'),
   cors = require('cors'),
-  morgan = require('morgan'),
-  passport = require('passport');
+  morgan = require('morgan');
 
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
-app.use(passport.initialize());
 
 const port = process.env.PORT || 4000;
 
@@ -40,7 +38,6 @@ app.use(myConnection(mysql, dbOptions, 'single'));
 
 app.use(bodyParser.json());
 app.use(cors());
-app.use(passport.initialize());
 
 
 // router
@@ -57,10 +54,6 @@ app.get('*', function (req, res, next) {
 });
 
 
-//const routes = require('./routers');
-
-//  Connect all our routes to our application
-//app.use('/', routes);
 
 
 

@@ -3,7 +3,7 @@ const express = require('express');
 const critiqueRoute = express.Router();
 
 var crit = require('../models/critique');
-
+token = require('./token');
 
 
 
@@ -16,7 +16,7 @@ critiqueRoute.get('/getAllCritiques/:id', (req,res) => {
     });
 });
 
-critiqueRoute.post('/insert', (req,res) => {
+critiqueRoute.post('/insert', token.verifyToken , (req,res) => {
     console.log("La route insert Commentaire");
     crit.insertCritique(req, serie => {
         return res.status(200).json(serie);
