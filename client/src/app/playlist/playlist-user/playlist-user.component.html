@@ -5,19 +5,24 @@
     </h3>
     <hr>
   </div>
-  <ul class="list-group">
-    <li class="list-group-item d-flex bg-dark justify-content-between align-items-center" *ngFor="let play of playlist">
-      <div>
-        <span class="text-warning">{{play.titre}}
-          <a class="arrow" id="{{play.idSerie}}" routerLink="/playlist/serie/{{play.idSerie}}" routerLinkActive="active">
-            <i class=" text-warning far fa-arrow-alt-circle-right"></i>
-          </a>
-        </span>
-        <span class="badge badge-warning badge-pill">12</span>
+
+
+  <div class="container">
+    <div class="row rowSerie">
+      <div class="col-md-4" *ngFor="let play of playlist">
+        <div class="card cardCatalog" *ngIf="play !== undefined">
+          <img  class="card-img-top img-fluid imageCatalogue" src="../../assets/images/{{play.imageSerie}}" alt="Image Affiche Série" />
+
+          <div class="card-body bg-dark text-warning">
+            <h5 class="card-title">{{play.titre}}</h5>
+            <a class="btn btn-sm btn-outline-warning" routerLink="/playlist/serie/{{play.idSerie}}" routerLinkActive="active">See</a>
+            <div class="d-flex justify-content-between align-items-center">
+            </div>
+          </div>
+        </div>
+
       </div>
-      
-
-    </li>
-
-  </ul>
+    </div>
+    <hr class="featurette-divider">
+  </div>
 </div>

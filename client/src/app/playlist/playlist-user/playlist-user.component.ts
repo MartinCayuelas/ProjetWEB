@@ -7,6 +7,7 @@ import { SerieService } from '../../share/services/serie.service';
 import { EpisodeService } from '../../share/services/episode.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { User } from '../../share/models/user.model';
+import { AuthService } from '../../share/services/auth.service';
 
 @Component({
   selector: 'app-playlist-user',
@@ -24,7 +25,7 @@ export class PlaylistUserComponent implements OnInit {
   public episodes: any;
   public id: number;
 
-  constructor(private route: ActivatedRoute, private router: Router, private userService: UserService,
+  constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService, private userService: UserService,
     private episodeService: EpisodeService, public serieService: SerieService) { }
 
   ngOnInit() {
@@ -41,6 +42,7 @@ export class PlaylistUserComponent implements OnInit {
       err => {
         if (err instanceof HttpErrorResponse) {
           if (err.status === 401) {
+            this.authService.logout();
             this.router.navigate(['/signin']);
           }
         }

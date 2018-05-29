@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
 import { Observable } from 'rxjs/Observable';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { UserService } from './user.service';
 
 @Injectable()
 export class AuthService {
 
-  constructor(private router: Router, private http: HttpClient) { }
+  public user: User;
+  constructor(private router: Router, private userService: UserService, private http: HttpClient) { }
 
   public signUp(user: User): Observable<User> {
     return this.http.post<User>('/api/auth/signUp', user);
@@ -21,6 +23,7 @@ export class AuthService {
   loggedIn() {
 
     return !!localStorage.getItem('token');
+
   }
 
   logout() {

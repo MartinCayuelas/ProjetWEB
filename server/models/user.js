@@ -2,6 +2,9 @@
 var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken')
 
+
+
+
 module.exports.getAllUsers = function (req, callback) {
     req.getConnection(function (err, connection) {
         connection.query('select * from Utilisateur', function (err, rows, fields) {

@@ -4,6 +4,7 @@ import { User } from '../share/models/user.model';
 import { UserService } from '../share/services/user.service';
 import { Observable } from 'rxjs/Observable';
 import { HttpErrorResponse } from '@angular/common/http';
+import { AuthService } from '../share/services/auth.service';
 
 @Component({
   selector: 'app-account',
@@ -17,7 +18,8 @@ export class AccountComponent implements OnInit {
   public nbEpisodes: any;
   public id: number;
   public userCurrent: User;
-  constructor(private route: ActivatedRoute, private router: Router, private userService: UserService) { }
+  constructor(private route: ActivatedRoute, private authService: AuthService,
+     private router: Router, private userService: UserService) { }
 
   ngOnInit() {
     // this.id = parseInt(this.route.snapshot.paramMap.get('idUser'), 0); // Récupération du paramètre dans l'URL
@@ -42,6 +44,7 @@ export class AccountComponent implements OnInit {
       err => {
         if (err instanceof HttpErrorResponse) {
           if (err.status === 401) {
+            this.authService.logout();
             this.router.navigate(['/signin']);
           }
         }

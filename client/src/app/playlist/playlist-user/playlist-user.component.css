@@ -1,3 +1,28 @@
-.arrow{
-    text-decoration: none;
+
+
+.cardCatalog{
+    width: 18rem;
+    margin-bottom: 25px;
+}
+.imageCatalogue{
+    width: 300px;
+    height: 200px;
+}
+
+
+@media (min-width: 400px) {
+    .rowSerie{
+       
+        padding-left: 90px;
+    }
+    
+}
+
+@media (min-width: 768px) {
+    .rowSerie{
+       
+        padding-left: 25px;
+    }
+    
+    
 }
