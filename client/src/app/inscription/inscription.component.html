@@ -34,10 +34,7 @@
       </div>
 
 
-      <div class="form-group">
-        <label for="avatar">Choose an Avantar (Optionnal)</label>
-        <input type="file" formControlName="avatar" class="form-control-file" id="avatar" (change)="handleFileSelect($event)">
-      </div>
+      
       <div *ngIf="this.form.get('login').value === this.form.get('password').value" class="alert alert-danger">
         Login and Password must be different!
       </div>

@@ -7,6 +7,11 @@
         <div class="card bg-light text-dark rewiev" *ngFor="let crit of critiques">
             <div class="card-body col-10">
                 {{crit.note}} <i class="fas fa-star"></i> | {{crit.commentaire}}
+                <hr>
+                <p>
+                   
+                    <small>By {{crit.login}}</small>
+                </p>
             </div>
         </div>
         <div *ngIf="authService.loggedIn()" class="card bg-light text-dark text-center rewiev">

@@ -4,7 +4,7 @@ module.exports.getAllCritiques = function (req, idSerie, callback) {
     console.log("GET ALL Critiques");
     console.log("idSerie:" + idSerie);
     req.getConnection(function (err, connection) {
-        connection.query('select * from Critique where idSerie = ? ORDER BY idCommentaire', [idSerie], function (err, rows, fields) {
+        connection.query('select idCritique, note, commentaire, idSerie, Utilisateur.login from Critique, Utilisateur where Utilisateur.idUser = Critique.idUser AND idSerie = ? ORDER BY idCritique', [idSerie], function (err, rows, fields) {
             if (err) {
                 console.log(err);
                 return res.status(300).json("Impossible de récupérer les critiques");
@@ -16,14 +16,16 @@ module.exports.getAllCritiques = function (req, idSerie, callback) {
     });
 }
 
-module.exports.insertCritique = function (req, callback) {
+module.exports.insertCritique = function (req, idUser,callback) {
     console.log("Requete critInsert incoming...");
-    let queryInsert = "INSERT INTO Critique (idCommentaire, note, commentaire, idSerie) VALUES (NULL, ?, ?, ?)";
+    let queryInsert = "INSERT INTO Critique (idCritique, note, commentaire, idUser, idSerie) VALUES (NULL, ?, ?,?, ?)";
     const crit = [
 
         req.body.note,
         req.body.commentaire,
-        req.body.idSerie
+        idUser,
+        req.body.idSerie,
+       
     ]
     console.log('Note: ' + req.body.note);
     console.log('comme: ' + req.body.commentaire);

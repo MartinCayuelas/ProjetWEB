@@ -24,10 +24,6 @@ export class SerieComponent implements OnInit {
   public isSeen = false;
   public seen: number;
 
-  public nbEpisodes: number;
-  public nbEpisodesVu: number;
-  public nbEpisodesToSee: number;
-  public Mypercent: any;
 
 
 
@@ -45,7 +41,7 @@ export class SerieComponent implements OnInit {
     this.req.idUser = null;
     this.req.idSerie = this.id;
     this.isSeenSerie();
-    this.getNbEpisodeLeftToSee(this.id);
+
 
 
   }
@@ -53,14 +49,11 @@ export class SerieComponent implements OnInit {
   addInPlaylist() {
     this.serieService.addRegarder(this.req).subscribe();
     this.isSeen = true;
-    this.getNbEpisodeLeftToSee(this.id);
-    console.log('addPlaylist: ' + this.nbEpisodesVu);
   }
 
   removeInPlaylist() {
     this.serieService.removeRegarder(this.req).subscribe();
     this.isSeen = false;
-    this.getNbEpisodeLeftToSee(this.id);
   }
 
   isSeenSerie(): void {
@@ -79,25 +72,6 @@ export class SerieComponent implements OnInit {
 
 
 
-  getNbEpisodeLeftToSee(idSerie: number) {
-    this.serieService.getNbEpisodesBySerie(idSerie).subscribe(episodes => {
-      this.nbEpisodes = episodes.nbEpisodes;
-      console.log('nbEpisodes: ' + this.nbEpisodes);
-    });
-
-    this.userService.getNbEpisodesBySerieSeen(idSerie).subscribe(nb => {
-      this.nbEpisodesVu = nb.vu;
-      console.log('nbEpisodesVu: ' + this.nbEpisodesVu);
-      this.Mypercent = 100 * this.nbEpisodesVu / this.nbEpisodes;
-      console.log('MyPercent: ' + this.Mypercent);
-
-
-    this.nbEpisodesToSee = this.nbEpisodes - this.nbEpisodesVu;
-    console.log('nbEpisodesToSee: ' + this.nbEpisodesToSee);
-    });
-
-
-  }
 
 }
 

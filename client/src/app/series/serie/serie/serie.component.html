@@ -8,14 +8,7 @@
           <span *ngIf="isSeen && authService.loggedIn()" class="badge bg-warning">Seen</span>
         </h4>
       </div>
-
-      <hr>
-      <div *ngIf="isSeen" class="progress">
-        <div class="progress-bar bg-warning text-center text-dark" role="progressbar" [style.width]="Mypercent + '%'" attr.aria-valuenow="{{nbEpisodesVu}}"
-          aria-valuemin="0" attr.aria-valuemax="{{nbEpisodes}}">
-          <span>{{nbEpisodesVu}} of {{nbEpisodes}}</span>
-        </div>
-      </div>
+     
       <hr>
       <p>Created by: {{serie.prenomRealisateur}}
         <span class="bold">{{serie.nomRealisateur}}</span>

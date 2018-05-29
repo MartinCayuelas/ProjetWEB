@@ -19,7 +19,7 @@ export class AccountComponent implements OnInit {
   public id: number;
   public userCurrent: User;
   constructor(private route: ActivatedRoute, private authService: AuthService,
-     private router: Router, private userService: UserService) { }
+    private router: Router, private userService: UserService) { }
 
   ngOnInit() {
     // this.id = parseInt(this.route.snapshot.paramMap.get('idUser'), 0); // Récupération du paramètre dans l'URL
@@ -27,6 +27,7 @@ export class AccountComponent implements OnInit {
 
     this.userService.getCurrent().subscribe(user => {
       this.userCurrent = user;
+
       console.log('idUser Get Curennt Account:' + this.userCurrent.idUser);
 
       this.userService.getNbEpisodes(this.userCurrent.idUser).subscribe(stats => {

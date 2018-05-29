@@ -3,6 +3,8 @@ import { Observable } from 'rxjs/Observable';
 import { Episode } from '../../share/models/episode.model';
 import { EpisodeService } from '../../share/services/episode.service';
 import { ActivatedRoute } from '@angular/router';
+import { SerieService } from '../../share/services/serie.service';
+import { UserService } from '../../share/services/user.service';
 
 @Component({
   selector: 'app-episode-list',
@@ -15,10 +17,17 @@ export class EpisodeListComponent implements OnInit {
   public id;
   public idUser;
 
+  public completed: boolean;
+
+  public nbEpisodes: number;
+  public nbEpisodesVu: number;
+  public nbEpisodesToSee: number;
+  public Mypercent: any;
 
   req: any = {};
 
-  constructor(private route: ActivatedRoute, private episodeService: EpisodeService) { }
+  constructor(private route: ActivatedRoute, private serieService: SerieService,
+    private userService: UserService, private episodeService: EpisodeService) { }
 
   ngOnInit() {
     this.id = parseInt(this.route.snapshot.paramMap.get('idSerie'), 0); // Récupération du paramètre dans l'URL
@@ -27,7 +36,7 @@ export class EpisodeListComponent implements OnInit {
     this.episodeService.getAllEpisodesBySerie(this.id).subscribe(eps => {
       this.episodes = eps;
     });
-    console.log('episodes reçu');
+    this.getNbEpisodeLeftToSee(this.id);
   }
 
   changeVision(event, id: number) {
@@ -37,11 +46,47 @@ export class EpisodeListComponent implements OnInit {
       console.log('idU:' + this.idUser);
       console.log('idE:' + id);
 
-      this.episodeService.addVision(this.req).subscribe();
+      this.episodeService.addVision(this.req).subscribe(
+        res => {
+
+          this.getNbEpisodeLeftToSee(this.id);
+        }
+
+      );
     } else {
       console.log('idE:' + this.req.idE);
-      this.episodeService.removeVision(this.req).subscribe();
+      this.episodeService.removeVision(this.req).subscribe(
+        res => {
+
+          this.getNbEpisodeLeftToSee(this.id);
+        }
+      );
     }
+  }
+
+
+  getNbEpisodeLeftToSee(idSerie: number) {
+    this.serieService.getNbEpisodesBySerie(idSerie).subscribe(episodes => {
+      this.nbEpisodes = episodes.nbEpisodes;
+      console.log('nbEpisodes: ' + this.nbEpisodes);
+    });
+
+    this.userService.getNbEpisodesBySerieSeen(idSerie).subscribe(nb => {
+      this.nbEpisodesVu = nb.vu;
+      console.log('nbEpisodesVu: ' + this.nbEpisodesVu);
+      this.Mypercent = 100 * this.nbEpisodesVu / this.nbEpisodes;
+      console.log('MyPercent: ' + this.Mypercent);
+
+      this.nbEpisodesToSee = (this.nbEpisodes - this.nbEpisodesVu);
+      if (this.nbEpisodesToSee === 0) {
+        this.completed = true;
+      } else {
+        this.completed = false;
+      }
+      console.log('nbEpisodesToSee: ' + this.nbEpisodesToSee);
+    });
+
+
   }
 
 }

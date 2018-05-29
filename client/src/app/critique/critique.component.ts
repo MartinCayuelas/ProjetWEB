@@ -49,10 +49,14 @@ export class CritiqueComponent implements OnInit {
   }
 
   saveCritique(): void {
-    this.critiqueService.createCritique(this.form.value).subscribe();
-    this.getCritiques();
+    this.critiqueService.createCritique(this.form.value).subscribe(res => {
+      this.getCritiques();
+    }
+
+    );
+
     this.form.get('note').setValue(1);
-    this.form.get('commentaire').setValue('');
+    this.form.get('commentaire').setValue(' ');
   }
 
   getCritiques() {

@@ -4,9 +4,16 @@
       <div class="text-center text-white hRewiev">
           <h4> Episodes </h4>
       </div>
+      <div class="progress progressBar">
+        <div class="progress-bar  bg-warning text-center text-dark" role="progressbar" [style.width]="Mypercent + '%'" attr.aria-valuenow="{{nbEpisodesVu}}"
+          aria-valuemin="0" attr.aria-valuemax="{{nbEpisodes}}">
+          <span *ngIf="!completed" >{{nbEpisodesVu}} of {{nbEpisodes}}</span>
+          <span *ngIf="completed" >Completed!</span>
+        </div>
+      </div>
     <ul class="text-white">
       <li *ngFor="let episode of episodes">
-        <p class="text-warning"> {{episode.numeroEpisode}}: {{episode.nomEpisode}} (Saison: {{episode.saison}})</p>
+        <p class="text-warning"> {{episode.numeroEpisode}}: {{episode.nomEpisode}} (Season: {{episode.saison}})</p>
         <label class="switch" for="checkbox{{episode.idEpisode}}">
           <input type="checkbox" (click)="changeVision($event,episode.idEpisode)" id="checkbox{{episode.idEpisode}}"/>
           <div class="slider round"></div>
