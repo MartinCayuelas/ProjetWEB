@@ -23,7 +23,7 @@ module.exports = {
                 return res.status(401).send('Unauthorized request');
             }
 
-            console.log('Payload : ' + payload.sub + '---------------------------------------');
+           // console.log('Payload : ' + payload.sub + '---------------------------------------');
             req.body.login = payload.sub;
             next();
         } catch (e) {

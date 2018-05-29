@@ -23,11 +23,20 @@ serieRoutes.get('/getAllSeriesDashboard', token.verifyToken, (req, res) => {
 
 
 serieRoutes.get('/getAllSeriesNb', token.verifyToken, (req, res) => {
-    console.log("La route GetAllNb");
+    console.log(" GetAllNb");
     serie.getAllSeriesNb(req, series => {
         return res.status(200).json(series);
     });
 });
+
+
+serieRoutes.get('/:idSerie/getNbEpisodes/', token.verifyToken, (req, res) => {
+    console.log("GET nb Episodes for Série");
+    serie.getNbEpisodesBySerie(req, req.params.idSerie,series => {
+        return res.status(200).json(series);
+    });
+});
+
 
 serieRoutes.get('/getAllSeriesNews', (req, res) => {
     console.log("La route GetAllNews");

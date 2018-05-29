@@ -57,6 +57,23 @@ module.exports.getAllSeriesTop = function(req, callback) {
 
 }
 
+
+module.exports.getNbEpisodesBySerie = function (req, idSerie, callback) {
+    console.log("idSerie ___ getNbEpisodesBySerie__:" + idSerie);
+  req.getConnection(function(err, connection){
+      connection.query('select Episode.idSerie, COUNT(*) AS nbEpisodes from Episode where idSerie = ?', [idSerie], function(err, rows, fields) {
+          if (err) {
+              console.log ('Error' + err);
+              return res.status(300).json("Impossible de récupérer le nombre d'épiodes");
+          }
+          console.log("Requete getNbEpisodes OK");
+          console.log(rows);
+          callback(rows[0]);
+      });
+  });
+}
+
+
 module.exports.getSerieById = function (req, idSerie, callback) {
     console.log("idSerie:" + idSerie);
   req.getConnection(function(err, connection){
@@ -103,9 +120,9 @@ module.exports.insertSerie = function(req, callback) {
 
 
 module.exports.deleteSerie = function (req, idSerie, callback) {
-    console.log("idSerie:" + idSerie);
+    console.log("idSerie___deleteSerie:" + idSerie);
   req.getConnection(function(err, connection){
-    var sql = "DELETE from Serie WHERE idSerie = ?";
+    var sql = "DELETE FROM Serie WHERE idSerie = ?";
     var sqlS = "DELETE FROM regarder WHERE idSerie = ?";
     connection.query(sqlS, [idSerie], function(err, rows, fields) {
         if (err) {

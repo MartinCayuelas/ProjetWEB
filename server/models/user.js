@@ -1,6 +1,6 @@
 
 var bcrypt = require('bcrypt');
-var jwt = require ('jsonwebtoken')
+var jwt = require('jsonwebtoken')
 
 module.exports.getAllUsers = function (req, callback) {
     req.getConnection(function (err, connection) {
@@ -33,7 +33,7 @@ module.exports.getAllUsersNb = function (req, callback) {
 
 // Epsiodes
 
-module.exports.addVision = function (req, idUser,callback) {
+module.exports.addVision = function (req, idUser, callback) {
     console.log("Requete addVision incoming...");
     let queryInsert = "INSERT INTO visionne VALUES (?, ?)";
     const ep = [
@@ -54,7 +54,7 @@ module.exports.addVision = function (req, idUser,callback) {
     });
 }
 
-module.exports.removeVision = function (req, idUser,callback) {
+module.exports.removeVision = function (req, idUser, callback) {
     const ep = [
         idUser,
         req.params.idE,
@@ -79,13 +79,13 @@ module.exports.removeVision = function (req, idUser,callback) {
 
 // Series
 
-module.exports.addRegarder = function (req, idUser,callback) {
+module.exports.addRegarder = function (req, idUser, callback) {
     console.log("Requete addVision incoming...");
     let queryInsert = "INSERT INTO regarder VALUES (?, ?)";
     const serie = [
         req.body.idSerie,
         idUser,
-        
+
 
     ]
     req.getConnection(function (err, connection) {
@@ -101,7 +101,7 @@ module.exports.addRegarder = function (req, idUser,callback) {
     });
 }
 
-module.exports.removeRegarder = function (req, idUser,callback) {
+module.exports.removeRegarder = function (req, idUser, callback) {
     const serie = [
         idUser,
         req.params.idSerie,
@@ -125,7 +125,7 @@ module.exports.removeRegarder = function (req, idUser,callback) {
 
 
 module.exports.isSeenSerie = function (req, idUser, callback) {
-    console.log("iduser getNbSeriesById:" + idUser);
+    // console.log("iduser getNbSeriesById:" + idUser);
     const serie = [
         idUser,
         req.params.idSerie,
@@ -145,7 +145,7 @@ module.exports.isSeenSerie = function (req, idUser, callback) {
 
 
 module.exports.getUserById = function (req, idUser, callback) {
-    console.log("iduser:" + idUser);
+    // console.log("iduser:" + idUser);
     req.getConnection(function (err, connection) {
         connection.query('select * from Utilisateur where idUser = ?', [idUser], function (err, rows, fields) {
             if (err) {
@@ -161,15 +161,15 @@ module.exports.getUserById = function (req, idUser, callback) {
 
 
 module.exports.getUserByLogin = function (req, login, callback) {
-    console.log("LoginUser:" + login);
+    // console.log("LoginUser:" + login);
     req.getConnection(function (err, connection) {
         connection.query('select * from Utilisateur where login = ?', [login], function (err, rows, fields) {
             if (err) {
                 console.log(err);
                 return res.status(300).json("Impossible de récupérer l'utilisateur");
             }
-          //  console.log("Requete getUser by ID OK");
-           // console.log(rows);
+            //  console.log("Requete getUser by ID OK");
+            // console.log(rows);
             callback(rows[0]);
         });
     });
@@ -186,30 +186,33 @@ module.exports.getPlayList = function (req, idUser, callback) {
                 return res.status(300).json("Impossible de playList");
             }
             console.log("Requete Playlist OK");
-            console.log(rows);
+            //console.log(rows);
             callback(rows);
         });
     });
 }
 
 //On recupère les épisodes non vu  par l'utilisateur idUser de la série idSerie 
-module.exports.getEpisodesNotSeenSerieUser = function (req, idUser, callback) {
-    console.log("GetPlayList:" + idUser);
+module.exports.getNbEpisodesBySerieByUser = function (req, idSerie, idUser, callback) {
+    const serie = [
+        idSerie,
+        idUser
+    ]
     req.getConnection(function (err, connection) {
-        connection.query('select * from Serie, regarder where Serie.idSerie=regarder.idSerie AND regarder.idUser = ?', [idUser], function (err, rows, fields) {
+        connection.query('select COUNT(*) AS vu from visionne, Episode where visionne.idEpisode=Episode.idEpisode AND Episode.idSerie = ? AND visionne.idUser = ?', serie, function (err, rows, fields) {
             if (err) {
                 console.log(err);
-                return res.status(300).json("Impossible de playList");
+                return err.status(500).json("Internal error");
             }
-            console.log("Requete Playlist OK");
-            console.log(rows);
-            callback(rows);
+            console.log("Requete getNbEpisodesBySerieByUser OK");
+            console.log(rows[0]);
+           callback(rows[0]);
         });
     });
 }
 
 module.exports.getNbSeriesById = function (req, idUser, callback) {
-    console.log("iduser getNbSeriesById:" + idUser);
+    // console.log("iduser getNbSeriesById:" + idUser);
     req.getConnection(function (err, connection) {
         connection.query('SELECT regarder.idUser, COUNT(*) AS nbVus  from regarder WHERE  regarder.idUser = ?', [idUser], function (err, rows, fields) {
             if (err) {
@@ -225,7 +228,7 @@ module.exports.getNbSeriesById = function (req, idUser, callback) {
 
 
 module.exports.getNbEpisodesById = function (req, idUser, callback) {
-    console.log("iduser getNbEpisodes:" + idUser);
+    //  console.log("iduser getNbEpisodes:" + idUser);
     req.getConnection(function (err, connection) {
         connection.query('SELECT visionne.idUser, COUNT(*) AS nbVus  from  visionne WHERE  visionne.idUser = ?', [idUser], function (err, rows, fields) {
             if (err) {
@@ -233,8 +236,8 @@ module.exports.getNbEpisodesById = function (req, idUser, callback) {
                 return err.status(300).json("Impossible de récupérer les episodes (NB) User");
             }
             console.log("Requete nbEpisodes by ID OK");
-            console.log(rows);
-            if(rows[0].idUser === null){
+            //console.log(rows);
+            if (rows[0].idUser === null) {
                 rows[0].idUser = 0;
             }
             callback(rows[0]);

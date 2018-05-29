@@ -66,6 +66,20 @@ userRoute.delete('/:id/deleteEpisodeVisionne/:idE', token.verifyToken, (req, res
 });
 
 
+userRoute.get('/serie/:idSerie/getNbEpisodesSeen/', token.verifyToken, (req, res) => {
+    console.log("La route getNbEpisodesSeen Users");
+    const login = req.body.login;
+    let userToken2;
+   console.log('idSerieGetnbSeen: ' + req.params.idSerie);
+    user.getUserByLogin(req, login, userToken => {
+        userToken2 = userToken;
+        user.getNbEpisodesBySerieByUser(req, req.params.idSerie, userToken2.idUser, user => {
+            return res.status(200).json(user);
+        });
+    });
+});
+
+
 // Series
 
 userRoute.post('/:id/addSerieRegarder/:idSerie', token.verifyToken, (req, res) => {
