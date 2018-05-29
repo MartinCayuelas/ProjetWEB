@@ -34,6 +34,7 @@ import { TokenInterceptorService } from './share/services/token-interceptor.serv
 
 import { appRoutes } from './app.routes';
 import { AuthGuard } from './share/auth.guard';
+import { NgbProgressBarComponent } from './ngb-progress-bar/ngb-progress-bar.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { AuthGuard } from './share/auth.guard';
     PlaylistUserComponent,
     CritiqueComponent,
     NotFoundComponent,
+    NgbProgressBarComponent,
   ],
   imports: [
     BrowserModule,

@@ -20,6 +20,15 @@ export class SerieService {
         return this.http.get<any>('/api/series/getAllSeries');
     }
 
+    public getNbEpisodesBySerie(idSerie: number): Observable<any> {
+        console.log('episodes en Serivce');
+        return this.http.get<any>('/api/series/' + idSerie + '/getNbEpisodes/');
+    }
+
+
+
+
+
 
     public getAllSeriesNb(): Observable<any> {
         return this.http.get<any>('/api/series/getAllSeriesNb');

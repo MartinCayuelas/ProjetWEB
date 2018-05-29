@@ -17,6 +17,8 @@ export class EpisodeService {
     return this.http.get<any>('/api/episodes/getAllEpisodes/' + idSerie);
   }
 
+
+
   public addVision(req: any): Observable<any> {
 
     return this.http.post<any>('/api/users/' + req.idUser + '/addEpisodeVisionne/' + req.idE, req);

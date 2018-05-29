@@ -26,16 +26,16 @@ export const appRoutes: Routes = [
     { path: 'catalog', component: CatalogueComponent },
     { path: 'playlist', component: PlaylistUserComponent, canActivate: [AuthGuard] },
     { path: 'series', component: SeriesComponent },
-    { path: 'series/add', component: SerieFormComponent },
+    { path: 'series/add', component: SerieFormComponent, canActivate: [AuthGuard] },
     { path: 'catalog/:idSerie', component: SerieComponent },
     { path: 'series/:idSerie', component: SerieComponent },
     { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-    { path: 'dashboard/addSerie', component: SerieFormComponent, canActivate: [AuthGuard]  },
-    { path: 'dashboard/updateSerie/:idSerie', component: SerieUpdateComponent, canActivate: [AuthGuard]  },
+    { path: 'dashboard/addSerie', component: SerieFormComponent, canActivate: [AuthGuard] },
+    { path: 'dashboard/updateSerie/:idSerie', component: SerieUpdateComponent, canActivate: [AuthGuard] },
     { path: 'account', component: AccountComponent, canActivate: [AuthGuard] },
     { path: '', component: HomeComponent },
     { path: 'not-found', component: NotFoundComponent },
-    { path: 'playlist/:idUser/serie/:idSerie', component: SerieComponent }
+    { path: 'playlist/serie/:idSerie', component: SerieComponent, canActivate: [AuthGuard] }
 ];
 
 

@@ -32,11 +32,9 @@ export class UserService {
     }
 
 
-
-
-    public getAllEpisodesBySerieNotSeen(idSerie: number, idUser: number): Observable<any> {
-        console.log('La route EpisodesRestants');
-        return this.http.get<any>('/api/users/' + idUser + '/EpisodesNotSeenSerie/' + idSerie);
+    public getNbEpisodesBySerieSeen(idSerie: number): Observable<any> {
+        console.log('episodes en Serivce');
+        return this.http.get<any>('/api/users/serie/' + idSerie + '/getNbEpisodesSeen/');
     }
 
     public getCurrent(): Observable<User> {

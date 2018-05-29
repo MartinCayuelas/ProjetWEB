@@ -18,10 +18,8 @@
           <div class="card-body bg-dark text-warning">
             <h5 class="card-title">{{serie.titre}}</h5>
             <p class="card-text description"> {{serie.description}}</p>
-            <a class="btn btn-sm btn-outline-info" routerLink="/catalog/{{serie.idSerie}}" routerLinkActive="active">Voir</a>
+            <a class="btn btn-sm btn-outline-warning" routerLink="/catalog/{{serie.idSerie}}" routerLinkActive="active">See</a>
             <div class="d-flex justify-content-between align-items-center">
-
-              <small>{{serie.dateSortie | date:'yyyy-MM-dd'}}</small>
             </div>
           </div>
         </div>

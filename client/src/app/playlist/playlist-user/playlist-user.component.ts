@@ -16,7 +16,7 @@ import { User } from '../../share/models/user.model';
 export class PlaylistUserComponent implements OnInit {
 
   public playlist: Observable<Serie>;
-  public nbEpisodes: any;
+
   public show: boolean;
 
   public user: User;
@@ -38,7 +38,6 @@ export class PlaylistUserComponent implements OnInit {
       this.playlist = playList;
 
     },
-
       err => {
         if (err instanceof HttpErrorResponse) {
           if (err.status === 401) {
@@ -48,17 +47,11 @@ export class PlaylistUserComponent implements OnInit {
       });
 
 
-
     this.show = false;
 
   }
 
 
-  getNbEpisodeLeftToSee(idSerie: number, idUser: number) {
-    this.userService.getAllEpisodesBySerieNotSeen(idSerie, idUser).subscribe(episodes => {
-      this.nbEpisodes = episodes;
-    });
-  }
 
   loadEpisodes(idSerie: number) {
 
