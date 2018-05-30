@@ -11,18 +11,25 @@ export class SerieService {
     constructor(private http: HttpClient) { }
 
     public getAllSeriesDashboard(): Observable<any> {
-        console.log('Je suis dans le service et je faias un getALLSerieDashboard');
         return this.http.get<any>('/api/series/getAllSeriesDashboard');
     }
 
     public getAllSeries(): Observable<any> {
-        console.log('Je suis dans le service et je faias un getALLSerie');
         return this.http.get<any>('/api/series/getAllSeries');
     }
 
     public getNbEpisodesBySerie(idSerie: number): Observable<any> {
-        console.log('episodes en Serivce');
-        return this.http.get<any>('/api/series/' + idSerie + '/getNbEpisodes/');
+        return this.http.get<any>('/api/series/' + idSerie + '/getNbEpisodes');
+    }
+
+    public getEpisodesSeen(idSerie: number): Observable<any> {
+        console.log('episodesSeeen');
+        return this.http.get<any>('/api/series/' + idSerie + '/episodesSeen');
+    }
+
+    public getEpisodesNotSeen(idSerie: number): Observable<any> {
+        console.log('episodesSeeen');
+        return this.http.get<any>('/api/series/' + idSerie + '/episodesNotSeen');
     }
 
 

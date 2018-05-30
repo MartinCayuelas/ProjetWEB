@@ -1,46 +1,43 @@
 <header>
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-          <a class="navbar-brand" href="#">
-            <img src="../assets/images/fav.png" class="logoBrand" alt="Logo">
-          </a>
-      
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                <a class="nav-link " routerLink="/home" routerLinkActive="active">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link " routerLink="/catalog" routerLinkActive="active">Catalog</a>
-              </li>
-      
-              <!-- Il faut être connecté pour voir ça -->
-              <li class="nav-item">
-                <a class="nav-link " href="#">Playlist</a>
-              </li>
-              <!-- if admin alors on affiche pas les memes choses -->
-              <li class="nav-item">
-                <a class="nav-link " routerLink="/account/:id" routerLinkActive="active">Account</a>
-              </li>
-      
-              <li class="nav-item">
-                <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
-              </li>
-      
-      
-              <li class="nav-item">
-                <a class="nav-link " routerLink="/signin" routerLinkActive="active">SignIn</a>
-              </li>
-      
-              <li class="nav-item">
-                <a class="nav-link" routerLink="/signup" routerLinkActive="active">SignUp</a>
-              </li>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#">
+      <img src="../assets/images/fav.png" class="logoBrand" alt="Logo">
+    </a>
 
-              <li class=nav-item *ngIf='currentUser.isLogged()'>{{currentUser.login}}</li>
-            </ul>
-          </div>
-        </nav>
-      </header>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link " routerLink="/home" routerLinkActive="active">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " routerLink="/catalog" routerLinkActive="active">Catalog</a>
+        </li>
+
+        <!-- Il faut être connecté pour voir ça -->
+        <li class="nav-item">
+          <a class="nav-link " *ngIf="authService.loggedIn()" routerLink="/playlist" routerLinkActive="active">Playlist</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link " *ngIf="authService.loggedIn()" routerLink="/account" routerLinkActive="active">Account</a>
+        </li>
+       
+        
+        <li class="nav-item">
+          <a class="nav-link " *ngIf="!authService.loggedIn()" routerLink="/signin" routerLinkActive="active">SignIn</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="!authService.loggedIn()" routerLink="/signup" routerLinkActive="active">SignUp</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-warning" *ngIf="authService.loggedIn()" (click)="authService.logout()" routerLinkActive="active">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>

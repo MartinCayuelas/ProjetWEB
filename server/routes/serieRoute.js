@@ -5,7 +5,7 @@ const express = require('express');
 const serieRoutes = express.Router();
 
 var serie = require('../models/serie');
-
+var admin = require('./auth');
 // Renvoie toute les activités de la base de donnees
 serieRoutes.get('/getAllSeries', (req, res) => {
     console.log("La route GetAll");
@@ -14,7 +14,14 @@ serieRoutes.get('/getAllSeries', (req, res) => {
     });
 });
 
-serieRoutes.get('/getAllSeriesDashboard', token.verifyToken, (req, res) => {
+
+serieRoutes.get('/getAllSeriesNb', token.verifyToken, token.isAdmin, (req, res) => {
+    console.log(" GetAllNb");
+    serie.getAllSeriesNb(req, series => {
+        return res.status(200).json(series);
+    });
+});
+serieRoutes.get('/getAllSeriesDashboard', token.verifyToken, token.isAdmin, (req, res) => {
     console.log("La route GetAll verify SerieGET ALL");
     serie.getAllSeries(req, series => {
         return res.status(200).json(series);
@@ -22,20 +29,34 @@ serieRoutes.get('/getAllSeriesDashboard', token.verifyToken, (req, res) => {
 });
 
 
-serieRoutes.get('/getAllSeriesNb', token.verifyToken, (req, res) => {
-    console.log(" GetAllNb");
-    serie.getAllSeriesNb(req, series => {
-        return res.status(200).json(series);
-    });
-});
 
-
-serieRoutes.get('/:idSerie/getNbEpisodes/', token.verifyToken, (req, res) => {
+serieRoutes.get('/:idSerie/getNbEpisodes', token.verifyToken, (req, res) => {
     console.log("GET nb Episodes for Série");
-    serie.getNbEpisodesBySerie(req, req.params.idSerie,series => {
+    serie.getNbEpisodesBySerie(req, req.params.idSerie, series => {
         return res.status(200).json(series);
     });
 });
+
+
+
+
+serieRoutes.get('/:idSerie/episodesSeen', token.verifyToken, (req, res) => {
+    console.log("Episodes Seen Série");
+    serie.getEpisodesSeen(req, req.params.idSerie, series => {
+        return res.status(200).json(series);
+    });
+});
+
+
+serieRoutes.get('/:idSerie/episodesNotSeen', token.verifyToken, (req, res) => {
+    console.log("Episodes NotSeen Série");
+    serie.getEpisodesNotSeen(req, req.params.idSerie, series => {
+        return res.status(200).json(series);
+    });
+});
+
+
+
 
 
 serieRoutes.get('/getAllSeriesNews', (req, res) => {
@@ -63,21 +84,21 @@ serieRoutes.get('/:id', (req, res) => {
 });
 
 
-serieRoutes.post('/insert', token.verifyToken, (req, res) => {
+serieRoutes.post('/insert', token.verifyToken, token.isAdmin, (req, res) => {
     console.log("La route insert Serie");
     serie.insertSerie(req, serie => {
         return res.status(200).json(serie);
     });
 });
 
-serieRoutes.delete('/delete/:id', token.verifyToken, (req, res) => {
+serieRoutes.delete('/delete/:id', token.verifyToken, token.isAdmin, (req, res) => {
     console.log("La route delete Serie");
     serie.deleteSerie(req, req.params.id, serie => {
         return res.status(200).json(serie);
     });
 });
 
-serieRoutes.put('/update/:id', token.verifyToken, (req, res) => {
+serieRoutes.put('/update/:id', token.verifyToken, token.isAdmin, (req, res) => {
     console.log("La route update Serie");
     serie.updateSerie(req, req.params.id, serie => {
         return res.status(200).json(serie);
@@ -87,3 +108,4 @@ serieRoutes.put('/update/:id', token.verifyToken, (req, res) => {
 
 
 module.exports = serieRoutes;
+

@@ -34,6 +34,7 @@ import { TokenInterceptorService } from './share/services/token-interceptor.serv
 
 import { appRoutes } from './app.routes';
 import { AuthGuard } from './share/auth.guard';
+import { AdminGuard } from './share/admin.guard';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { AuthGuard } from './share/auth.guard';
     CritiqueService,
     AuthService,
     AuthGuard,
+    AdminGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,

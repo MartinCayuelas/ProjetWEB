@@ -1,7 +1,7 @@
-<div class=" text-center">
+<div class=" text-center"  *ngIf="user !== undefined">
     <h4>List of Users: {{user.nb}} Users</h4>
 </div>
-<div class="table-wrapper  mx-auto">
+<div class="table-wrapper  mx-auto"  *ngIf="user !== undefined">
   <table class="table table-responsive-md text-center">
     <thead class="bg-warning text-dark">
     <tr>

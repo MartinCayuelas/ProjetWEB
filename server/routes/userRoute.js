@@ -9,7 +9,7 @@ const express = require('express');
 const userRoute = express.Router();
 
 var user = require('../models/user');
-
+var admin= require('./auth');
 
 // Utilisateur
 
@@ -20,8 +20,17 @@ userRoute.get('/current', token.verifyToken, (req, res) => {
     });
 });
 
+
+//renvoie l'utilisateur courrant
+userRoute.get('/role', token.verifyToken, (req, res) => {
+    user.getRoleByLogin(req, req.body.login, user => {
+        return res.status(200).json(user);
+    });
+});
+
+
 // Renvoie toute les activités de la base de donnees
-userRoute.get('/getAllUsers', token.verifyToken, (req, res) => {
+userRoute.get('/getAllUsers', token.verifyToken, token.isAdmin, (req, res) => {
     console.log("La route GetAll Users");
     user.getAllUsers(req, users => {
         return res.status(200).json(users);
@@ -29,7 +38,7 @@ userRoute.get('/getAllUsers', token.verifyToken, (req, res) => {
 });
 
 
-userRoute.get('/getAllUsersNb', token.verifyToken, (req, res) => {
+userRoute.get('/getAllUsersNb', token.verifyToken, token.isAdmin,(req, res) => {
     console.log("La route GetAllNB Users");
     user.getAllUsersNb(req, users => {
         return res.status(200).json(users);

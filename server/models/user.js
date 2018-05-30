@@ -162,7 +162,22 @@ module.exports.getUserById = function (req, idUser, callback) {
     });
 }
 
+module.exports.getRoleByLogin = function (req, login, callback) {
+    // console.log("iduser:" + idUser);
+    req.getConnection(function (err, connection) {
+        connection.query('select role from Utilisateur where login = ?', [login], function (err, rows, fields) {
+            if (err) {
+                console.log(err);
+                return res.status(500).json("Impossible de récupérer le role");
+            }
+            console.log("Requete role OK");
+            console.log(rows);
+            callback(rows[0]);
+        });
+    });
+}
 
+          
 module.exports.getUserByLogin = function (req, login, callback) {
     // console.log("LoginUser:" + login);
     req.getConnection(function (err, connection) {

@@ -2,8 +2,12 @@
     margin-top: 85px;
 }
 
-.monFooter{
-    margin-top: 50px;
-    padding: 5px;
+.load{
+    font-size: 25px;
+    margin: 30px;
 }
 
+.imageLogo{
+    height: 150px;
+    width: 150px;
+}

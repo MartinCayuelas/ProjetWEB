@@ -18,6 +18,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SerieComponent } from './series/serie/serie/serie.component';
 import { SerieFormComponent } from './series/serie-form/serie-form.component';
 import { AuthGuard } from './share/auth.guard';
+import { AdminGuard } from './share/admin.guard';
 
 export const appRoutes: Routes = [
     { path: 'home', component: HomeComponent },
@@ -26,12 +27,12 @@ export const appRoutes: Routes = [
     { path: 'catalog', component: CatalogueComponent },
     { path: 'playlist', component: PlaylistUserComponent, canActivate: [AuthGuard] },
     { path: 'series', component: SeriesComponent },
-    { path: 'series/add', component: SerieFormComponent, canActivate: [AuthGuard] },
+    { path: 'series/add', component: SerieFormComponent, canActivate: [AdminGuard] },
     { path: 'catalog/:idSerie', component: SerieComponent },
     { path: 'series/:idSerie', component: SerieComponent },
-    { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-    { path: 'dashboard/addSerie', component: SerieFormComponent, canActivate: [AuthGuard] },
-    { path: 'dashboard/updateSerie/:idSerie', component: SerieUpdateComponent, canActivate: [AuthGuard] },
+    { path: 'dashboard', component: DashboardComponent, canActivate: [AdminGuard] },
+    { path: 'dashboard/addSerie', component: SerieFormComponent, canActivate: [AdminGuard] },
+    { path: 'dashboard/updateSerie/:idSerie', component: SerieUpdateComponent, canActivate: [AdminGuard]},
     { path: 'account', component: AccountComponent, canActivate: [AuthGuard] },
     { path: '', component: HomeComponent },
     { path: 'not-found', component: NotFoundComponent },

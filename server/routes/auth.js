@@ -31,7 +31,6 @@ function guardEmail(req, res, next) {
 
 
 
-
 // Insère un Utilisateur
 router.post('/signUp', guardLogin, guardEmail, (req, res) => {
     console.log("Requete UserInsert incoming...");
@@ -54,7 +53,7 @@ router.post('/signUp', guardLogin, guardEmail, (req, res) => {
                 return res.status(500).json('erreur inscription');
             }
             console.log("Requete Insert User effectuée");
-            return res.status(200).json({"submitted" : true, "message" : "You are registered !"});
+            return res.status(200).json({ "submitted": true, "message": "You are registered !" });
         });
 
     });

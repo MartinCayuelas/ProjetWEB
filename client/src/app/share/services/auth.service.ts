@@ -8,7 +8,6 @@ import { UserService } from './user.service';
 @Injectable()
 export class AuthService {
 
-  public user: User;
   constructor(private router: Router, private userService: UserService, private http: HttpClient) { }
 
   public signUp(user: User): Observable<User> {
@@ -21,14 +20,14 @@ export class AuthService {
 
 
   loggedIn() {
-
     return !!localStorage.getItem('token');
 
   }
 
+
   logout() {
     localStorage.removeItem('token');
-    window.location.reload();
+   // window.location.reload();
     this.router.navigate(['/home']);
 
   }

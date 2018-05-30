@@ -5,6 +5,7 @@ import { EpisodeService } from '../../share/services/episode.service';
 import { ActivatedRoute } from '@angular/router';
 import { SerieService } from '../../share/services/serie.service';
 import { UserService } from '../../share/services/user.service';
+import { User } from '../../share/models/user.model';
 
 @Component({
   selector: 'app-episode-list',
@@ -14,15 +15,20 @@ import { UserService } from '../../share/services/user.service';
 export class EpisodeListComponent implements OnInit {
 
   public episodes: Observable<Episode[]>;
+  public episodesSeen: Observable<Episode[]>;
+  public episodesNotSeen: Observable<Episode[]>;
   public id;
   public idUser;
-
+  public current: User;
   public completed: boolean;
 
   public nbEpisodes: number;
   public nbEpisodesVu: number;
   public nbEpisodesToSee: number;
   public Mypercent: any;
+
+
+  public showFormEp = false;
 
   req: any = {};
 
@@ -37,6 +43,14 @@ export class EpisodeListComponent implements OnInit {
       this.episodes = eps;
     });
     this.getNbEpisodeLeftToSee(this.id);
+    this.getEpisodeSeen(this.id);
+    this.getEpisodeNotSeen(this.id);
+
+    this.userService.getCurrent().subscribe(user => {
+      this.current = user;
+      console.log('current roel: ' + this.current.role);
+    });
+
   }
 
   changeVision(event, id: number) {
@@ -64,6 +78,17 @@ export class EpisodeListComponent implements OnInit {
     }
   }
 
+  getEpisodeSeen(idSerie: number) {
+    this.serieService.getEpisodesSeen(idSerie).subscribe(episodes => {
+      this.episodesSeen = episodes;
+    });
+  }
+
+  getEpisodeNotSeen(idSerie: number) {
+    this.serieService.getEpisodesNotSeen(idSerie).subscribe(episodes => {
+      this.episodesNotSeen = episodes;
+    });
+  }
 
   getNbEpisodeLeftToSee(idSerie: number) {
     this.serieService.getNbEpisodesBySerie(idSerie).subscribe(episodes => {
@@ -85,8 +110,26 @@ export class EpisodeListComponent implements OnInit {
       }
       console.log('nbEpisodesToSee: ' + this.nbEpisodesToSee);
     });
+  }
+  /*
 
+  compareSeen(id: number) {
+    this.episodesSeen.forEach(element => {
+      if (element.idEpisode === id) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+  }*/
 
+  showForm() {
+    if (this.showFormEp === true) {
+      this.showFormEp = false;
+    } else {
+      this.showFormEp = true;
+
+    }
   }
 
 }

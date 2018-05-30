@@ -23,7 +23,7 @@ module.exports = {
                 return res.status(401).send('Unauthorized request');
             }
 
-           // console.log('Payload : ' + payload.sub + '---------------------------------------');
+            // console.log('Payload : ' + payload.sub + '---------------------------------------');
             req.body.login = payload.sub;
             next();
         } catch (e) {
@@ -32,5 +32,25 @@ module.exports = {
             }
         }
 
+    },
+
+
+    isAdmin: function (req, res, next) {
+        console.log("Test Admin");
+        req.getConnection(function (err, connection) {
+            query = "select role from Utilisateur where login = ?";
+            connection.query(query, [req.body.login], function (err, rows, fields) {
+                console.log('admin: ' + rows[0].role);
+                if (rows[0].role === 0) {
+                    return res.sendStatus(401);
+                }
+                next();
+            });
+        });
+
     }
+
+
+
+
 } 

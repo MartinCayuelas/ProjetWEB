@@ -42,6 +42,10 @@ export class UserService {
     }
 
 
+    public getRole(): Observable<any> {
+        return this.http.get<any>('/api/users/role');
+    }
+
 
     public getUser(id: number): Observable<any> {
         return this.http.get<any>('/api/users/' + id);

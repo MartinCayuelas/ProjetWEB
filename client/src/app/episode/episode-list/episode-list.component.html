@@ -1,25 +1,54 @@
-<div class="container content">
-    
+<div class="container content " *ngIf="current !== undefined">
+
   <div class="card bg-dark">
-      <div class="text-center text-white hRewiev">
-          <h4> Episodes </h4>
-      </div>
-      <div class="progress progressBar">
-        <div class="progress-bar  bg-warning text-center text-dark" role="progressbar" [style.width]="Mypercent + '%'" attr.aria-valuenow="{{nbEpisodesVu}}"
-          aria-valuemin="0" attr.aria-valuemax="{{nbEpisodes}}">
-          <span *ngIf="!completed" >{{nbEpisodesVu}} of {{nbEpisodes}}</span>
-          <span *ngIf="completed" >Completed!</span>
+    <div class="text-center text-white hRewiev">
+      <h4> Episodes </h4>
+      <span *ngIf="current.role === 1">
+        <a class="text-warning" (click)="showForm()">
+          <i class="fas fa-plus-circle"></i>
+        </a>
+      </span>
+    </div>
+    <div *ngIf="showFormEp" class="formEp text-center">
+      <form class=" form">
+        <div class="form-group">
+          <input id="nameEp" placeholder="EpisodeName" />
+          <input id="season" placeholder="Season" />
         </div>
+        <a class="btn btn-sm btn-success pt-2">Add</a>
+      </form>
+    </div>
+    <div class="progress progressBar">
+      <div class="progress-bar  bg-warning text-center text-dark" role="progressbar" [style.width]="Mypercent + '%'" attr.aria-valuenow="{{nbEpisodesVu}}"
+        aria-valuemin="0" attr.aria-valuemax="{{nbEpisodes}}">
+        <span *ngIf="!completed">{{nbEpisodesVu}} of {{nbEpisodes}}</span>
+        <span *ngIf="completed">Completed!</span>
       </div>
+    </div>
     <ul class="text-white">
-      <li *ngFor="let episode of episodes">
+        <li *ngFor="let episode of episodesSeen">
+            <p class="text-warning"> {{episode.numeroEpisode}}: {{episode.nomEpisode}} (Season: {{episode.saison}})</p>
+    
+  
+            <label  class="switch" for="checkbox{{episode.idEpisode}}">
+                <input checked type="checkbox" (click)="changeVision($event,episode.idEpisode)" id="checkbox{{episode.idEpisode}}" />
+                <div class="slider round"></div>
+              </label>
+          </li>
+
+      <li *ngFor="let episode of episodesNotSeen">
         <p class="text-warning"> {{episode.numeroEpisode}}: {{episode.nomEpisode}} (Season: {{episode.saison}})</p>
-        <label class="switch" for="checkbox{{episode.idEpisode}}">
-          <input type="checkbox" (click)="changeVision($event,episode.idEpisode)" id="checkbox{{episode.idEpisode}}"/>
+
+        <label  class="switch" for="checkbox{{episode.idEpisode}}">
+          <input type="checkbox" (click)="changeVision($event,episode.idEpisode)" id="checkbox{{episode.idEpisode}}" />
           <div class="slider round"></div>
         </label>
+
+       
       </li>
+
       
+
     </ul>
   </div>
-  </div>
+</div>

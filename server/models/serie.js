@@ -1,101 +1,152 @@
 
-module.exports.getAllSeries = function(req, callback) {
-    req.getConnection(function (err, connection) { 
-        connection.query('select * from Serie ORDER BY titre', function(err, rows, fields) {
+module.exports.getAllSeries = function (req, callback) {
+    req.getConnection(function (err, connection) {
+        connection.query('select * from Serie ORDER BY titre', function (err, rows, fields) {
             if (err) {
-                console.log (err);
+                console.log(err);
                 return res.status(300).json("Impossible de récupérer les series");
             }
             console.log("Requete getAllSeries effectuée");
             console.log(rows);
             callback(rows);
         });
-    }); 
+    });
 }
 
-module.exports.getAllSeriesNb = function(req, callback) {
-    req.getConnection(function (err, connection) { 
-        connection.query('select COUNT(*) AS nb from Serie', function(err, rows, fields) {
+module.exports.getAllSeriesNb = function (req, callback) {
+    req.getConnection(function (err, connection) {
+        connection.query('select COUNT(*) AS nb from Serie', function (err, rows, fields) {
             if (err) {
-                console.log (err);
+                console.log(err);
                 return res.status(300).json("Impossible de récupérer les series");
             }
             console.log("Requete getAllSeries effectuée");
             console.log(rows);
             callback(rows[0]);
         });
-    }); 
+    });
 
 }
 
-module.exports.getAllSeriesNews = function(req, callback) {
-    req.getConnection(function (err, connection) { 
-        connection.query('select * from Serie ORDER BY dateSortie DESC LIMIT 3', function(err, rows, fields) {
+module.exports.getAllSeriesNews = function (req, callback) {
+    req.getConnection(function (err, connection) {
+        connection.query('select * from Serie ORDER BY dateSortie DESC LIMIT 3', function (err, rows, fields) {
             if (err) {
-                console.log (err);
+                console.log(err);
                 return res.status(300).json("Impossible de récupérer les nouveautés");
             }
             console.log("Requete getAllSeries effectuée");
             console.log(rows);
             callback(rows);
         });
-    }); 
+    });
 
 }
-module.exports.getAllSeriesTop = function(req, callback) {
-    req.getConnection(function (err, connection) { 
-        connection.query('SELECT Serie.titre, Serie.imageSerie, Serie.idSerie, COUNT(*) as nbVu FROM Serie, regarder WHERE Serie.idSerie = regarder.idSerie GROUP BY Serie.titre, Serie.imageSerie, Serie.idSerie ORDER BY nbVu DESC LIMIT 3', function(err, rows, fields) {
+module.exports.getAllSeriesTop = function (req, callback) {
+    req.getConnection(function (err, connection) {
+        connection.query('SELECT Serie.titre, Serie.imageSerie, Serie.idSerie, COUNT(*) as nbVu FROM Serie, regarder WHERE Serie.idSerie = regarder.idSerie GROUP BY Serie.titre, Serie.imageSerie, Serie.idSerie ORDER BY nbVu DESC LIMIT 3', function (err, rows, fields) {
             if (err) {
-                console.log (err);
+                console.log(err);
                 return res.status(300).json("Impossible de récupérer les nouveautés");
             }
             console.log("Requete getAllSeries TOPs effectuée");
             console.log(rows);
             callback(rows);
         });
-    }); 
+    });
 
 }
 
 
 module.exports.getNbEpisodesBySerie = function (req, idSerie, callback) {
     console.log("idSerie ___ getNbEpisodesBySerie__:" + idSerie);
-  req.getConnection(function(err, connection){
-      connection.query('select Episode.idSerie, COUNT(*) AS nbEpisodes from Episode where idSerie = ?', [idSerie], function(err, rows, fields) {
-          if (err) {
-              console.log ('Error' + err);
-              return res.status(300).json("Impossible de récupérer le nombre d'épiodes");
-          }
-          console.log("Requete getNbEpisodes OK");
-          console.log(rows);
-          callback(rows[0]);
-      });
-  });
+    req.getConnection(function (err, connection) {
+        connection.query('select Episode.idSerie, COUNT(*) AS nbEpisodes from Episode where idSerie = ?', [idSerie], function (err, rows, fields) {
+            if (err) {
+                console.log('Error' + err);
+                return res.status(300).json("Impossible de récupérer le nombre d'épiodes");
+            }
+            console.log("Requete getNbEpisodes OK");
+            console.log(rows);
+            callback(rows[0]);
+        });
+    });
 }
+
+
+module.exports.getEpisodesSeen = function (req, idSerie, callback) {
+    const ep = [
+        req.body.login,
+        idSerie,
+    ]
+    req.getConnection(function (err, connection) {
+        connection.query('select * from Episode,visionne, Utilisateur where Utilisateur.idUser = visionne.idUser AND Episode.idEpisode = visionne.idEpisode AND Utilisateur.login = ? AND Episode.idSerie = ?', ep, function (err, rows, fields) {
+            if (err) {
+                console.log('Error' + err);
+                return res.status(300).json("Impossible de récupérer les Episodes");
+            }
+            console.log("Requete EpisodesSeen OK");
+            console.log(rows);
+            callback(rows);
+        });
+    });
+}
+
+
+module.exports.getEpisodesNotSeen = function (req, idSerie, callback) {
+    const ep = [
+        idSerie,
+        req.body.login,
+        idSerie,
+    ]
+    req.getConnection(function (err, connection) {
+        connection.query('SELECT * FROM Episode WHERE Episode.idSerie = ? AND Episode.idEpisode NOT IN (SELECT e.idEpisode  FROM Episode e, visionne, Utilisateur WHERE Utilisateur.login = ? AND Utilisateur.idUser = visionne.idUser AND visionne.idEpisode = e.idEpisode AND e.idSerie = ?)', ep, function (err, rows, fields) {
+            if (err) {
+                console.log('Error' + err);
+                return res.status(300).json("Impossible de récupérer les Episodes");
+            }
+            console.log("Requete EpisodesSeen OK");
+            console.log(rows);
+            callback(rows);
+        });
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 module.exports.getSerieById = function (req, idSerie, callback) {
     console.log("idSerie:" + idSerie);
-  req.getConnection(function(err, connection){
-      connection.query('select * from Serie where idSerie = ?', [idSerie], function(err, rows, fields) {
-          if (err) {
-              console.log (err);
-              return res.status(300).json("Impossible de récupérer les series");
-          }
-          console.log("Requete getSerie by ID OK");
-          console.log(rows);
-          callback(rows[0]);
-      });
-  });
+    req.getConnection(function (err, connection) {
+        connection.query('select * from Serie where idSerie = ?', [idSerie], function (err, rows, fields) {
+            if (err) {
+                console.log(err);
+                return res.status(300).json("Impossible de récupérer les series");
+            }
+            console.log("Requete getSerie by ID OK");
+            console.log(rows);
+            callback(rows[0]);
+        });
+    });
 }
 
 
 
-module.exports.insertSerie = function(req, callback) {
+module.exports.insertSerie = function (req, callback) {
     console.log("Requete SerieInsert incoming...");
     let queryInsert = "INSERT INTO Serie VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?)";
     const serie = [
-       
+
         req.body.titre,
         req.body.dateSortie,
         req.body.nomRealisateur,
@@ -105,44 +156,44 @@ module.exports.insertSerie = function(req, callback) {
         req.body.description,
         req.body.imageSerie
     ]
-    req.getConnection(function (err, connection) { 
-        connection.query(queryInsert, serie, function(err, rows, fields) {
-            if (err) { 
-                console.log (err);
+    req.getConnection(function (err, connection) {
+        connection.query(queryInsert, serie, function (err, rows, fields) {
+            if (err) {
+                console.log(err);
                 return res.status(500).json('erreur insertSerie');
             }
             console.log("Requete Insert Serie effectuée");
-           callback(rows);
+            callback(rows);
         });
-         
-    }); 
+
+    });
 }
 
 
 module.exports.deleteSerie = function (req, idSerie, callback) {
     console.log("idSerie___deleteSerie:" + idSerie);
-  req.getConnection(function(err, connection){
-    var sql = "DELETE FROM Serie WHERE idSerie = ?";
-    var sqlS = "DELETE FROM regarder WHERE idSerie = ?";
-    connection.query(sqlS, [idSerie], function(err, rows, fields) {
-        if (err) {
-            console.log (err);
-            return res.status(300).json("Impossible de supprimer la serie");
-        }
-        console.log("Requete deleteSerie OK");
-        console.log(rows);
-        callback(rows[0]);
+    req.getConnection(function (err, connection) {
+        var sql = "DELETE FROM Serie WHERE idSerie = ?";
+        var sqlS = "DELETE FROM regarder WHERE idSerie = ?";
+        connection.query(sqlS, [idSerie], function (err, rows, fields) {
+            if (err) {
+                console.log(err);
+                return res.status(300).json("Impossible de supprimer la serie");
+            }
+            console.log("Requete deleteSerie OK");
+            console.log(rows);
+            callback(rows[0]);
+        });
+        connection.query(sql, [idSerie], function (err, rows, fields) {
+            if (err) {
+                console.log(err);
+                return res.status(300).json("Impossible de supprimer la serie");
+            }
+            console.log("Requete deleteSerie OK");
+            console.log(rows);
+            callback(rows[0]);
+        });
     });
-      connection.query(sql, [idSerie], function(err, rows, fields) {
-          if (err) {
-              console.log (err);
-              return res.status(300).json("Impossible de supprimer la serie");
-          }
-          console.log("Requete deleteSerie OK");
-          console.log(rows);
-          callback(rows[0]);
-      });
-  });
 }
 
 module.exports.updateSerie = function (req, idSerie, callback) {
@@ -153,18 +204,18 @@ module.exports.updateSerie = function (req, idSerie, callback) {
         req.body.nbSaisons,
         req.body.description,
         idSerie
-        
-    ]
-  req.getConnection(function(err, connection){
 
-    connection.query(queryD, serie, function(err, rows, fields) {
-        if (err) {
-            console.log (err);
-            return res.status(300).json("Impossible de modifier la serie");
-        }
-        console.log("Requete updateSerie OK");
-        console.log(rows);
-        callback(rows[0]);
+    ]
+    req.getConnection(function (err, connection) {
+
+        connection.query(queryD, serie, function (err, rows, fields) {
+            if (err) {
+                console.log(err);
+                return res.status(300).json("Impossible de modifier la serie");
+            }
+            console.log("Requete updateSerie OK");
+            console.log(rows);
+            callback(rows[0]);
+        });
     });
-  });
 }

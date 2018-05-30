@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../share/services/auth.service';
+import { UserService } from '../share/services/user.service';
+import { AuthGuard } from '../share/auth.guard';
 
 @Component({
   selector: 'app-connexion',
@@ -10,7 +12,7 @@ import { AuthService } from '../share/services/auth.service';
 export class ConnexionComponent implements OnInit {
 
   model: any = {};
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private authGuard: AuthGuard, private router: Router) { }
 
   ngOnInit() {
     this.model.login = '';
@@ -20,7 +22,6 @@ export class ConnexionComponent implements OnInit {
   }
 
   public signIn(): void {
-
     console.log('Je vais appeler le serviceAuth pour SignIn');
     this.authService.signIn(this.model).subscribe(
       res => {
@@ -28,6 +29,7 @@ export class ConnexionComponent implements OnInit {
         localStorage.setItem('token', res.token);
 
         this.router.navigate(['/home']);
+      //  window.location.reload();
       },
       err => {
         alert('Invalid Login or Password');
