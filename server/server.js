@@ -24,10 +24,10 @@ const mysql = require('mysql');
 myConnection = require('express-myconnection'); // express-myconnection module
 
 dbOptions = {
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASS,
-  database: process.env.DB_NAME,
+  host: 'nr84dudlpkazpylz.chr7pe7iynqr.eu-west-1.rds.amazonaws.com',
+  user: 'm70cp3bierr5oleb',
+  password: 'hkqinov15do19ga0',
+  database: 'zvsccp6ratwxtz9x',
 };
 
 app.use(myConnection(mysql, dbOptions, 'single'));
