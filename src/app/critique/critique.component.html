@@ -1,21 +1,22 @@
 <div class="container content">
-   
-    <div class="card bg-dark scrollUl">
-            <div class="text-center text-white hRewiev">
-                    <h4> Reviews </h4>
+
+    <ul class="card bg-dark scrollUl">
+        <div class="text-center text-white hRewiev">
+            <h4> Reviews </h4>
+        </div>
+        <div>
+            <div class="card bg-light text-dark rewiev " *ngFor="let crit of critiques">
+                <div class="card-body col-10">
+                    {{crit.note}}
+                    <i class="fas fa-star"></i> | {{crit.commentaire}}
+                    <hr>
+                    <p>
+                        <small>By {{crit.login}}</small>
+                    </p>
                 </div>
-        <div class="card bg-light text-dark rewiev " *ngFor="let crit of critiques">
-            <div class="card-body col-10">
-                {{crit.note}} <i class="fas fa-star"></i> | {{crit.commentaire}}
-                <hr>
-                <p>
-                   
-                    <small>By {{crit.login}}</small>
-                </p>
             </div>
         </div>
-       
-    </div>
+    </ul>
 
     <div *ngIf="authService.loggedIn()" class="card bg-light text-dark text-center rewiev">
 
@@ -31,10 +32,10 @@
             </select>
             <input type="text" class="inputCrit" formControlName="commentaire" id="commentaire" placeholder="Your comments" (change)="onChangeDescription($event)">
             <div class="buttonCom">
-            <a class="btn btn-success text-white" (click)="saveCritique()">Send
-                <i class="fas fa-location-arrow"></i>
-            </a>
-        </div>
+                <a class="btn btn-success text-white" (click)="saveCritique()">Send
+                    <i class="fas fa-location-arrow"></i>
+                </a>
+            </div>
         </form>
     </div>
 </div>
