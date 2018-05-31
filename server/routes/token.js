@@ -18,7 +18,7 @@ module.exports = {
 
         try {
 
-            payload = jwt.verify(token, 'secretKey');
+            payload = jwt.verify(token, 'YaourtOFraise');
             if (!payload) { // On verifie la validité du payload avec notre secretKey
                 return res.status(401).send('Unauthorized request');
             }

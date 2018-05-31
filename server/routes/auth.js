@@ -78,7 +78,7 @@ router.post('/signIn', (req, res) => {
                 let payload = {
                     "sub": user.login,
                 }
-                let token = jwt.sign(payload, 'secretKey');
+                let token = jwt.sign(payload, 'YaourtOFraise', {expiresIn: '1h' });
                 return res.status(200).send({ token });
             } else {
                 res.status(401).send('Invalid Login or Password');

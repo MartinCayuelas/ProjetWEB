@@ -3,7 +3,7 @@ webpackJsonp(["styles"],{
 /***/ "./node_modules/raw-loader/index.js!./node_modules/postcss-loader/lib/index.js??embedded!./src/styles.css":
 /***/ (function(module, exports) {
 
-module.exports = "/* You can add global styles to this file, and also import other style files */\n/* GLOBAL STYLES\n-------------------------------------------------- */\n/* Padding below the footer and lighter body text */\nbody {\n    padding-top: 3rem;\n    padding-bottom: 3rem;\n    color: #5a5a5a;\n}\n.logo{\n    height: 45px;\n    width: 45px;\n}"
+module.exports = ".content{\n    margin-top: 85px;\n}\n\n.load{\n    font-size: 25px;\n    margin: 30px;\n}\n\n.imageLogo{\n    height: 150px;\n    width: 150px;\n}"
 
 /***/ }),
 
