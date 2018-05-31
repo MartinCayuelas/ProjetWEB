@@ -196,6 +196,8 @@ module.exports.deleteSerie = function (req, idSerie, callback) {
     });
 }
 
+
+
 module.exports.updateSerie = function (req, idSerie, callback) {
     let queryD = "UPDATE Serie SET imageSerie = ?, nbEpisodes = ?, nbSaisons = ?, description = ? WHERE idSerie = ?";
     const serie = [

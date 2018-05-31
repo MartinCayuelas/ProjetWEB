@@ -63,6 +63,9 @@ export class SerieService {
         return this.http.delete<any>('/api/users/' + req.idUser + '/deleteSerieRegarder/' + req.idSerie);
     }
 
+
+
+
     insertSerie(serie: Serie): Observable<Serie> {
         return this.http.post<Serie>('/api/series/insert', serie);
     }

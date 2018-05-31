@@ -112,7 +112,7 @@ module.exports.removeRegarder = function (req, idUser, callback) {
         console.log('idUser RemoveVision' + idUser);
         console.log('idE RemoveVision' + req.params.idSerie);
         var sqlS = "DELETE FROM regarder WHERE idUser = ? AND idSerie = ?";
-        connection.query(sqlS, serie, function (err, rows, fields) {
+       connection.query(sqlS, serie, function (err, rows, fields) {
             if (err) {
                 console.log(err);
                 return res.status(300).json("Impossible de supprimer le 'regardage' de serie");

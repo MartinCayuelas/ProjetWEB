@@ -98,6 +98,11 @@ serieRoutes.delete('/delete/:id', token.verifyToken, token.isAdmin, (req, res) =
     });
 });
 
+
+
+
+
+
 serieRoutes.put('/update/:id', token.verifyToken, token.isAdmin, (req, res) => {
     console.log("La route update Serie");
     serie.updateSerie(req, req.params.id, serie => {
