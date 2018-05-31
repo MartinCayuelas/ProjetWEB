@@ -36,13 +36,13 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-6">
+        <div class="col-md-6">
           <app-critique>
             <!--Liste des commentaires-->
           </app-critique>
         </div>
 
-        <div class="col-6" *ngIf="isSeen">
+        <div class="col-md-6" *ngIf="isSeen">
           <app-episode-list>
             <!--Liste des épisodes de la séries-->
             <!--Visible uniquement si on visionne la série-->
@@ -50,9 +50,8 @@
         </div>
       </div>
       <div class="text-center buttonRetour">
-        <a class="btn btn-md btn-secondary text-warning" routerLink="/catalog" routerLinkActive="active">Retour au catalogue</a>
+        <a class="btn btn-md btn-secondary text-warning" routerLink="/catalog" routerLinkActive="active">Back to Catalog</a>
       </div>
     </div>
   </div>
-
 </div>

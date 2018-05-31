@@ -16,6 +16,7 @@ export class AccountComponent implements OnInit {
 
   public nbSeries: any;
   public nbEpisodes: any;
+  public minutesSeen: any;
   public id: number;
   public userCurrent: User;
   constructor(private route: ActivatedRoute, private authService: AuthService,
@@ -32,6 +33,7 @@ export class AccountComponent implements OnInit {
 
       this.userService.getNbEpisodes(this.userCurrent.idUser).subscribe(stats => {
         this.nbEpisodes = stats.nbVus;
+        this.minutesSeen = (this.nbEpisodes * 45);
         console.log('nbepisodes:' + this.nbEpisodes);
 
       });

@@ -2,64 +2,64 @@
     <form class="form-addSerie" [formGroup]="form" novalidate>
         <div class="text-center">
             <h3 class="text-warning">
-                Nouvelle Série
+                New Serie
             </h3>
         </div>
 
         <fieldset class="p-5 m-4 field">
 
-            <h3>Informations Générales</h3>
+            <h3>General informations</h3>
 
             <div class="form-group">
-                <label for="titre" class="l-connect">Titre</label>
+                <label for="titre" class="l-connect">Title *</label>
                 <input type="text" formControlName="titre" class="form-control input-connect" id="titre" placeholder="Titre">
             </div>
             <div class="form-group">
 
-                <label for="imageSerie" class="l-connect">Affiche</label>
-                <input type="file" formControlName="imageSerie" class="form-control-file" id="imageSerie" (change)="handleFileSelect($event)">
+                <label for="imageSerie" class="l-connect">Wallpaper *</label>
+                <input type="text" formControlName="imageSerie" class="form-control-file" id="imageSerie" placeholder="(Optional) Size: 600x600 (Max)">
 
             </div>
             <div class="form-row">
                 <div class="col">
-                    <label for="description" class="l-connect">Description</label>
-                    <textarea class="form-control input-connect" rows="8" formControlName="description" placeholder="Décrivez la série..."></textarea>
+                    <label for="description" class="l-connect">Description *</label>
+                    <textarea class="form-control input-connect" rows="8" formControlName="description" placeholder="Describe it"></textarea>
                 </div>
                 <div class="col">
-                    <label for="dateSortie" class="l-connect">Date de sortie</label>
-                    <input type="text" class="form-control input-connect" formControlName="dateSortie" placeholder="aaaa-mm-jj">
+                    <label for="dateSortie" class="l-connect">Original Release</label>
+                    <input type="text" class="form-control input-connect" formControlName="dateSortie" placeholder="yyyy-mm-dd">
                 </div>
             </div>
 
 
             <div class="form-row">
                 <div class="col">
-                    <label for="nbSaisons" class="l-connect">Nombres de Saisons</label>
+                    <label for="nbSaisons" class="l-connect">Number of Seasons *</label>
                     <input type="text" formControlName="nbSaisons" class="form-control input-connect" placeholder="1">
                 </div>
                 <div class="col">
-                    <label for="nbEpisodes" class="l-connect">Nombres d'Episodes</label>
+                    <label for="nbEpisodes" class="l-connect">Number of Episodes *</label>
                     <input type="text" class="form-control input-connect" formControlName="nbEpisodes" placeholder="10">
                 </div>
             </div>
 
         </fieldset>
         <fieldset class="m-4 p-5 field">
-            <h3>Réalisation</h3>
+            <h3>Production</h3>
             <div class="form-row">
                 <div class="col">
-                    <label for="prenomRealisateur" class="l-connect">Prénom</label>
+                    <label for="prenomRealisateur" class="l-connect">FirstName *</label>
                     <input type="text" formControlName="prenomRealisateur" class="form-control input-connect" id="prenomRealisateur" placeholder="Prenom">
                 </div>
                 <div class="col">
-                    <label for="nomRealisateur" class="l-connect">Nom</label>
+                    <label for="nomRealisateur" class="l-connect">LastName *</label>
                     <input type="text" class="form-control input-connect" id="nomRealisateur" formControlName="nomRealisateur" placeholder="Nom">
                 </div>
             </div>
         </fieldset>
 
         <div class="m-3">
-            <a class="btn btn-md btn-success text-white " (click)="createSerie()" routerLink="/catalogue" routerLinkActive="active">Ajouter</a>
+            <a class="btn btn-md btn-success text-white " (click)="createSerie()" routerLink="/catalogue" routerLinkActive="active">Add</a>
         </div>
     </form>
 </div>
