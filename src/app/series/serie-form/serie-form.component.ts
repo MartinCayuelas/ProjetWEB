@@ -28,21 +28,11 @@ export class SerieFormComponent implements OnInit {
       nbEpisodes: ['', Validators.required],
       nbSaisons: ['', Validators.required],
       description: ['', Validators.required],
-      imageSerie: ['fav.png', Validators.required]
+      imageSerie: ['', Validators.required]
 
     });
   }
 
-  handleFileSelect(evt) {
-    const files = evt.target.files; // FileList object
-
-    // files is a FileList of File objects. List some properties.
-    for (let i = 0, f; f = files[i]; i++) {
-
-      console.log('files: ' + f.name);
-      this.form.get('imageSerie').setValue(f.name);
-    }
-  }
 
   createSerie(): void {
     this.serieService.insertSerie(this.form.value).subscribe();

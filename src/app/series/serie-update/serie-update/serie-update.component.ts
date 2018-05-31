@@ -35,17 +35,6 @@ export class SerieUpdateComponent implements OnInit {
   }
 
 
-  handleFileSelect(evt) {
-    const files = evt.target.files; // FileList object
-
-    // files is a FileList of File objects. List some properties.
-    for (let i = 0, f; f = files[i]; i++) {
-
-      console.log('files: ' + f.name);
-      this.serie.imageSerie = f.name;
-    }
-  }
-
   setNbSaisons(evt) {
     this.serie.nbSaisons = evt.target.value;
   }

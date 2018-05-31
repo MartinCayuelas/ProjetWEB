@@ -10,7 +10,7 @@
             <div class="row rowSerie">
                 <div class="col-xs-6 col-md-4 thumbnail thumbHome" *ngFor="let serie of series">
                     <a routerLink="/catalog/{{serie.idSerie}}" routerLinkActive="active" >
-                        <img src="../../assets/images/{{serie.imageSerie}}" alt="{{serie.titre}}" class="imgTop img-fluid thumbnail">
+                        <img src="{{serie.imageSerie}}" alt="{{serie.titre}}" class="imgTop img-fluid thumbnail">
                     </a>
                 </div>
             </div>
@@ -31,7 +31,7 @@
         <div class="row rowSerie">
                 <div class="col-xs-6 col-md-4 thumbnail thumbHome" *ngFor="let top of topSeries">
                     <a routerLink="/catalog/{{top.idSerie}}" routerLinkActive="active" >
-                        <img src="../../assets/images/{{top.imageSerie}}" alt="{{top.titre}}" class="imgTop img-fluid thumbnail">
+                        <img src="{{top.imageSerie}}" alt="{{top.titre}}" class="imgTop img-fluid thumbnail">
                     </a>
                 </div>
             </div>
