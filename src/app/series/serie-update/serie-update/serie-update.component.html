@@ -14,7 +14,7 @@
             <div class="form-row">
                 <div class="col">
                     <label for="imageSerie" class="l-connect">Affiche</label>
-                    <input type="text" class="form-control  input-connect" id="imageSerie" value="{{serie.imageSerie}}">
+                    <input type="text" class="form-control  input-connect" id="imageSerie" value="{{serie.imageSerie}}" (change)="setAffiche($event)">
                 </div>
                 <div class="col">
                     <label for="description" class="l-connect">Description</label>

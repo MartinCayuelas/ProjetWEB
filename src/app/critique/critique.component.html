@@ -1,10 +1,10 @@
 <div class="container content">
    
-    <div class="card bg-dark ">
+    <div class="card bg-dark scrollUl">
             <div class="text-center text-white hRewiev">
                     <h4> Reviews </h4>
                 </div>
-        <div class="card bg-light text-dark rewiev" *ngFor="let crit of critiques">
+        <div class="card bg-light text-dark rewiev " *ngFor="let crit of critiques">
             <div class="card-body col-10">
                 {{crit.note}} <i class="fas fa-star"></i> | {{crit.commentaire}}
                 <hr>
@@ -14,25 +14,27 @@
                 </p>
             </div>
         </div>
-        <div *ngIf="authService.loggedIn()" class="card bg-light text-dark text-center rewiev">
+       
+    </div>
 
-            <form class="card-body" [formGroup]="form">
+    <div *ngIf="authService.loggedIn()" class="card bg-light text-dark text-center rewiev">
 
-                <label class="">Mark</label>
-                <select (change)="onChangeNote($event)" formControlName="note">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-                <input type="text" class="inputCrit" formControlName="commentaire" id="commentaire" placeholder="Your comments" (change)="onChangeDescription($event)">
-                <div class="buttonCom">
-                <a class="btn btn-success text-white" (click)="saveCritique()">Send
-                    <i class="fas fa-location-arrow"></i>
-                </a>
-            </div>
-            </form>
+        <form class="card-body" [formGroup]="form">
+
+            <label class="">Mark</label>
+            <select (change)="onChangeNote($event)" formControlName="note">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+            <input type="text" class="inputCrit" formControlName="commentaire" id="commentaire" placeholder="Your comments" (change)="onChangeDescription($event)">
+            <div class="buttonCom">
+            <a class="btn btn-success text-white" (click)="saveCritique()">Send
+                <i class="fas fa-location-arrow"></i>
+            </a>
         </div>
+        </form>
     </div>
 </div>

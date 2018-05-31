@@ -46,6 +46,10 @@ export class SerieUpdateComponent implements OnInit {
     this.serie.description = event.target.value;
   }
 
+  setAffiche(event) {
+    this.serie.imageSerie = event.target.value;
+  }
+
   updateSerie() {
     this.serieService.updateSerie(this.serie).subscribe();
 
