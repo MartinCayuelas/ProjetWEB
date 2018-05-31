@@ -9,7 +9,7 @@
           <label for="login" class="l-connect">Login</label>
           <input type="text" id="login" class="form-control input-connect" name="login" [(ngModel)]="model.login" #login="ngModel"
             required autofocus />
-          <div *ngIf="f.submitted && !username.valid" class="help-block">Login is required</div>
+          <div *ngIf="f.submitted && !login.valid" class="help-block">Login is required</div>
         </div>
         <div class="form-group mt-3">
           <label for="password" class="l-connect">Password</label>
