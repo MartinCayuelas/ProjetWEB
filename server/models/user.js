@@ -39,7 +39,17 @@ module.exports.deleteUser = function (req, idUser,callback) {
         var sql = "DELETE FROM utilisateur WHERE idUser = ?";
         var sqlV = "DELETE FROM visionne WHERE idUser = ?";
         var sqlR = "DELETE FROM regarder WHERE idUser = ?";
+        var sqlC = "DELETE FROM critique WHERE idUser = ?";
         connection.query(sqlV, [idUser], function (err, rows, fields) {
+            if (err) {
+                console.log(err);
+                return res.status(300).json("Impossible de supprimer l'utilisateur");
+            }
+            console.log("Requete deleteUser OK");
+            console.log(rows);
+            callback(rows[0]);
+        });
+        connection.query(sqlC, [idUser], function (err, rows, fields) {
             if (err) {
                 console.log(err);
                 return res.status(300).json("Impossible de supprimer l'utilisateur");

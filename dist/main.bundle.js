@@ -800,17 +800,22 @@ var EpisodeListComponent = /** @class */ (function () {
     };
     EpisodeListComponent.prototype.addEpisode = function () {
         var _this = this;
-        var episode = {};
-        episode.nomEpisode = this.nomEpisode;
-        episode.saison = this.saison;
-        episode.idSerie = this.id;
-        console.log('Name Ep: ' + episode.nomEpisode);
-        console.log('saison Ep: ' + episode.saison);
-        console.log('idSerie Ep: ' + episode.idSerie);
-        this.episodeService.insertEpisode(episode).subscribe(function (res) {
-            _this.getEpisodeNotSeen(_this.id);
-            _this.getNbEpisodeLeftToSee(_this.id);
-        });
+        if (this.nomEpisode.value === null || this.saison.value === null) {
+            alert('Veuillez remplir les 2 champs');
+        }
+        else {
+            var episode = {};
+            episode.nomEpisode = this.nomEpisode;
+            episode.saison = this.saison;
+            episode.idSerie = this.id;
+            console.log('Name Ep: ' + episode.nomEpisode);
+            console.log('saison Ep: ' + episode.saison);
+            console.log('idSerie Ep: ' + episode.idSerie);
+            this.episodeService.insertEpisode(episode).subscribe(function (res) {
+                _this.getEpisodeNotSeen(_this.id);
+                _this.getNbEpisodeLeftToSee(_this.id);
+            });
+        }
     };
     EpisodeListComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -2030,9 +2035,14 @@ var UserComponent = /** @class */ (function () {
         });
     };
     UserComponent.prototype.deleteUser = function (id) {
+        var _this = this;
         this.userService.deleteUser(id).subscribe();
-        this.userService.getAllUsers();
-        this.userService.getAllUsersNb();
+        this.userService.getAllUsers().subscribe(function (users) {
+            _this.users = users;
+        });
+        this.userService.getAllUsersNb().subscribe(function (stats) {
+            _this.user = stats;
+        });
     };
     UserComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({

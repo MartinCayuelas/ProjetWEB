@@ -31,8 +31,8 @@ export class EpisodeListComponent implements OnInit {
   public showFormEp = false;
 
   req: any = {};
-  nomEpisode: string;
-  saison: number;
+  nomEpisode: any;
+  saison: any;
 
   constructor(private route: ActivatedRoute, private serieService: SerieService,
     private userService: UserService, private episodeService: EpisodeService) { }
@@ -135,20 +135,27 @@ export class EpisodeListComponent implements OnInit {
 
   public addEpisode() {
 
-    const episode: any = {};
-    episode.nomEpisode = this.nomEpisode;
-    episode.saison = this.saison;
-    episode.idSerie = this.id;
-    console.log('Name Ep: ' + episode.nomEpisode);
-    console.log('saison Ep: ' + episode.saison);
-    console.log('idSerie Ep: ' + episode.idSerie);
-    this.episodeService.insertEpisode(episode).subscribe(res => {
+    if (this.nomEpisode.value === null || this.saison.value === null) {
+      alert('Veuillez remplir les 2 champs');
+    } else {
 
-      this.getEpisodeNotSeen(this.id);
-      this.getNbEpisodeLeftToSee(this.id);
+
+
+      const episode: any = {};
+      episode.nomEpisode = this.nomEpisode;
+      episode.saison = this.saison;
+      episode.idSerie = this.id;
+      console.log('Name Ep: ' + episode.nomEpisode);
+      console.log('saison Ep: ' + episode.saison);
+      console.log('idSerie Ep: ' + episode.idSerie);
+      this.episodeService.insertEpisode(episode).subscribe(res => {
+
+        this.getEpisodeNotSeen(this.id);
+        this.getNbEpisodeLeftToSee(this.id);
+      }
+      );
+
     }
-    );
-
   }
 
 }
