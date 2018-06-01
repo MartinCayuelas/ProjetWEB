@@ -141,13 +141,23 @@ module.exports.addRegarder = function (req, idUser, callback) {
 
 module.exports.removeRegarder = function (req, idUser, callback) {
     const serie = [
-        idUser,
         req.params.idSerie,
+        idUser,
     ]
     req.getConnection(function (err, connection) {
         console.log('idUser RemoveVision' + idUser);
         console.log('idE RemoveVision' + req.params.idSerie);
-        var sqlS = "DELETE FROM regarder WHERE idUser = ? AND idSerie = ?";
+        var sqlR = 'DELETE FROM visionne WHERE idEpisode IN (SELECT episode.idEpisode FROM episode WHERE idSerie=?) AND idUser = ?'
+        var sqlS = "DELETE FROM regarder WHERE idSerie = ? AND idUser = ?";
+        connection.query(sqlR, serie, function (err, rows, fields) {
+            if (err) {
+                console.log(err);
+                return res.status(300).json("Impossible de supprimer le 'regardage' de serie");
+            }
+            console.log("Requete deleteRegarder OK");
+            console.log(rows);
+            callback(rows[0]);
+        });
        connection.query(sqlS, serie, function (err, rows, fields) {
             if (err) {
                 console.log(err);

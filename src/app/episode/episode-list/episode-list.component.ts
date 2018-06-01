@@ -31,8 +31,8 @@ export class EpisodeListComponent implements OnInit {
   public showFormEp = false;
 
   req: any = {};
-  nomEpisode: any;
-  saison: any;
+  nomEpisode: string;
+  saison: number;
 
   constructor(private route: ActivatedRoute, private serieService: SerieService,
     private userService: UserService, private episodeService: EpisodeService) { }
@@ -47,7 +47,6 @@ export class EpisodeListComponent implements OnInit {
     this.getNbEpisodeLeftToSee(this.id);
     this.getEpisodeSeen(this.id);
     this.getEpisodeNotSeen(this.id);
-
     this.userService.getCurrent().subscribe(user => {
       this.current = user;
       console.log('current roel: ' + this.current.role);
@@ -135,6 +134,7 @@ export class EpisodeListComponent implements OnInit {
   }
 
   public addEpisode() {
+
     const episode: any = {};
     episode.nomEpisode = this.nomEpisode;
     episode.saison = this.saison;
@@ -142,7 +142,13 @@ export class EpisodeListComponent implements OnInit {
     console.log('Name Ep: ' + episode.nomEpisode);
     console.log('saison Ep: ' + episode.saison);
     console.log('idSerie Ep: ' + episode.idSerie);
-    this.episodeService.insertEpisode(episode).subscribe();
+    this.episodeService.insertEpisode(episode).subscribe(res => {
+
+      this.getEpisodeNotSeen(this.id);
+      this.getNbEpisodeLeftToSee(this.id);
+    }
+    );
+
   }
 
 }

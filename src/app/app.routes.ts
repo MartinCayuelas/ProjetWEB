@@ -21,19 +21,19 @@ import { AuthGuard } from './share/auth.guard';
 import { AdminGuard } from './share/admin.guard';
 
 export const appRoutes: Routes = [
-    { path: 'home', component: HomeComponent },
-    { path: 'signin', component: ConnexionComponent },
-    { path: 'signup', component: InscriptionComponent },
-    { path: 'catalog', component: CatalogueComponent },
+    { path: 'accueil', component: HomeComponent },
+    { path: 'connexion', component: ConnexionComponent },
+    { path: 'inscription', component: InscriptionComponent },
+    { path: 'catalogue', component: CatalogueComponent },
     { path: 'playlist', component: PlaylistUserComponent, canActivate: [AuthGuard] },
     { path: 'series', component: SeriesComponent },
     { path: 'series/add', component: SerieFormComponent, canActivate: [AdminGuard] },
-    { path: 'catalog/:idSerie', component: SerieComponent },
+    { path: 'catalogue/:idSerie', component: SerieComponent },
     { path: 'series/:idSerie', component: SerieComponent },
     { path: 'dashboard', component: DashboardComponent, canActivate: [AdminGuard] },
     { path: 'dashboard/addSerie', component: SerieFormComponent, canActivate: [AdminGuard] },
     { path: 'dashboard/updateSerie/:idSerie', component: SerieUpdateComponent, canActivate: [AdminGuard]},
-    { path: 'account', component: AccountComponent, canActivate: [AuthGuard] },
+    { path: 'compte', component: AccountComponent, canActivate: [AuthGuard] },
     { path: '', component: HomeComponent },
     { path: 'not-found', component: NotFoundComponent },
     { path: 'playlist/serie/:idSerie', component: SerieComponent, canActivate: [AuthGuard] }

@@ -329,19 +329,19 @@ var AppModule = /** @class */ (function () {
 
 
 var appRoutes = [
-    { path: 'home', component: __WEBPACK_IMPORTED_MODULE_2__home_home_component__["a" /* HomeComponent */] },
-    { path: 'signin', component: __WEBPACK_IMPORTED_MODULE_5__connexion_connexion_component__["a" /* ConnexionComponent */] },
-    { path: 'signup', component: __WEBPACK_IMPORTED_MODULE_4__inscription_inscription_component__["a" /* InscriptionComponent */] },
-    { path: 'catalog', component: __WEBPACK_IMPORTED_MODULE_1__catalog_catalogue_component__["a" /* CatalogueComponent */] },
+    { path: 'accueil', component: __WEBPACK_IMPORTED_MODULE_2__home_home_component__["a" /* HomeComponent */] },
+    { path: 'connexion', component: __WEBPACK_IMPORTED_MODULE_5__connexion_connexion_component__["a" /* ConnexionComponent */] },
+    { path: 'inscription', component: __WEBPACK_IMPORTED_MODULE_4__inscription_inscription_component__["a" /* InscriptionComponent */] },
+    { path: 'catalogue', component: __WEBPACK_IMPORTED_MODULE_1__catalog_catalogue_component__["a" /* CatalogueComponent */] },
     { path: 'playlist', component: __WEBPACK_IMPORTED_MODULE_8__playlist_playlist_user_playlist_user_component__["a" /* PlaylistUserComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_12__share_auth_guard__["a" /* AuthGuard */]] },
     { path: 'series', component: __WEBPACK_IMPORTED_MODULE_0__series_series_component__["a" /* SeriesComponent */] },
     { path: 'series/add', component: __WEBPACK_IMPORTED_MODULE_11__series_serie_form_serie_form_component__["a" /* SerieFormComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_13__share_admin_guard__["a" /* AdminGuard */]] },
-    { path: 'catalog/:idSerie', component: __WEBPACK_IMPORTED_MODULE_10__series_serie_serie_serie_component__["a" /* SerieComponent */] },
+    { path: 'catalogue/:idSerie', component: __WEBPACK_IMPORTED_MODULE_10__series_serie_serie_serie_component__["a" /* SerieComponent */] },
     { path: 'series/:idSerie', component: __WEBPACK_IMPORTED_MODULE_10__series_serie_serie_serie_component__["a" /* SerieComponent */] },
     { path: 'dashboard', component: __WEBPACK_IMPORTED_MODULE_6__dashboard_dashboard_component__["a" /* DashboardComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_13__share_admin_guard__["a" /* AdminGuard */]] },
     { path: 'dashboard/addSerie', component: __WEBPACK_IMPORTED_MODULE_11__series_serie_form_serie_form_component__["a" /* SerieFormComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_13__share_admin_guard__["a" /* AdminGuard */]] },
     { path: 'dashboard/updateSerie/:idSerie', component: __WEBPACK_IMPORTED_MODULE_7__series_serie_update_serie_update_serie_update_component__["a" /* SerieUpdateComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_13__share_admin_guard__["a" /* AdminGuard */]] },
-    { path: 'account', component: __WEBPACK_IMPORTED_MODULE_3__account_account_component__["a" /* AccountComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_12__share_auth_guard__["a" /* AuthGuard */]] },
+    { path: 'compte', component: __WEBPACK_IMPORTED_MODULE_3__account_account_component__["a" /* AccountComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_12__share_auth_guard__["a" /* AuthGuard */]] },
     { path: '', component: __WEBPACK_IMPORTED_MODULE_2__home_home_component__["a" /* HomeComponent */] },
     { path: 'not-found', component: __WEBPACK_IMPORTED_MODULE_9__not_found_not_found_component__["a" /* NotFoundComponent */] },
     { path: 'playlist/serie/:idSerie', component: __WEBPACK_IMPORTED_MODULE_10__series_serie_serie_serie_component__["a" /* SerieComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_12__share_auth_guard__["a" /* AuthGuard */]] }
@@ -360,7 +360,7 @@ module.exports = "\n\n\n/* Small devices (tablets, 768px and up) */\n\n.cardCata
 /***/ "./src/app/catalog/catalogue.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container content\">\n  <div class=\"text-center\">\n    <h3 class=\"text-dark\">\n      Catalogue de Series\n    </h3>\n    <hr>\n  </div>\n</div>\n\n<div class=\"album py-5\">\n  <div class=\"container\">\n    <div class=\"row rowSerie\">\n\n      <div class=\"col-md-4\" *ngFor=\"let serie of series\">\n        <div class=\"card cardCatalog\" *ngIf=\"serie !== undefined\">\n          <img  class=\"card-img-top img-fluid imageCatalogue\" src=\"{{serie.imageSerie}}\" alt=\"Image Affiche Série\" />\n\n          <div class=\"card-body bg-dark text-warning\">\n            <h5 class=\"card-title\">{{serie.titre}}</h5>\n            <p class=\"card-text description\"> {{serie.description}}</p>\n            <a class=\"btn btn-sm btn-outline-warning\" routerLink=\"/catalog/{{serie.idSerie}}\" routerLinkActive=\"active\">Voir</a>\n            <div class=\"d-flex justify-content-between align-items-center\">\n            </div>\n          </div>\n        </div>\n\n      </div>\n    </div>\n    <hr class=\"featurette-divider\">\n  </div>\n</div>"
+module.exports = "<div class=\"container content\">\n  <div class=\"text-center\">\n    <h3 class=\"text-dark\">\n      Catalogue de Series\n    </h3>\n    <hr>\n  </div>\n</div>\n\n<div class=\"album py-5\">\n  <div class=\"container\">\n    <div class=\"row rowSerie\">\n\n      <div class=\"col-md-4\" *ngFor=\"let serie of series\">\n        <div class=\"card cardCatalog\" *ngIf=\"serie !== undefined\">\n          <img  class=\"card-img-top img-fluid imageCatalogue\" src=\"{{serie.imageSerie}}\" alt=\"Image Affiche Série\" />\n\n          <div class=\"card-body bg-dark text-warning\">\n            <h5 class=\"card-title\">{{serie.titre}}</h5>\n            <p class=\"card-text description\"> {{serie.description}}</p>\n            <a class=\"btn btn-sm btn-outline-warning\" routerLink=\"/catalogue/{{serie.idSerie}}\" routerLinkActive=\"active\">Voir</a>\n            <div class=\"d-flex justify-content-between align-items-center\">\n            </div>\n          </div>\n        </div>\n\n      </div>\n    </div>\n    <hr class=\"featurette-divider\">\n  </div>\n</div>"
 
 /***/ }),
 
@@ -470,7 +470,7 @@ var ConnexionComponent = /** @class */ (function () {
         this.authService.signIn(this.model).subscribe(function (res) {
             console.log(res);
             localStorage.setItem('token', res.token);
-            _this.router.navigate(['/home']);
+            _this.router.navigate(['/accueil']);
             //  window.location.reload();
         }, function (err) {
             alert('Invalid Login or Password');
@@ -645,7 +645,7 @@ var DashboardComponent = /** @class */ (function () {
             if (err instanceof __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["d" /* HttpErrorResponse */]) {
                 if (err.status === 401) {
                     _this.authService.logout();
-                    _this.router.navigate(['/signin']);
+                    _this.router.navigate(['/connexion']);
                 }
             }
         });
@@ -675,7 +675,7 @@ module.exports = ".switch {\n    display: inline-block;\n    height: 34px;\n    
 /***/ "./src/app/episode/episode-list/episode-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container content \" *ngIf=\"current !== undefined\">\n\n  <div class=\"card bg-dark\">\n    <div class=\"text-center text-white hRewiev\">\n      <h4> Episodes </h4>\n      <span *ngIf=\"current.role === 1\">\n        <a class=\"text-warning\" (click)=\"showForm()\">\n          <i class=\"fas fa-plus-circle\"></i>\n        </a>\n      </span>\n    </div>\n\n    <div *ngIf=\"showFormEp\" class=\"card bg-light text-dark text-center rewiev\">\n\n      <form class=\"card-body\">\n\n        <div class=\"form-group\">\n          <input id=\"nameEp\" [(ngModel)]=\"nomEpisode\" name=\"nomEpisode\" placeholder=\"NomEpisode\" />\n          <input id=\"season\" [(ngModel)]=\"saison\" name=\"saison\" placeholder=\"Saison\" />\n        </div>\n        <a class=\"btn btn-sm btn-success pt-2\" (click)=\"addEpisode()\">Ajouter</a>\n      </form>\n  </div>\n\n    <div class=\"progress progressBar\">\n      <div class=\"progress-bar  bg-warning text-center text-dark\" role=\"progressbar\" [style.width]=\"Mypercent + '%'\" attr.aria-valuenow=\"{{nbEpisodesVu}}\"\n        aria-valuemin=\"0\" attr.aria-valuemax=\"{{nbEpisodes}}\">\n        <span *ngIf=\"!completed\">{{nbEpisodesVu}} sur {{nbEpisodes}}</span>\n        <span *ngIf=\"completed\">Completée!</span>\n      </div>\n    </div>\n    <ul class=\"text-white scrollUl\">\n        <li *ngFor=\"let episode of episodesSeen\">\n            <p class=\"text-warning\"> {{episode.numeroEpisode}}: {{episode.nomEpisode}} (Season: {{episode.saison}})</p>\n    \n  \n            <label  class=\"switch\" for=\"checkbox{{episode.idEpisode}}\">\n                <input checked type=\"checkbox\" (click)=\"changeVision($event,episode.idEpisode)\" id=\"checkbox{{episode.idEpisode}}\" />\n                <div class=\"slider round\"></div>\n              </label>\n          </li>\n\n      <li *ngFor=\"let episode of episodesNotSeen\">\n        <p class=\"text-warning\"> {{episode.numeroEpisode}}: {{episode.nomEpisode}} (Season: {{episode.saison}})</p>\n\n        <label  class=\"switch\" for=\"checkbox{{episode.idEpisode}}\">\n          <input type=\"checkbox\" (click)=\"changeVision($event,episode.idEpisode)\" id=\"checkbox{{episode.idEpisode}}\" />\n          <div class=\"slider round\"></div>\n        </label>\n\n       \n      </li>\n\n      \n\n    </ul>\n  </div>\n</div>"
+module.exports = "<div class=\"container content \" *ngIf=\"current !== undefined\">\n\n  <div class=\"card bg-dark\">\n    <div class=\"text-center text-white hRewiev\">\n      <h4> Episodes </h4>\n      <span *ngIf=\"current.role === 1\">\n        <a class=\"text-warning\" (click)=\"showForm()\">\n          <i class=\"fas fa-plus-circle\"></i>\n        </a>\n      </span>\n    </div>\n\n    <div *ngIf=\"showFormEp\" class=\"card bg-light text-dark text-center rewiev\">\n\n      <form class=\"card-body\">\n\n        <div class=\"form-group\">\n          <input id=\"nameEp\" class=\"form-control\"  [(ngModel)]=\"nomEpisode\" name=\"nomEpisode\" placeholder=\"NomEpisode\" required/>\n          <input id=\"season\" class=\"form-control\" [(ngModel)]=\"saison\" name=\"saison\" placeholder=\"Saison\" required/>\n        </div>\n        <button class=\"btn btn-sm btn-success pt-2\"  (click)=\"addEpisode()\">Ajouter</button>\n      </form>\n  </div>\n\n    <div class=\"progress progressBar\">\n      <div class=\"progress-bar  bg-warning text-center text-dark\" role=\"progressbar\" [style.width]=\"Mypercent + '%'\" attr.aria-valuenow=\"{{nbEpisodesVu}}\"\n        aria-valuemin=\"0\" attr.aria-valuemax=\"{{nbEpisodes}}\">\n        <span *ngIf=\"!completed\">{{nbEpisodesVu}} sur {{nbEpisodes}}</span>\n        <span *ngIf=\"completed\">Completé!</span>\n      </div>\n    </div>\n    <ul class=\"text-white scrollUl\">\n        <li *ngFor=\"let episode of episodesSeen\">\n            <p class=\"text-warning\"> {{episode.numeroEpisode}}: {{episode.nomEpisode}} (Season: {{episode.saison}})</p>\n    \n  \n            <label  class=\"switch\" for=\"checkbox{{episode.idEpisode}}\">\n                <input checked type=\"checkbox\" (click)=\"changeVision($event,episode.idEpisode)\" id=\"checkbox{{episode.idEpisode}}\" />\n                <div class=\"slider round\"></div>\n              </label>\n          </li>\n\n      <li *ngFor=\"let episode of episodesNotSeen\">\n        <p class=\"text-warning\"> {{episode.numeroEpisode}}: {{episode.nomEpisode}} (Season: {{episode.saison}})</p>\n\n        <label  class=\"switch\" for=\"checkbox{{episode.idEpisode}}\">\n          <input type=\"checkbox\" (click)=\"changeVision($event,episode.idEpisode)\" id=\"checkbox{{episode.idEpisode}}\" />\n          <div class=\"slider round\"></div>\n        </label>\n\n       \n      </li>\n\n      \n\n    </ul>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -799,6 +799,7 @@ var EpisodeListComponent = /** @class */ (function () {
         }
     };
     EpisodeListComponent.prototype.addEpisode = function () {
+        var _this = this;
         var episode = {};
         episode.nomEpisode = this.nomEpisode;
         episode.saison = this.saison;
@@ -806,7 +807,10 @@ var EpisodeListComponent = /** @class */ (function () {
         console.log('Name Ep: ' + episode.nomEpisode);
         console.log('saison Ep: ' + episode.saison);
         console.log('idSerie Ep: ' + episode.idSerie);
-        this.episodeService.insertEpisode(episode).subscribe();
+        this.episodeService.insertEpisode(episode).subscribe(function (res) {
+            _this.getEpisodeNotSeen(_this.id);
+            _this.getNbEpisodeLeftToSee(_this.id);
+        });
     };
     EpisodeListComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -834,7 +838,7 @@ module.exports = ".imgTop{\n    width: 300px;\n    height: 200px;\n}\n\n\n\n.con
 /***/ "./src/app/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"content\">\n    <div class=\"container contentHome\">\n        <div class=\"text-center pt-3\">\n            <h3 class=\"text-warning\">Découvrir\n                <i class=\"far fa-calendar-check\"></i>\n            </h3>\n        </div>\n        <div>\n            <hr>\n            <div class=\"row rowSerie\">\n                <div class=\"col-xs-6 col-md-4 thumbnail thumbHome\" *ngFor=\"let serie of series\">\n                    <a routerLink=\"/catalog/{{serie.idSerie}}\" routerLinkActive=\"active\" >\n                        <img src=\"{{serie.imageSerie}}\" alt=\"{{serie.titre}}\" class=\"imgTop img-fluid thumbnail\">\n                    </a>\n                </div>\n            </div>\n        </div>\n        <hr>\n    </div>\n</section>\n\n\n<section>\n    <div class=\"container contentHome\">\n        <div class=\"text-center pt-3\">\n            <h3 class=\"text-warning\">Top du moment\n                <i class=\"fas fa-chart-line\"></i>\n            </h3>\n        </div>\n        <hr>\n        <div class=\"row rowSerie\">\n                <div class=\"col-xs-6 col-md-4 thumbnail thumbHome\" *ngFor=\"let top of topSeries\">\n                    <a routerLink=\"/catalog/{{top.idSerie}}\" routerLinkActive=\"active\" >\n                        <img src=\"{{top.imageSerie}}\" alt=\"{{top.titre}}\" class=\"imgTop img-fluid thumbnail\">\n                    </a>\n                </div>\n            </div>\n        <hr>\n    </div>\n\n</section>"
+module.exports = "<section class=\"content\">\n    <div class=\"container contentHome\">\n        <div class=\"text-center pt-3\">\n            <h3 class=\"text-warning\">Découvrir\n                <i class=\"far fa-calendar-check\"></i>\n            </h3>\n        </div>\n        <div>\n            <hr>\n            <div class=\"row rowSerie\">\n                <div class=\"col-xs-6 col-md-4 thumbnail thumbHome\" *ngFor=\"let serie of series\">\n                    <a routerLink=\"/catalogue/{{serie.idSerie}}\" routerLinkActive=\"active\" >\n                        <img src=\"{{serie.imageSerie}}\" alt=\"{{serie.titre}}\" class=\"imgTop img-fluid thumbnail\">\n                    </a>\n                </div>\n            </div>\n        </div>\n        <hr>\n    </div>\n</section>\n\n\n<section>\n    <div class=\"container contentHome\">\n        <div class=\"text-center pt-3\">\n            <h3 class=\"text-warning\">Top du moment\n                <i class=\"fas fa-chart-line\"></i>\n            </h3>\n        </div>\n        <hr>\n        <div class=\"row rowSerie\">\n                <div class=\"col-xs-6 col-md-4 thumbnail thumbHome\" *ngFor=\"let top of topSeries\">\n                    <a routerLink=\"/catalogue/{{top.idSerie}}\" routerLinkActive=\"active\" >\n                        <img src=\"{{top.imageSerie}}\" alt=\"{{top.titre}}\" class=\"imgTop img-fluid thumbnail\">\n                    </a>\n                </div>\n            </div>\n        <hr>\n    </div>\n\n</section>"
 
 /***/ }),
 
@@ -970,7 +974,7 @@ var InscriptionComponent = /** @class */ (function () {
         var _this = this;
         this.authService.signUp(this.form.value).subscribe(function (res) {
             alert('Inscription Réussie!');
-            _this.router.navigate(['/signin']);
+            _this.router.navigate(['/connexion']);
         }, function (error) {
             if (error instanceof __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["d" /* HttpErrorResponse */]) {
                 _this.errorSignUp = error.error;
@@ -1023,7 +1027,7 @@ module.exports = "\n\n.active{\n\n    border: solid #ffbb33 2px;\n    background
 /***/ "./src/app/navbar/navbar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<header>\n  <nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\">\n    <div class=\"navbar-brand\">\n      <img src=\"../assets/images/fav.png\" class=\"logoBrand\" alt=\"Logo\">\n    </div>\n\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\"\n      aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n    <div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item\">\n          <a class=\"nav-link \" routerLink=\"/home\" routerLinkActive=\"active\">Accueil</a>\n        </li>\n        <li class=\"nav-item\">\n          <a class=\"nav-link \" routerLink=\"/catalog\" routerLinkActive=\"active\">Catalogue</a>\n        </li>\n\n        <!-- Il faut être connecté pour voir ça -->\n        <li class=\"nav-item\">\n          <a class=\"nav-link \" *ngIf=\"authService.loggedIn()\" routerLink=\"/playlist\" routerLinkActive=\"active\">Playlist</a>\n        </li>\n\n        <li class=\"nav-item\">\n          <a class=\"nav-link \" *ngIf=\"authService.loggedIn()\" routerLink=\"/account\" routerLinkActive=\"active\">MonCompte</a>\n        </li>\n       \n        \n        <li class=\"nav-item\">\n          <a class=\"nav-link \" *ngIf=\"!authService.loggedIn()\" routerLink=\"/signin\" routerLinkActive=\"active\">Connexion</a>\n        </li>\n\n        <li class=\"nav-item\">\n          <a class=\"nav-link\" *ngIf=\"!authService.loggedIn()\" routerLink=\"/signup\" routerLinkActive=\"active\">Inscription</a>\n        </li>\n        <li class=\"nav-item\">\n          <a class=\"nav-link text-warning\" *ngIf=\"authService.loggedIn()\" (click)=\"authService.logout()\" routerLinkActive=\"active\">Déconnexion</a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</header>\n"
+module.exports = "<header>\n  <nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\">\n    <div class=\"navbar-brand\">\n      <img src=\"../assets/images/fav.png\" class=\"logoBrand\" alt=\"Logo\">\n    </div>\n\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\"\n      aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n    <div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item\">\n          <a class=\"nav-link \" routerLink=\"/accueil\" routerLinkActive=\"active\">Accueil</a>\n        </li>\n        <li class=\"nav-item\">\n          <a class=\"nav-link \" routerLink=\"/catalogue\" routerLinkActive=\"active\">Catalogue</a>\n        </li>\n\n        <!-- Il faut être connecté pour voir ça -->\n        <li class=\"nav-item\">\n          <a class=\"nav-link \" *ngIf=\"authService.loggedIn()\" routerLink=\"/playlist\" routerLinkActive=\"active\">Playlist</a>\n        </li>\n\n        <li class=\"nav-item\">\n          <a class=\"nav-link \" *ngIf=\"authService.loggedIn()\" routerLink=\"/compte\" routerLinkActive=\"active\">MonCompte</a>\n        </li>\n       \n        \n        <li class=\"nav-item\">\n          <a class=\"nav-link \" *ngIf=\"!authService.loggedIn()\" routerLink=\"/connexion\" routerLinkActive=\"active\">Connexion</a>\n        </li>\n\n        <li class=\"nav-item\">\n          <a class=\"nav-link\" *ngIf=\"!authService.loggedIn()\" routerLink=\"/inscription\" routerLinkActive=\"active\">Inscription</a>\n        </li>\n        <li class=\"nav-item\">\n          <a class=\"nav-link text-warning\" *ngIf=\"authService.loggedIn()\" (click)=\"authService.logout()\" routerLinkActive=\"active\">Déconnexion</a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</header>\n"
 
 /***/ }),
 
@@ -1630,7 +1634,7 @@ var AuthGuard = /** @class */ (function () {
             return true;
         }
         else {
-            this.router.navigate(['/signin']);
+            this.router.navigate(['/connexion']);
             return false;
         }
     };
@@ -1685,7 +1689,7 @@ var AuthService = /** @class */ (function () {
     AuthService.prototype.logout = function () {
         localStorage.removeItem('token');
         // window.location.reload();
-        this.router.navigate(['/home']);
+        this.router.navigate(['/accueil']);
     };
     AuthService.prototype.getToken = function () {
         return localStorage.getItem('token');

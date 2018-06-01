@@ -11,10 +11,10 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link " routerLink="/home" routerLinkActive="active">Accueil</a>
+          <a class="nav-link " routerLink="/accueil" routerLinkActive="active">Accueil</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " routerLink="/catalog" routerLinkActive="active">Catalogue</a>
+          <a class="nav-link " routerLink="/catalogue" routerLinkActive="active">Catalogue</a>
         </li>
 
         <!-- Il faut être connecté pour voir ça -->
@@ -23,16 +23,16 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link " *ngIf="authService.loggedIn()" routerLink="/account" routerLinkActive="active">MonCompte</a>
+          <a class="nav-link " *ngIf="authService.loggedIn()" routerLink="/compte" routerLinkActive="active">MonCompte</a>
         </li>
        
         
         <li class="nav-item">
-          <a class="nav-link " *ngIf="!authService.loggedIn()" routerLink="/signin" routerLinkActive="active">Connexion</a>
+          <a class="nav-link " *ngIf="!authService.loggedIn()" routerLink="/connexion" routerLinkActive="active">Connexion</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" *ngIf="!authService.loggedIn()" routerLink="/signup" routerLinkActive="active">Inscription</a>
+          <a class="nav-link" *ngIf="!authService.loggedIn()" routerLink="/inscription" routerLinkActive="active">Inscription</a>
         </li>
         <li class="nav-item">
           <a class="nav-link text-warning" *ngIf="authService.loggedIn()" (click)="authService.logout()" routerLinkActive="active">Déconnexion</a>

@@ -9,7 +9,7 @@
             <hr>
             <div class="row rowSerie">
                 <div class="col-xs-6 col-md-4 thumbnail thumbHome" *ngFor="let serie of series">
-                    <a routerLink="/catalog/{{serie.idSerie}}" routerLinkActive="active" >
+                    <a routerLink="/catalogue/{{serie.idSerie}}" routerLinkActive="active" >
                         <img src="{{serie.imageSerie}}" alt="{{serie.titre}}" class="imgTop img-fluid thumbnail">
                     </a>
                 </div>
@@ -30,7 +30,7 @@
         <hr>
         <div class="row rowSerie">
                 <div class="col-xs-6 col-md-4 thumbnail thumbHome" *ngFor="let top of topSeries">
-                    <a routerLink="/catalog/{{top.idSerie}}" routerLinkActive="active" >
+                    <a routerLink="/catalogue/{{top.idSerie}}" routerLinkActive="active" >
                         <img src="{{top.imageSerie}}" alt="{{top.titre}}" class="imgTop img-fluid thumbnail">
                     </a>
                 </div>

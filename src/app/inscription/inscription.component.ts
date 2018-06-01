@@ -57,7 +57,7 @@ export class InscriptionComponent implements OnInit {
       res => {
 
         alert('Inscription Réussie!');
-        this.router.navigate(['/signin']);
+        this.router.navigate(['/connexion']);
       },
       error => {
         if (error instanceof HttpErrorResponse) {

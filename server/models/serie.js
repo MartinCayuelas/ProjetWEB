@@ -80,7 +80,7 @@ module.exports.getEpisodesSeen = function (req, idSerie, callback) {
         idSerie,
     ]
     req.getConnection(function (err, connection) {
-        connection.query('select * from Episode,visionne, Utilisateur where Utilisateur.idUser = visionne.idUser AND Episode.idEpisode = visionne.idEpisode AND Utilisateur.login = ? AND Episode.idSerie = ?', ep, function (err, rows, fields) {
+        connection.query('select * from Episode,visionne, Utilisateur where Utilisateur.idUser = visionne.idUser AND Episode.idEpisode = visionne.idEpisode AND Utilisateur.login = ? AND Episode.idSerie = ? GROUP BY saison, numeroEpisode', ep, function (err, rows, fields) {
             if (err) {
                 console.log('Error' + err);
                 return res.status(300).json("Impossible de récupérer les Episodes");
@@ -100,7 +100,7 @@ module.exports.getEpisodesNotSeen = function (req, idSerie, callback) {
         idSerie,
     ]
     req.getConnection(function (err, connection) {
-        connection.query('SELECT * FROM Episode WHERE Episode.idSerie = ? AND Episode.idEpisode NOT IN (SELECT e.idEpisode  FROM Episode e, visionne, Utilisateur WHERE Utilisateur.login = ? AND Utilisateur.idUser = visionne.idUser AND visionne.idEpisode = e.idEpisode AND e.idSerie = ?)', ep, function (err, rows, fields) {
+        connection.query('SELECT * FROM Episode WHERE Episode.idSerie = ? AND Episode.idEpisode NOT IN (SELECT e.idEpisode  FROM Episode e, visionne, Utilisateur WHERE Utilisateur.login = ? AND Utilisateur.idUser = visionne.idUser AND visionne.idEpisode = e.idEpisode AND e.idSerie = ?) GROUP BY saison, numeroEpisode', ep, function (err, rows, fields) {
             if (err) {
                 console.log('Error' + err);
                 return res.status(300).json("Impossible de récupérer les Episodes");

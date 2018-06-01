@@ -28,7 +28,7 @@ export class ConnexionComponent implements OnInit {
         console.log(res);
         localStorage.setItem('token', res.token);
 
-        this.router.navigate(['/home']);
+        this.router.navigate(['/accueil']);
       //  window.location.reload();
       },
       err => {

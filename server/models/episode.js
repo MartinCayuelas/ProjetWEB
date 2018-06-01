@@ -4,7 +4,7 @@ module.exports.getAllEpisodes = function (req, idSerie, callback) {
     console.log("GET ALL Episodes");
     console.log("idSerie:" + idSerie);
     req.getConnection(function (err, connection) {
-        connection.query('select * from Episode where idSerie = ? ORDER BY idSerie, numeroEpisode, saison', [idSerie], function (err, rows, fields) {
+        connection.query('select * from Episode where idSerie = ? ORDER BY saison, numeroEpisode', [idSerie], function (err, rows, fields) {
             if (err) {
                 console.log(err);
                 return res.status(300).json("Impossible de récupérer les episodes");
@@ -24,9 +24,10 @@ module.exports.insertEpisode = function (req, callback) {
     console.log('Name Ep: ' + req.body.nomEpisode);
     console.log('Saison Ep: ' + req.body.saison);
     console.log('IdSerie Ep: ' + req.body.idSerie);
-    let nb;
+    // let nb;
 
     req.getConnection(function (err, connection) {
+        /*
         connection.query('Select MAX(numeroEpisode) AS nb, saison FROM Episode WHERE idSerie = ? GROUP BY saison', [req.body.idSerie], function (err, rows, fields) {
             if (err) {
                 console.log(err);
@@ -40,29 +41,29 @@ module.exports.insertEpisode = function (req, callback) {
 
             if(req.body.saison !== rows[0].saison){
                 nb = 1;
+            }*/
+
+        console.log("Requete EpisodeInsert incoming...");
+        let queryInsert = "INSERT INTO Episode VALUES (NULL, ?, 1, ?, ?)";
+        const ep = [
+
+            req.body.nomEpisode,
+            req.body.saison,
+            req.body.idSerie,
+        ]
+        connection.query(queryInsert, ep, function (err, rows, fields) {
+            if (err) {
+                console.log(err);
+                return res.status(500).json('erreur insertSerie');
             }
-
-            console.log("Requete EpisodeInsert incoming...");
-            let queryInsert = "INSERT INTO Episode VALUES (NULL, ?, 1, ?, ?)";
-            const ep = [
-
-                req.body.nomEpisode,
-                req.body.saison,
-                req.body.idSerie,
-            ]
-            connection.query(queryInsert, ep, function (err, rows, fields) {
-                if (err) {
-                    console.log(err);
-                    return res.status(500).json('erreur insertSerie');
-                }
-                console.log("Requete Insert Serie effectuée");
-                callback(rows);
-            });
+            console.log("Requete Insert Serie effectuée");
+            callback(rows);
         });
-
-
-
     });
+
+
+
+    //});
 }
 
 
