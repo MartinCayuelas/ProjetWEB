@@ -1,11 +1,11 @@
 .form-addSerie{
-    background-color: #343a40;
+    
     border-radius: 5px;
-    color: #ffc107!important;
+    color: #343a40!important;
 }
 
 .formAdd{
-    background-color:#ffc107; 
+    background-color:#343a40;
 }
 
 .l-connect{
@@ -13,10 +13,10 @@
 }
 
 .input-connect{
-    background-color: #ffbb33;
-    color: #343a40;
+    background-color: #343a40;
+    color: #ffc107;
 }
 .field{
-    border: 2px solid #ffc107;
+    border: 2px solid #343a40;
     border-radius: 5px;
 }

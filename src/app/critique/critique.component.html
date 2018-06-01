@@ -22,19 +22,19 @@
 
         <form class="card-body" [formGroup]="form">
 
-            <label class="">Mark</label>
-            <select (change)="onChangeNote($event)" formControlName="note">
+            <label class="">Note</label>
+            <select (change)="onChangeNote($event)" class ="form-control" formControlName="note">
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
                 <option>4</option>
                 <option>5</option>
             </select>
-            <input type="text" class="inputCrit" formControlName="commentaire" id="commentaire" placeholder="Your comments" (change)="onChangeDescription($event)">
+            <input type="text" class="inputCrit form-control" formControlName="commentaire" id="commentaire" placeholder="Votre commentaire" (change)="onChangeDescription($event)">
             <div class="buttonCom">
-                <a class="btn btn-success text-white" (click)="saveCritique()">Send
+                <button class="btn btn-success text-white"  (click)="saveCritique()">Envoyer
                     <i class="fas fa-location-arrow"></i>
-                </a>
+                </button>
             </div>
         </form>
     </div>

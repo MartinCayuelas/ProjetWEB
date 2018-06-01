@@ -33,7 +33,6 @@ export class UserService {
 
 
     public getNbEpisodesBySerieSeen(idSerie: number): Observable<any> {
-        console.log('episodes en Serivce');
         return this.http.get<any>('/api/users/serie/' + idSerie + '/getNbEpisodesSeen/');
     }
 
@@ -59,4 +58,8 @@ export class UserService {
         return this.http.get<any>('/api/users/' + id + '/nbEpisodes');
     }
 
+    public deleteUser(id: number) {
+        return this.http.delete('/api/users/delete/' + id);
+
+    }
 }

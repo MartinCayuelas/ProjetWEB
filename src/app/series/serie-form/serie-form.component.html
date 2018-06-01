@@ -1,65 +1,65 @@
-<div class=" container content text-center">
+<div class=" container content text-center bg-light">
     <form class="form-addSerie" [formGroup]="form" novalidate>
         <div class="text-center">
-            <h3 class="text-warning">
-                New Serie
+            <h3 class="text-dark">
+                Nouvelle Serie
             </h3>
         </div>
 
         <fieldset class="p-5 m-4 field">
 
-            <h3>General informations</h3>
+            <h3>Informations Générales</h3>
 
             <div class="form-group">
-                <label for="titre" class="l-connect">Title *</label>
+                <label for="titre" class="l-connect">Titre *</label>
                 <input type="text" formControlName="titre" class="form-control input-connect" id="titre" placeholder="Titre">
             </div>
             <div class="form-group">
 
-                <label for="imageSerie" class="l-connect">Wallpaper *</label>
-                <input type="text" formControlName="imageSerie" class="form-control input-connect" id="imageSerie" placeholder="(Optional) Size: 600x600 (Max)">
+                <label for="imageSerie" class="l-connect">Affiche *</label>
+                <input type="text" formControlName="imageSerie" class="form-control input-connect" id="imageSerie" placeholder="(Optionnel) Taille: 600x600 (Max) -- URL demandé">
 
             </div>
             <div class="form-row">
                 <div class="col">
                     <label for="description" class="l-connect">Description *</label>
-                    <textarea class="form-control input-connect" rows="8" formControlName="description" placeholder="Describe it"></textarea>
+                    <textarea class="form-control input-connect" rows="8" formControlName="description" placeholder="Décrivez la série"></textarea>
                 </div>
                 <div class="col">
-                    <label for="dateSortie" class="l-connect">Original Release</label>
-                    <input type="text" class="form-control input-connect" formControlName="dateSortie" placeholder="yyyy-mm-dd">
+                    <label for="dateSortie" class="l-connect">Date de sortie</label>
+                    <input type="text" class="form-control input-connect" formControlName="dateSortie" placeholder="aaaa-mm-jj">
                 </div>
             </div>
 
 
             <div class="form-row">
                 <div class="col">
-                    <label for="nbSaisons" class="l-connect">Number of Seasons *</label>
+                    <label for="nbSaisons" class="l-connect">Nombre de Saisons *</label>
                     <input type="text" formControlName="nbSaisons" class="form-control input-connect" placeholder="1">
                 </div>
                 <div class="col">
-                    <label for="nbEpisodes" class="l-connect">Number of Episodes *</label>
+                    <label for="nbEpisodes" class="l-connect">Nombre d'Episodes *</label>
                     <input type="text" class="form-control input-connect" formControlName="nbEpisodes" placeholder="10">
                 </div>
             </div>
 
         </fieldset>
         <fieldset class="m-4 p-5 field">
-            <h3>Production</h3>
+            <h3>Réalisation</h3>
             <div class="form-row">
                 <div class="col">
-                    <label for="prenomRealisateur" class="l-connect">FirstName *</label>
-                    <input type="text" formControlName="prenomRealisateur" class="form-control input-connect" id="prenomRealisateur" placeholder="Prenom">
+                    <label for="prenomRealisateur" class="l-connect">Prénom *</label>
+                    <input type="text" formControlName="prenomRealisateur" class="form-control input-connect" id="prenomRealisateur" placeholder="Prénom">
                 </div>
                 <div class="col">
-                    <label for="nomRealisateur" class="l-connect">LastName *</label>
+                    <label for="nomRealisateur" class="l-connect">Nom *</label>
                     <input type="text" class="form-control input-connect" id="nomRealisateur" formControlName="nomRealisateur" placeholder="Nom">
                 </div>
             </div>
         </fieldset>
 
-        <div class="m-3">
-            <a class="btn btn-md btn-success text-white " (click)="createSerie()" routerLink="/catalogue" routerLinkActive="active">Add</a>
+        <div>
+            <a class="btn btn-md btn-success text-white " (click)="createSerie()" routerLink="/catalogue" routerLinkActive="active">Ajouter</a>
         </div>
     </form>
 </div>

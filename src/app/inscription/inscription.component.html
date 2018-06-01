@@ -7,17 +7,17 @@
       </div>
       <div class="form-row">
         <div class="col">
-          <label for="prenom" class="l-connect">FirstName</label>
+          <label for="prenom" class="l-connect">Prénom</label>
           <input type="text" formControlName="prenom" class="form-control input-connect" id="prenom">
         </div>
         <div class="col">
-          <label for="nom" class="l-connect">Name</label>
+          <label for="nom" class="l-connect">Nom</label>
           <input type="text" class="form-control input-connect" id="nom" formControlName="nom">
         </div>
       </div>
       <div class="form-row">
         <div class="col">
-          <label for="pwd" class="l-connect">Password</label>
+          <label for="pwd" class="l-connect">Mot de Passe</label>
           <input type="password" formControlName="password" class="form-control input-connect" id="pwd">
         </div>
         <div class="col">
@@ -36,14 +36,14 @@
 
       
       <div *ngIf="this.form.get('login').value === this.form.get('password').value" class="alert alert-danger">
-        Login and Password must be different!
+        Login et Mot de passe doivent être différents!
       </div>
-      <div *ngIf="this.form.get('password').value !== this.valuesConf" class="alert alert-danger">passwords do not match</div>
-      <div *ngIf="!errorSignUp.submitted" class="alert alert-danger" >Error : {{errorSignUp.message}}</div>
+      <div *ngIf="this.form.get('password').value !== this.valuesConf" class="alert alert-danger">Les mots de passe ne correspondent pas</div>
+      <div *ngIf="!errorSignUp.submitted" class="alert alert-danger" >Erreur : {{errorSignUp.message}}</div>
       
       <button type="submit" class="btn btn-warning" [disabled]="this.form.get('login').invalid || this.form.get('prenom').invalid || this.form.get('nom').invalid
       || this.form.get('password').invalid || this.form.get('email').invalid || this.form.get('login').value === this.form.get('password').value
-      || this.form.get('password').value !== this.valuesConf " (click)="onSubmit()">SignUp</button>
+      || this.form.get('password').value !== this.valuesConf " (click)="onSubmit()">Inscription</button>
 
 
     </fieldset>

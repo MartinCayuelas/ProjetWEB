@@ -15,18 +15,18 @@
       <form class="card-body">
 
         <div class="form-group">
-          <input id="nameEp" [(ngModel)]="nomEpisode" name="nomEpisode" placeholder="EpisodeName" />
-          <input id="season" [(ngModel)]="saison" name="saison" placeholder="Season" />
+          <input id="nameEp" [(ngModel)]="nomEpisode" name="nomEpisode" placeholder="NomEpisode" />
+          <input id="season" [(ngModel)]="saison" name="saison" placeholder="Saison" />
         </div>
-        <a class="btn btn-sm btn-success pt-2" (click)="addEpisode()">Add</a>
+        <a class="btn btn-sm btn-success pt-2" (click)="addEpisode()">Ajouter</a>
       </form>
   </div>
 
     <div class="progress progressBar">
       <div class="progress-bar  bg-warning text-center text-dark" role="progressbar" [style.width]="Mypercent + '%'" attr.aria-valuenow="{{nbEpisodesVu}}"
         aria-valuemin="0" attr.aria-valuemax="{{nbEpisodes}}">
-        <span *ngIf="!completed">{{nbEpisodesVu}} of {{nbEpisodes}}</span>
-        <span *ngIf="completed">Completed!</span>
+        <span *ngIf="!completed">{{nbEpisodesVu}} sur {{nbEpisodes}}</span>
+        <span *ngIf="completed">Completée!</span>
       </div>
     </div>
     <ul class="text-white scrollUl">

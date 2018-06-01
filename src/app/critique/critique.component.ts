@@ -30,8 +30,8 @@ export class CritiqueComponent implements OnInit {
 
       this.form = this.fb.group({
         idCommentaire: [null],
-        note: [1, Validators.required],
-        commentaire: ['', Validators.required],
+        note: [null, Validators.required],
+        commentaire: [null, Validators.required],
         idSerie: [this.id],
       });
 
@@ -49,14 +49,18 @@ export class CritiqueComponent implements OnInit {
   }
 
   saveCritique(): void {
-    this.critiqueService.createCritique(this.form.value).subscribe(res => {
-      this.getCritiques();
+
+    if (this.form.valid) {
+      this.critiqueService.createCritique(this.form.value).subscribe(res => {
+        this.getCritiques();
+      }
+
+      );
+      this.form.get('commentaire').reset();
+      this.form.get('note').reset();
+    } else {
+      alert('Veuillez remplir les 2 champs');
     }
-
-    );
-
-    this.form.get('note').setValue(1);
-    this.form.get('commentaire').setValue(' ');
   }
 
   getCritiques() {

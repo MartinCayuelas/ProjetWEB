@@ -33,6 +33,42 @@ module.exports.getAllUsersNb = function (req, callback) {
 
 }
 
+module.exports.deleteUser = function (req, idUser,callback) {
+    console.log("Suppression ren cours ..............;");
+    req.getConnection(function (err, connection) {
+        var sql = "DELETE FROM utilisateur WHERE idUser = ?";
+        var sqlV = "DELETE FROM visionne WHERE idUser = ?";
+        var sqlR = "DELETE FROM regarder WHERE idUser = ?";
+        connection.query(sqlV, [idUser], function (err, rows, fields) {
+            if (err) {
+                console.log(err);
+                return res.status(300).json("Impossible de supprimer l'utilisateur");
+            }
+            console.log("Requete deleteUser OK");
+            console.log(rows);
+            callback(rows[0]);
+        });
+        connection.query(sqlR, [idUser], function (err, rows, fields) {
+            if (err) {
+                console.log(err);
+                return res.status(300).json("Impossible de supprimer l'utilisateur");
+            }
+            console.log("Requete deleteUser OK");
+            console.log(rows);
+            callback(rows[0]);
+        });
+        connection.query(sql, [idUser], function (err, rows, fields) {
+            if (err) {
+                console.log(err);
+                return res.status(300).json("Impossible de supprimer l'utilisateur");
+            }
+            console.log("Requete deleteUser OK");
+            console.log(rows);
+            callback(rows[0]);
+        });
+    });
+}
+
 // Epsiodes
 
 module.exports.addVision = function (req, idUser, callback) {

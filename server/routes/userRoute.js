@@ -40,11 +40,18 @@ userRoute.get('/getAllUsers', token.verifyToken, token.isAdmin, (req, res) => {
 
 userRoute.get('/getAllUsersNb', token.verifyToken, token.isAdmin,(req, res) => {
     console.log("La route GetAllNB Users");
-    user.getAllUsersNb(req, users => {
+    user.getAllUsersNb(req,users => {
         return res.status(200).json(users);
     });
 });
 
+
+userRoute.delete('/delete/:id', token.verifyToken, token.isAdmin,(req, res) => {
+    console.log("Delete User");
+    user.deleteUser(req, req.params.id, users => {
+        return res.status(200).json(users);
+    });
+});
 
 // Episodes
 

@@ -1,15 +1,16 @@
 <div class=" text-center"  *ngIf="user !== undefined">
-    <h4>List of Users: {{user.nb}} Users</h4>
+    <h4>Liste des Utilisateurs: {{user.nb}} Utilisateurs</h4>
 </div>
-<div class="table-wrapper  mx-auto"  *ngIf="user !== undefined">
-  <table class="table table-responsive-md text-center">
+<div class="mx-auto table-wrapper"  *ngIf="user !== undefined">
+  <table class="table  table-responsive-md text-center">
     <thead class="bg-warning text-dark">
     <tr>
       <th scope="col">#</th>
       <th scope="col">Login</th>
-      <th scope="col">Name</th>
-      <th scope="col">FirstName</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Prénom</th>
       <th scope="col">email</th>
+      <th scope="col">    </th>
     </tr>
     </thead>
     <tbody *ngFor="let user of users" class="bg-dark text-warning">
@@ -19,6 +20,7 @@
       <td>{{user.nom}}</td>
       <td>{{user.prenom}}</td>
       <td>{{user.email}}</td>
+      <td ><a *ngIf="user.role === 0" class="btn btn-md btn-danger text-white" (click)="deleteUser(user.idUser)"> <i class="fas fa-times-circle"></i></a></td>
 
     </tr>
     </tbody>

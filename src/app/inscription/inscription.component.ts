@@ -41,23 +41,22 @@ export class InscriptionComponent implements OnInit {
     });
   }
 
+  /*
+    handleFileSelect(evt) {
+      const files = evt.target.files; // FileList object
 
-  handleFileSelect(evt) {
-    const files = evt.target.files; // FileList object
+      // files is a FileList of File objects. List some properties.
+      for (let i = 0, f; f = files[i]; i++) {
 
-    // files is a FileList of File objects. List some properties.
-    for (let i = 0, f; f = files[i]; i++) {
-
-      console.log('files: ' + f.name);
-      this.form.get('avatar').setValue(f.name);
-    }
-  }
+        console.log('files: ' + f.name);
+        this.form.get('avatar').setValue(f.name);
+      }
+    }*/
   onSubmit(): void {
-    console.log('Je vais appeler le service');
     this.authService.signUp(this.form.value).subscribe(
       res => {
 
-        alert('You are registered!');
+        alert('Inscription Réussie!');
         this.router.navigate(['/signin']);
       },
       error => {
@@ -72,7 +71,7 @@ export class InscriptionComponent implements OnInit {
             nom: [this.form.get('nom').value, Validators.required],
             password: ['', Validators.required],
             email: [this.form.get('email').value, [Validators.required, Validators.pattern(this.emailPattern)]],
-            inscription: [ this.form.get('avatar').value],
+            inscription: [this.form.get('avatar').value],
             avatar: [null],
             role: [0],
 
@@ -82,7 +81,6 @@ export class InscriptionComponent implements OnInit {
         }
       });
   }
-
 
 
   onKey(event: any) {

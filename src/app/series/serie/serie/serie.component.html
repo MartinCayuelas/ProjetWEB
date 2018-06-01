@@ -5,12 +5,12 @@
       <div class="text-center">
         <h4 class="text-dark">
           <span class="bold">{{serie.titre}}</span>
-          <span *ngIf="isSeen && authService.loggedIn()" class="badge bg-warning">Seen</span>
+          <span *ngIf="isSeen && authService.loggedIn()" class="badge bg-warning">Vu</span>
         </h4>
       </div>
      
       <hr>
-      <p>Created by: {{serie.prenomRealisateur}}
+      <p>Créé par: {{serie.prenomRealisateur}}
         <span class="bold">{{serie.nomRealisateur}}</span>
       </p>
       <hr>
@@ -18,21 +18,21 @@
         <span class="bold">Description:</span> {{serie.description}}</p>
       <hr>
       <p>
-        <span class="bold">Number of seasons:</span> {{serie.nbSaisons}}</p>
+        <span class="bold">Nombre de saisons:</span> {{serie.nbSaisons}}</p>
       <hr>
       <p>
-        <span class="bold">Number of episodes:</span> {{serie.nbEpisodes}}</p>
+        <span class="bold">Nombre d'épisodes:</span> {{serie.nbEpisodes}}</p>
       <hr>
       <p>
-        <span class="bold">Original release:</span> {{serie.dateSortie | date:'yyyy-MM-dd'}}</p>
+        <span class="bold">Date de sortie:</span> {{serie.dateSortie | date:'yyyy-MM-dd'}}</p>
       <div class="row">
         <div>
-          <a *ngIf="authService.loggedIn() &&!isSeen" class="btn btn-md btn-success text-white" (click)="addInPlaylist()"> Add in Playlist</a>
+          <a *ngIf="authService.loggedIn() &&!isSeen" class="btn btn-md btn-success text-white" (click)="addInPlaylist()"> Ajouter à la Playlist</a>
 
 
         </div>
         <div>
-          <a *ngIf="authService.loggedIn() && isSeen" class="btn btn-md btn-danger text-white" (click)="removeInPlaylist()"> Remove from Playlist</a>
+          <a *ngIf="authService.loggedIn() && isSeen" class="btn btn-md btn-danger text-white" (click)="removeInPlaylist()">Supprimer de la Playlist</a>
         </div>
       </div>
       <div class="row">
@@ -50,7 +50,7 @@
         </div>
       </div>
       <div class="text-center buttonRetour">
-        <a class="btn btn-md btn-secondary text-warning" routerLink="/catalog" routerLinkActive="active">Back to Catalog</a>
+        <a class="btn btn-md btn-secondary text-warning" routerLink="/catalog" routerLinkActive="active">Retour au Catalogue</a>
       </div>
     </div>
   </div>

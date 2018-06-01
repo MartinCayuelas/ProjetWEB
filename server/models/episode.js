@@ -43,11 +43,10 @@ module.exports.insertEpisode = function (req, callback) {
             }
 
             console.log("Requete EpisodeInsert incoming...");
-            let queryInsert = "INSERT INTO Episode VALUES (NULL, ?, ?, ?, ?)";
+            let queryInsert = "INSERT INTO Episode VALUES (NULL, ?, 1, ?, ?)";
             const ep = [
 
                 req.body.nomEpisode,
-                nb,
                 req.body.saison,
                 req.body.idSerie,
             ]
