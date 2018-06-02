@@ -13,8 +13,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
-var sqlinjection = require('sql-injection');
-app.use(sqlinjection);
 const port = process.env.PORT || 4000;
 
 
