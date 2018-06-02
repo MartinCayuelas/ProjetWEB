@@ -33,7 +33,7 @@ function guardEmail(req, res, next) {
 
 // Insère un Utilisateur
 router.post('/signUp', guardLogin, guardEmail, (req, res) => {
-    console.log("Requete UserInsert incoming...");
+   
     let queryInsert = "INSERT INTO Utilisateur VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, 0)";
     const user = [
 
@@ -45,14 +45,13 @@ router.post('/signUp', guardLogin, guardEmail, (req, res) => {
         '2017-05-27',
         req.body.avatar
     ]
-    console.log('User login ' + req.body.login);
+    
     req.getConnection(function (err, connection) {
         connection.query(queryInsert, user, function (err, rows, fields) {
             if (err) {
                 console.log(err);
                 return err.status(500).json('erreur inscription');
             }
-            console.log("Requete Insert User effectuée");
             return res.status(200).json({ "submitted": true, "message": "You are registered !" });
         });
 
@@ -62,19 +61,17 @@ router.post('/signUp', guardLogin, guardEmail, (req, res) => {
 
 
 router.post('/signIn', (req, res) => {
-    console.log('SignIN incomming');
-    console.log('login: ' + req.body.login);
     req.getConnection(function (err, connexion) {
         let query = 'select * from Utilisateur where login = ?';
         connexion.query(query, [req.body.login], function (err, rows, fields) {
             if (err) {
                 return err.sendStatus(401);
             }
-            console.log(rows[0]);
+          
             let user = rows[0]; //Récupération de l'utilisateur
             if (user && bcrypt.compareSync(req.body.password, user.password)) {
 
-                console.log("Requete SignIn  effectuée -----------------------");
+              
                 let payload = {
                     "sub":  user.login,
                 }

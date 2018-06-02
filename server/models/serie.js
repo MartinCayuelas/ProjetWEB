@@ -7,8 +7,6 @@ module.exports.getAllSeries = function (req, callback) {
                 console.log(err);
                 return err.status(500).json("Impossible de récupérer les series");
             }
-            console.log("Requete getAllSeries effectuée");
-            console.log(rows);
             callback(rows);
         });
     });
@@ -21,8 +19,6 @@ module.exports.getAllSeriesNb = function (req, callback) {
                 console.log(err);
                 return err.status(500).json("Impossible de récupérer les series");
             }
-            console.log("Requete getAllSeries effectuée");
-            console.log(rows);
             callback(rows[0]);
         });
     });
@@ -36,8 +32,6 @@ module.exports.getAllSeriesNews = function (req, callback) {
                 console.log(err);
                 return err.status(500).json("Impossible de récupérer les nouveautés");
             }
-            console.log("Requete getAllSeries effectuée");
-            console.log(rows);
             callback(rows);
         });
     });
@@ -50,8 +44,6 @@ module.exports.getAllSeriesTop = function (req, callback) {
                 console.log(err);
                 return err.status(500).json("Impossible de récupérer les nouveautés");
             }
-            console.log("Requete getAllSeries TOPs effectuée");
-            console.log(rows);
             callback(rows);
         });
     });
@@ -60,15 +52,11 @@ module.exports.getAllSeriesTop = function (req, callback) {
 
 
 module.exports.getNbEpisodesBySerie = function (req, idSerie, callback) {
-    console.log("idSerie ___ getNbEpisodesBySerie__:" + idSerie);
     req.getConnection(function (err, connection) {
         connection.query('select Episode.idSerie, COUNT(*) AS nbEpisodes from Episode where idSerie = ?', [idSerie], function (err, rows, fields) {
             if (err) {
-                console.log('Error' + err);
                 return err.status(500).json("Impossible de récupérer le nombre d'épiodes");
             }
-            console.log("Requete getNbEpisodes OK");
-            console.log(rows);
             callback(rows[0]);
         });
     });
@@ -83,11 +71,8 @@ module.exports.getEpisodesSeen = function (req, idSerie, callback) {
     req.getConnection(function (err, connection) {
         connection.query('select * from Episode,visionne, Utilisateur where Utilisateur.idUser = visionne.idUser AND Episode.idEpisode = visionne.idEpisode AND Utilisateur.login = ? AND Episode.idSerie = ? GROUP BY saison, numeroEpisode', ep, function (err, rows, fields) {
             if (err) {
-                console.log('Error' + err);
                 return err.status(500).json("Impossible de récupérer les Episodes");
             }
-            console.log("Requete EpisodesSeen OK");
-            console.log(rows);
             callback(rows);
         });
     });
@@ -106,8 +91,6 @@ module.exports.getEpisodesNotSeen = function (req, idSerie, callback) {
                 console.log('Error' + err);
                 return err.status(500).json("Impossible de récupérer les Episodes");
             }
-            console.log("Requete EpisodesSeen OK");
-            console.log(rows);
             callback(rows);
         });
     });
@@ -127,15 +110,12 @@ module.exports.getEpisodesNotSeen = function (req, idSerie, callback) {
 
 
 module.exports.getSerieById = function (req, idSerie, callback) {
-    console.log("idSerie:" + idSerie);
     req.getConnection(function (err, connection) {
         connection.query('select * from Serie where idSerie = ?', [idSerie], function (err, rows, fields) {
             if (err) {
                 console.log(err);
                 return err.status(500).json("Impossible de récupérer les series");
             }
-            console.log("Requete getSerie by ID OK");
-            console.log(rows);
             callback(rows[0]);
         });
     });
@@ -144,7 +124,6 @@ module.exports.getSerieById = function (req, idSerie, callback) {
 
 
 module.exports.insertSerie = function (req, callback) {
-    console.log("Requete SerieInsert incoming...");
     let queryInsert = "INSERT INTO Serie VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?)";
     const serie = [
 
@@ -163,7 +142,6 @@ module.exports.insertSerie = function (req, callback) {
                 console.log(err);
                 return err.status(500).json('erreur insertSerie');
             }
-            console.log("Requete Insert Serie effectuée");
             callback(rows);
         });
 
@@ -172,7 +150,6 @@ module.exports.insertSerie = function (req, callback) {
 
 
 module.exports.deleteSerie = function (req, idSerie, callback) {
-    console.log("idSerie___deleteSerie:" + idSerie);
     req.getConnection(function (err, connection) {
         var sql = "DELETE FROM Serie WHERE idSerie = ?";
         var sqlR = "DELETE FROM regarder WHERE idSerie = ?";
@@ -184,8 +161,6 @@ module.exports.deleteSerie = function (req, idSerie, callback) {
                 console.log(err);
                 return err.status(500).json("Impossible de supprimer la serie");
             }
-            console.log("Requete deleteSerie OK");
-            console.log(rows);
             callback(rows[0]);
         });
         connection.query(sqlR, [idSerie], function (err, rows, fields) {
@@ -193,8 +168,6 @@ module.exports.deleteSerie = function (req, idSerie, callback) {
                 console.log(err);
                 return err.status(500).json("Impossible de supprimer la serie");
             }
-            console.log("Requete deleteSerie OK");
-            console.log(rows);
             callback(rows[0]);
         });
         connection.query(sqlE, [idSerie], function (err, rows, fields) {
@@ -202,8 +175,6 @@ module.exports.deleteSerie = function (req, idSerie, callback) {
                 console.log(err);
                 return err.status(500).json("Impossible de supprimer la serie");
             }
-            console.log("Requete deleteSerie OK");
-            console.log(rows);
             callback(rows[0]);
         });
         connection.query(sql, [idSerie], function (err, rows, fields) {
@@ -211,8 +182,6 @@ module.exports.deleteSerie = function (req, idSerie, callback) {
                 console.log(err);
                 return err.status(500).json("Impossible de supprimer la serie");
             }
-            console.log("Requete deleteSerie OK");
-            console.log(rows);
             callback(rows[0]);
         });
     });
@@ -237,8 +206,6 @@ module.exports.updateSerie = function (req, idSerie, callback) {
                 console.log(err);
                 return err.status(500).json("Impossible de modifier la serie");
             }
-            console.log("Requete updateSerie OK");
-            console.log(rows);
             callback(rows[0]);
         });
     });

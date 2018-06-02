@@ -9,7 +9,6 @@ var user = require('../models/user');
 
 critiqueRoute.get('/getAllCritiques/:id', (req, res) =>  {
 
-    console.log("Param req: " + req.params.id);
     crit.getAllCritiques(req, req.params.id, eps => {
 
         return res.status(200).json(eps);
@@ -17,7 +16,6 @@ critiqueRoute.get('/getAllCritiques/:id', (req, res) =>  {
 });
 
 critiqueRoute.post('/insert', token.verifyToken, (req, res) =>  {
-    console.log("La route insert Commentaire");
     const login = req.body.login;
     let userToken2;
     user.getUserByLogin(req, login, userToken => {

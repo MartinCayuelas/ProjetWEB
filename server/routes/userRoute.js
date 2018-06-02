@@ -31,7 +31,7 @@ userRoute.get('/role', token.verifyToken, (req, res) => {
 
 // Renvoie toute les activités de la base de donnees
 userRoute.get('/getAllUsers', token.verifyToken, token.isAdmin, (req, res) => {
-    console.log("La route GetAll Users");
+    
     user.getAllUsers(req, users => {
         return res.status(200).json(users);
     });
@@ -39,7 +39,7 @@ userRoute.get('/getAllUsers', token.verifyToken, token.isAdmin, (req, res) => {
 
 
 userRoute.get('/getAllUsersNb', token.verifyToken, token.isAdmin,(req, res) => {
-    console.log("La route GetAllNB Users");
+    
     user.getAllUsersNb(req,users => {
         return res.status(200).json(users);
     });
@@ -47,7 +47,7 @@ userRoute.get('/getAllUsersNb', token.verifyToken, token.isAdmin,(req, res) => {
 
 
 userRoute.delete('/delete/:id', token.verifyToken, token.isAdmin,(req, res) => {
-    console.log("Delete User");
+   
     user.deleteUser(req, req.params.id, users => {
         return res.status(200).json(users);
     });
@@ -56,7 +56,7 @@ userRoute.delete('/delete/:id', token.verifyToken, token.isAdmin,(req, res) => {
 // Episodes
 
 userRoute.post('/:id/addEpisodeVisionne/:idE', token.verifyToken, (req, res) => {
-    console.log("La route addVision Users");
+    
     const login = req.body.login;
     let userToken2;
     user.getUserByLogin(req, login, userToken => {
@@ -69,10 +69,9 @@ userRoute.post('/:id/addEpisodeVisionne/:idE', token.verifyToken, (req, res) => 
 
 
 userRoute.delete('/:id/deleteEpisodeVisionne/:idE', token.verifyToken, (req, res) => {
-    console.log("La route remove Users");
+    
     const login = req.body.login;
     let userToken2;
-    console.log('idEpisodedelete: ' + req.params.idE);
     user.getUserByLogin(req, login, userToken => {
         userToken2 = userToken;
         user.removeVision(req, userToken2.idUser, user => {
@@ -83,10 +82,9 @@ userRoute.delete('/:id/deleteEpisodeVisionne/:idE', token.verifyToken, (req, res
 
 
 userRoute.get('/serie/:idSerie/getNbEpisodesSeen/', token.verifyToken, (req, res) => {
-    console.log("La route getNbEpisodesSeen Users");
+   
     const login = req.body.login;
     let userToken2;
-   console.log('idSerieGetnbSeen: ' + req.params.idSerie);
     user.getUserByLogin(req, login, userToken => {
         userToken2 = userToken;
         user.getNbEpisodesBySerieByUser(req, req.params.idSerie, userToken2.idUser, user => {
@@ -99,7 +97,7 @@ userRoute.get('/serie/:idSerie/getNbEpisodesSeen/', token.verifyToken, (req, res
 // Series
 
 userRoute.post('/:id/addSerieRegarder/:idSerie', token.verifyToken, (req, res) => {
-    console.log("La route addVision Users");
+    
     const login = req.body.login;
     let userToken2;
     user.getUserByLogin(req, login, userToken => {
@@ -112,10 +110,9 @@ userRoute.post('/:id/addSerieRegarder/:idSerie', token.verifyToken, (req, res) =
 
 
 userRoute.delete('/:id/deleteSerieRegarder/:idSerie', token.verifyToken, (req, res) => {
-    console.log("La route remove Users");
+    
     const login = req.body.login;
     let userToken2;
-    console.log('idEpisodedelete: ' + req.params.idE);
     user.getUserByLogin(req, login, userToken => {
         userToken2 = userToken;
         user.removeRegarder(req, userToken2.idUser, user => {
@@ -139,23 +136,20 @@ userRoute.get('/:id/serieSeen/:idSerie', token.verifyToken, (req, res) => {
 
 userRoute.get('/:id', token.verifyToken, (req, res) => {
 
-    console.log("account....");
     const login = req.body.login;
 
     user.getUserByLogin(req, login, user => {
-        console.log("Accout callBack Ok");
         return res.status(200).json(user);
     });
 });
 
 userRoute.get('/:id/playlist', token.verifyToken, (req, res) => {
-    console.log("Playlist...");
+    
     const login = req.body.login;
     let userToken2;
     user.getUserByLogin(req, login, userToken => {
         userToken2 = userToken;
         user.getPlayList(req, userToken2.idUser, user => {
-            console.log("PlayList callback OK");
             return res.status(200).json(user);
         });
     });
@@ -164,29 +158,23 @@ userRoute.get('/:id/playlist', token.verifyToken, (req, res) => {
 // Stats ------------------------
 
 userRoute.get('/:id/nbSeries', token.verifyToken, (req, res) => {
-    //  console.log("Nb Series");
     const login = req.body.login;
-    //  console.log("login Series Nb: " + login);
     let userToken2;
     user.getUserByLogin(req, login, userToken => {
         userToken2 = userToken;
         user.getNbSeriesById(req, userToken2.idUser, user => {
-            //       console.log("user.nbVusSeries: " + user.nbVus);
             return res.status(200).json(user);
         });
     });
 });
 
 userRoute.get('/:id/nbEpisodes', token.verifyToken, (req, res) => {
-    console.log("Nb Episodes");
+   
     const login = req.body.login;
-    console.log("login Episodes Nb: " + login);
     let userToken2;
     user.getUserByLogin(req, login, userToken => {
         userToken2 = userToken;
-        console.log("userToken2. idUser (Episodes)===: " + userToken2.idUser);
         user.getNbEpisodesById(req, userToken2.idUser, user => {
-            console.log("user.nbVusEpisodes: " + user.nbVus);
             return res.status(200).json(user);
         });
     });

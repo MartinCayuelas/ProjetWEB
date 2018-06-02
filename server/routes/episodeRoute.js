@@ -10,7 +10,6 @@ var ep = require('../models/episode');
 
 episodeRoute.get('/getAllEpisodes/:id', token.verifyToken, (req, res) => {
 
-    console.log("Param req: " + req.params.id);
     ep.getAllEpisodes(req, req.params.id, eps => {
         return res.status(200).json(eps);
     });
@@ -19,7 +18,6 @@ episodeRoute.get('/getAllEpisodes/:id', token.verifyToken, (req, res) => {
 
 episodeRoute.post('/insert', token.verifyToken, token.isAdmin, (req, res) => {
 
-    console.log("La route insert Serie");
     ep.insertEpisode(req, serie => {
         return res.status(200).json(serie);
     });
@@ -28,7 +26,6 @@ episodeRoute.post('/insert', token.verifyToken, token.isAdmin, (req, res) => {
 
 episodeRoute.delete('/delete/:id', token.verifyToken, token.isAdmin, (req, res) => {
 
-    console.log("La route insert Serie");
     ep.deleteEpisode(req, req.params.id, ep => {
         return res.status(200).json(ep);
     });
