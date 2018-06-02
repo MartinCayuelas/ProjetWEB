@@ -3,7 +3,7 @@ const router = express.Router();
 
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
-
+var bcryptLogin = require('bcryptjs');
 // vérifification si le login déjà utilisé
 function guardLogin(req, res, next) {
     req.getConnection(function (err, connection) {
@@ -76,7 +76,7 @@ router.post('/signIn', (req, res) => {
 
                 console.log("Requete SignIn  effectuée -----------------------");
                 let payload = {
-                    "sub": user.login,
+                    "sub":  user.login,
                 }
                 let token = jwt.sign(payload, 'YaourtOFraise', {expiresIn: '1h' });
                 return res.status(200).send({ token });

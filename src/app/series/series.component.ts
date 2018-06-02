@@ -33,7 +33,7 @@ export class SeriesComponent implements OnInit {
       err => {
         if (err instanceof HttpErrorResponse) {
           if (err.status === 401) {
-            this.router.navigate(['/signin']);
+            this.router.navigate(['/connexion']);
           }
         }
       });
@@ -56,7 +56,7 @@ export class SeriesComponent implements OnInit {
       err => {
         if (err instanceof HttpErrorResponse) {
           if (err.status === 401) {
-            this.router.navigate(['/signin']);
+            this.router.navigate(['/connexion']);
           }
         }
 

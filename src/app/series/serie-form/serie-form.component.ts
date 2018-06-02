@@ -35,7 +35,12 @@ export class SerieFormComponent implements OnInit {
 
 
   createSerie(): void {
-    this.serieService.insertSerie(this.form.value).subscribe();
-    this.route.navigate(['/dashboard']);
+    if (this.form.valid) {
+      this.serieService.insertSerie(this.form.value).subscribe();
+      this.route.navigate(['/dashboard']);
+    } else {
+      alert('Veuillez renseigner tous les champs munis d\'une * ');
+    }
+
   }
 }

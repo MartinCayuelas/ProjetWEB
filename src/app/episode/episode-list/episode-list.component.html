@@ -31,7 +31,7 @@
     </div>
     <ul class="text-white scrollUl">
         <li *ngFor="let episode of episodesSeen">
-            <p class="text-warning"> {{episode.numeroEpisode}}: {{episode.nomEpisode}} (Season: {{episode.saison}})</p>
+            <p class="text-warning"> {{episode.numeroEpisode}}: {{episode.nomEpisode}} (Season: {{episode.saison}}) <span *ngIf="current.role !== 0"><button class="btn btn-sm btn-danger" (click)="deleteEpisode(episode.idEpisode)"><i class="fas fa-times-circle"></i></button></span></p>
     
   
             <label  class="switch" for="checkbox{{episode.idEpisode}}">
@@ -41,7 +41,7 @@
           </li>
 
       <li *ngFor="let episode of episodesNotSeen">
-        <p class="text-warning"> {{episode.numeroEpisode}}: {{episode.nomEpisode}} (Season: {{episode.saison}})</p>
+        <p class="text-warning"> {{episode.numeroEpisode}}: {{episode.nomEpisode}} (Season: {{episode.saison}}) <span *ngIf="current.role !== 0"><button class="btn btn-sm btn-danger" (click)="deleteEpisode(episode.idEpisode)"><i class="fas fa-times-circle"></i></button></span> </p>
 
         <label  class="switch" for="checkbox{{episode.idEpisode}}">
           <input type="checkbox" (click)="changeVision($event,episode.idEpisode)" id="checkbox{{episode.idEpisode}}" />

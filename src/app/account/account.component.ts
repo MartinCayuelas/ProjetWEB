@@ -48,7 +48,7 @@ export class AccountComponent implements OnInit {
         if (err instanceof HttpErrorResponse) {
           if (err.status === 401) {
             this.authService.logout();
-            this.router.navigate(['/signin']);
+            this.router.navigate(['/connexion']);
           }
         }
       });

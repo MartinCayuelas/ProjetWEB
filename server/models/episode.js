@@ -27,21 +27,6 @@ module.exports.insertEpisode = function (req, callback) {
     // let nb;
 
     req.getConnection(function (err, connection) {
-        /*
-        connection.query('Select MAX(numeroEpisode) AS nb, saison FROM Episode WHERE idSerie = ? GROUP BY saison', [req.body.idSerie], function (err, rows, fields) {
-            if (err) {
-                console.log(err);
-                return res.status(500).json('erreur insertSerie');
-            }
-            console.log("Requete MAx Serie effectuée");
-            console.log(rows[0]);
-
-            nb = rows[0].nb + 1;
-            console.log('nb MAX: ' + nb);
-
-            if(req.body.saison !== rows[0].saison){
-                nb = 1;
-            }*/
 
         console.log("Requete EpisodeInsert incoming...");
         let queryInsert = "INSERT INTO Episode VALUES (NULL, ?, 1, ?, ?)";
@@ -60,40 +45,38 @@ module.exports.insertEpisode = function (req, callback) {
             callback(rows);
         });
     });
-
-
-
-    //});
 }
 
 
-module.exports.deleteSerie = function (req, idSerie, callback) {
-    console.log("idSerie:" + idSerie);
+
+module.exports.deleteEpisode = function (req, idEpisode, callback) {
+    console.log("idEp:" + idEpisode);
     req.getConnection(function (err, connection) {
-        var sql = "DELETE from Serie WHERE idSerie = ?";
-        var sqlS = "DELETE FROM regarder WHERE idSerie = ?";
-        connection.query(sqlS, [idSerie], function (err, rows, fields) {
+        var sql = "DELETE from episode WHERE idEpisode = ?";
+        var sqlE = "DELETE FROM visionne WHERE idEpisode = ?";  // suppressiond ans visionne également (Foreign KEy)
+        connection.query(sqlE, [idEpisode], function (err, rows, fields) {
             if (err) {
                 console.log(err);
-                return res.status(300).json("Impossible de supprimer la serie");
+                return res.status(300).json("Impossible de supprimer l'épisode'");
             }
-            console.log("Requete deleteSerie OK");
+            console.log("Requete deleteEpisode OK");
             console.log(rows);
             callback(rows[0]);
         });
-        connection.query(sql, [idSerie], function (err, rows, fields) {
+        connection.query(sql, [idEpisode], function (err, rows, fields) {
             if (err) {
                 console.log(err);
-                return res.status(300).json("Impossible de supprimer la serie");
+                return res.status(300).json("Impossible de supprimer l'épisode");
             }
-            console.log("Requete deleteSerie OK");
+            console.log("Requete deleteEpisode OK");
             console.log(rows);
             callback(rows[0]);
         });
     });
 }
 
-module.exports.updateSerie = function (req, idSerie, callback) {
+/*
+module.exports.updateEpisode = function (req, idSerie, callback) {
     let queryD = "UPDATE Serie SET imageSerie = ?, nbEpisodes = ?, nbSaisons = ?, description = ? WHERE idSerie = ?";
     const serie = [
         req.body.imageSerie,
@@ -115,4 +98,4 @@ module.exports.updateSerie = function (req, idSerie, callback) {
             callback(rows[0]);
         });
     });
-}
+}*/

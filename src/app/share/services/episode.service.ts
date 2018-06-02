@@ -36,4 +36,7 @@ export class EpisodeService {
   public insertEpisode(episode): Observable<any> {
     return this.http.post<any>('/api/episodes/insert', episode);
   }
+  public deleteEpisode(id) {
+    return this.http.delete('api/episodes/delete/' + id);
+  }
 }

@@ -81,7 +81,7 @@ var AccountComponent = /** @class */ (function () {
             if (err instanceof __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["d" /* HttpErrorResponse */]) {
                 if (err.status === 401) {
                     _this.authService.logout();
-                    _this.router.navigate(['/signin']);
+                    _this.router.navigate(['/connexion']);
                 }
             }
         });
@@ -675,7 +675,7 @@ module.exports = ".switch {\n    display: inline-block;\n    height: 34px;\n    
 /***/ "./src/app/episode/episode-list/episode-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container content \" *ngIf=\"current !== undefined\">\n\n  <div class=\"card bg-dark\">\n    <div class=\"text-center text-white hRewiev\">\n      <h4> Episodes </h4>\n      <span *ngIf=\"current.role === 1\">\n        <a class=\"text-warning\" (click)=\"showForm()\">\n          <i class=\"fas fa-plus-circle\"></i>\n        </a>\n      </span>\n    </div>\n\n    <div *ngIf=\"showFormEp\" class=\"card bg-light text-dark text-center rewiev\">\n\n      <form class=\"card-body\">\n\n        <div class=\"form-group\">\n          <input id=\"nameEp\" class=\"form-control\"  [(ngModel)]=\"nomEpisode\" name=\"nomEpisode\" placeholder=\"NomEpisode\" required/>\n          <input id=\"season\" class=\"form-control\" [(ngModel)]=\"saison\" name=\"saison\" placeholder=\"Saison\" required/>\n        </div>\n        <button class=\"btn btn-sm btn-success pt-2\"  (click)=\"addEpisode()\">Ajouter</button>\n      </form>\n  </div>\n\n    <div class=\"progress progressBar\">\n      <div class=\"progress-bar  bg-warning text-center text-dark\" role=\"progressbar\" [style.width]=\"Mypercent + '%'\" attr.aria-valuenow=\"{{nbEpisodesVu}}\"\n        aria-valuemin=\"0\" attr.aria-valuemax=\"{{nbEpisodes}}\">\n        <span *ngIf=\"!completed\">{{nbEpisodesVu}} sur {{nbEpisodes}}</span>\n        <span *ngIf=\"completed\">Completé!</span>\n      </div>\n    </div>\n    <ul class=\"text-white scrollUl\">\n        <li *ngFor=\"let episode of episodesSeen\">\n            <p class=\"text-warning\"> {{episode.numeroEpisode}}: {{episode.nomEpisode}} (Season: {{episode.saison}})</p>\n    \n  \n            <label  class=\"switch\" for=\"checkbox{{episode.idEpisode}}\">\n                <input checked type=\"checkbox\" (click)=\"changeVision($event,episode.idEpisode)\" id=\"checkbox{{episode.idEpisode}}\" />\n                <div class=\"slider round\"></div>\n              </label>\n          </li>\n\n      <li *ngFor=\"let episode of episodesNotSeen\">\n        <p class=\"text-warning\"> {{episode.numeroEpisode}}: {{episode.nomEpisode}} (Season: {{episode.saison}})</p>\n\n        <label  class=\"switch\" for=\"checkbox{{episode.idEpisode}}\">\n          <input type=\"checkbox\" (click)=\"changeVision($event,episode.idEpisode)\" id=\"checkbox{{episode.idEpisode}}\" />\n          <div class=\"slider round\"></div>\n        </label>\n\n       \n      </li>\n\n      \n\n    </ul>\n  </div>\n</div>"
+module.exports = "<div class=\"container content \" *ngIf=\"current !== undefined\">\n\n  <div class=\"card bg-dark\">\n    <div class=\"text-center text-white hRewiev\">\n      <h4> Episodes </h4>\n      <span *ngIf=\"current.role === 1\">\n        <a class=\"text-warning\" (click)=\"showForm()\">\n          <i class=\"fas fa-plus-circle\"></i>\n        </a>\n      </span>\n    </div>\n\n    <div *ngIf=\"showFormEp\" class=\"card bg-light text-dark text-center rewiev\">\n\n      <form class=\"card-body\">\n\n        <div class=\"form-group\">\n          <input id=\"nameEp\" class=\"form-control\"  [(ngModel)]=\"nomEpisode\" name=\"nomEpisode\" placeholder=\"NomEpisode\" required/>\n          <input id=\"season\" class=\"form-control\" [(ngModel)]=\"saison\" name=\"saison\" placeholder=\"Saison\" required/>\n        </div>\n        <button class=\"btn btn-sm btn-success pt-2\"  (click)=\"addEpisode()\">Ajouter</button>\n      </form>\n  </div>\n\n    <div class=\"progress progressBar\">\n      <div class=\"progress-bar  bg-warning text-center text-dark\" role=\"progressbar\" [style.width]=\"Mypercent + '%'\" attr.aria-valuenow=\"{{nbEpisodesVu}}\"\n        aria-valuemin=\"0\" attr.aria-valuemax=\"{{nbEpisodes}}\">\n        <span *ngIf=\"!completed\">{{nbEpisodesVu}} sur {{nbEpisodes}}</span>\n        <span *ngIf=\"completed\">Completé!</span>\n      </div>\n    </div>\n    <ul class=\"text-white scrollUl\">\n        <li *ngFor=\"let episode of episodesSeen\">\n            <p class=\"text-warning\"> {{episode.numeroEpisode}}: {{episode.nomEpisode}} (Season: {{episode.saison}}) <span *ngIf=\"current.role !== 0\"><button class=\"btn btn-sm btn-danger\" (click)=\"deleteEpisode(episode.idEpisode)\"><i class=\"fas fa-times-circle\"></i></button></span></p>\n    \n  \n            <label  class=\"switch\" for=\"checkbox{{episode.idEpisode}}\">\n                <input checked type=\"checkbox\" (click)=\"changeVision($event,episode.idEpisode)\" id=\"checkbox{{episode.idEpisode}}\" />\n                <div class=\"slider round\"></div>\n              </label>\n          </li>\n\n      <li *ngFor=\"let episode of episodesNotSeen\">\n        <p class=\"text-warning\"> {{episode.numeroEpisode}}: {{episode.nomEpisode}} (Season: {{episode.saison}}) <span *ngIf=\"current.role !== 0\"><button class=\"btn btn-sm btn-danger\" (click)=\"deleteEpisode(episode.idEpisode)\"><i class=\"fas fa-times-circle\"></i></button></span> </p>\n\n        <label  class=\"switch\" for=\"checkbox{{episode.idEpisode}}\">\n          <input type=\"checkbox\" (click)=\"changeVision($event,episode.idEpisode)\" id=\"checkbox{{episode.idEpisode}}\" />\n          <div class=\"slider round\"></div>\n        </label>\n\n       \n      </li>\n\n      \n\n    </ul>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -800,7 +800,7 @@ var EpisodeListComponent = /** @class */ (function () {
     };
     EpisodeListComponent.prototype.addEpisode = function () {
         var _this = this;
-        if (this.nomEpisode.value === null || this.saison.value === null) {
+        if (this.nomEpisode === undefined || this.saison === undefined) {
             alert('Veuillez remplir les 2 champs');
         }
         else {
@@ -812,10 +812,19 @@ var EpisodeListComponent = /** @class */ (function () {
             console.log('saison Ep: ' + episode.saison);
             console.log('idSerie Ep: ' + episode.idSerie);
             this.episodeService.insertEpisode(episode).subscribe(function (res) {
+                _this.getEpisodeSeen(_this.id);
                 _this.getEpisodeNotSeen(_this.id);
                 _this.getNbEpisodeLeftToSee(_this.id);
             });
         }
+    };
+    EpisodeListComponent.prototype.deleteEpisode = function (id) {
+        var _this = this;
+        this.episodeService.deleteEpisode(id).subscribe(function (res) {
+            _this.getEpisodeSeen(_this.id);
+            _this.getEpisodeNotSeen(_this.id);
+            _this.getNbEpisodeLeftToSee(_this.id);
+        });
     };
     EpisodeListComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -843,7 +852,7 @@ module.exports = ".imgTop{\n    width: 300px;\n    height: 200px;\n}\n\n\n\n.con
 /***/ "./src/app/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"content\">\n    <div class=\"container contentHome\">\n        <div class=\"text-center pt-3\">\n            <h3 class=\"text-warning\">Découvrir\n                <i class=\"far fa-calendar-check\"></i>\n            </h3>\n        </div>\n        <div>\n            <hr>\n            <div class=\"row rowSerie\">\n                <div class=\"col-xs-6 col-md-4 thumbnail thumbHome\" *ngFor=\"let serie of series\">\n                    <a routerLink=\"/catalogue/{{serie.idSerie}}\" routerLinkActive=\"active\" >\n                        <img src=\"{{serie.imageSerie}}\" alt=\"{{serie.titre}}\" class=\"imgTop img-fluid thumbnail\">\n                    </a>\n                </div>\n            </div>\n        </div>\n        <hr>\n    </div>\n</section>\n\n\n<section>\n    <div class=\"container contentHome\">\n        <div class=\"text-center pt-3\">\n            <h3 class=\"text-warning\">Top du moment\n                <i class=\"fas fa-chart-line\"></i>\n            </h3>\n        </div>\n        <hr>\n        <div class=\"row rowSerie\">\n                <div class=\"col-xs-6 col-md-4 thumbnail thumbHome\" *ngFor=\"let top of topSeries\">\n                    <a routerLink=\"/catalogue/{{top.idSerie}}\" routerLinkActive=\"active\" >\n                        <img src=\"{{top.imageSerie}}\" alt=\"{{top.titre}}\" class=\"imgTop img-fluid thumbnail\">\n                    </a>\n                </div>\n            </div>\n        <hr>\n    </div>\n\n</section>"
+module.exports = "<section class=\"content\">\n    <div class=\"container contentHome\">\n        <div class=\"text-center pt-3\">\n            <h3 class=\"text-warning\">Découvrir\n                <i class=\"far fa-calendar-check\"></i>\n            </h3>\n        </div>\n        <div>\n            <hr>\n            <div class=\"row rowSerie\">\n                <div class=\"col-xs-6 col-md-4 thumbnail thumbHome\" *ngFor=\"let serie of series\">\n                    <a routerLink=\"/catalogue/{{serie.idSerie}}\" routerLinkActive=\"active\" >\n                        <img src=\"{{serie.imageSerie}}\" alt=\"{{serie.titre}}\" class=\"imgTop img-fluid thumbnail\">\n                        \n                    </a>\n                </div>\n            </div>\n        </div>\n        <hr>\n    </div>\n</section>\n\n\n<section>\n    <div class=\"container contentHome\">\n        <div class=\"text-center pt-3\">\n            <h3 class=\"text-warning\">Top du moment\n                <i class=\"fas fa-chart-line\"></i>\n            </h3>\n        </div>\n        <hr>\n        <div class=\"row rowSerie\">\n                <div class=\"col-xs-6 col-md-4 thumbnail thumbHome\" *ngFor=\"let top of topSeries\">\n                    <a routerLink=\"/catalogue/{{top.idSerie}}\" routerLinkActive=\"active\" >\n                        <img src=\"{{top.imageSerie}}\" alt=\"{{top.titre}}\" class=\"imgTop img-fluid thumbnail\">\n                    </a>\n                </div>\n            </div>\n        <hr>\n    </div>\n\n</section>"
 
 /***/ }),
 
@@ -1192,7 +1201,7 @@ var PlaylistUserComponent = /** @class */ (function () {
             if (err instanceof __WEBPACK_IMPORTED_MODULE_5__angular_common_http__["d" /* HttpErrorResponse */]) {
                 if (err.status === 401) {
                     _this.authService.logout();
-                    _this.router.navigate(['/signin']);
+                    _this.router.navigate(['/connexion']);
                 }
             }
         });
@@ -1231,7 +1240,7 @@ module.exports = ".form-addSerie{\n    \n    border-radius: 5px;\n    color: #34
 /***/ "./src/app/series/serie-form/serie-form.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\" container content text-center bg-light\">\n    <form class=\"form-addSerie\" [formGroup]=\"form\" novalidate>\n        <div class=\"text-center\">\n            <h3 class=\"text-dark\">\n                Nouvelle Serie\n            </h3>\n        </div>\n\n        <fieldset class=\"p-5 m-4 field\">\n\n            <h3>Informations Générales</h3>\n\n            <div class=\"form-group\">\n                <label for=\"titre\" class=\"l-connect\">Titre *</label>\n                <input type=\"text\" formControlName=\"titre\" class=\"form-control input-connect\" id=\"titre\" placeholder=\"Titre\">\n            </div>\n            <div class=\"form-group\">\n\n                <label for=\"imageSerie\" class=\"l-connect\">Affiche *</label>\n                <input type=\"text\" formControlName=\"imageSerie\" class=\"form-control input-connect\" id=\"imageSerie\" placeholder=\"(Optionnel) Taille: 600x600 (Max) -- URL demandé\">\n\n            </div>\n            <div class=\"form-row\">\n                <div class=\"col\">\n                    <label for=\"description\" class=\"l-connect\">Description *</label>\n                    <textarea class=\"form-control input-connect\" rows=\"8\" formControlName=\"description\" placeholder=\"Décrivez la série\"></textarea>\n                </div>\n                <div class=\"col\">\n                    <label for=\"dateSortie\" class=\"l-connect\">Date de sortie</label>\n                    <input type=\"text\" class=\"form-control input-connect\" formControlName=\"dateSortie\" placeholder=\"aaaa-mm-jj\">\n                </div>\n            </div>\n\n\n            <div class=\"form-row\">\n                <div class=\"col\">\n                    <label for=\"nbSaisons\" class=\"l-connect\">Nombre de Saisons *</label>\n                    <input type=\"text\" formControlName=\"nbSaisons\" class=\"form-control input-connect\" placeholder=\"1\">\n                </div>\n                <div class=\"col\">\n                    <label for=\"nbEpisodes\" class=\"l-connect\">Nombre d'Episodes *</label>\n                    <input type=\"text\" class=\"form-control input-connect\" formControlName=\"nbEpisodes\" placeholder=\"10\">\n                </div>\n            </div>\n\n        </fieldset>\n        <fieldset class=\"m-4 p-5 field\">\n            <h3>Réalisation</h3>\n            <div class=\"form-row\">\n                <div class=\"col\">\n                    <label for=\"prenomRealisateur\" class=\"l-connect\">Prénom *</label>\n                    <input type=\"text\" formControlName=\"prenomRealisateur\" class=\"form-control input-connect\" id=\"prenomRealisateur\" placeholder=\"Prénom\">\n                </div>\n                <div class=\"col\">\n                    <label for=\"nomRealisateur\" class=\"l-connect\">Nom *</label>\n                    <input type=\"text\" class=\"form-control input-connect\" id=\"nomRealisateur\" formControlName=\"nomRealisateur\" placeholder=\"Nom\">\n                </div>\n            </div>\n        </fieldset>\n\n        <div>\n            <a class=\"btn btn-md btn-success text-white \" (click)=\"createSerie()\" routerLink=\"/catalogue\" routerLinkActive=\"active\">Ajouter</a>\n        </div>\n    </form>\n</div>"
+module.exports = "<div class=\" container content text-center bg-light\">\n    <form class=\"form-addSerie\" (submit)=\"createSerie()\" [formGroup]=\"form\" novalidate>\n        <div class=\"text-center\">\n            <h3 class=\"text-dark\">\n                Nouvelle Serie\n            </h3>\n        </div>\n\n        <fieldset class=\"p-5 m-4 field\">\n\n            <h3>Informations Générales</h3>\n\n            <div class=\"form-group\">\n                <label for=\"titre\" class=\"l-connect\">Titre *</label>\n                <input type=\"text\" formControlName=\"titre\" class=\"form-control input-connect\" id=\"titre\" placeholder=\"Titre\">\n            </div>\n            <div class=\"form-group\">\n\n                <label for=\"imageSerie\" class=\"l-connect\">Affiche *</label>\n                <input type=\"text\" formControlName=\"imageSerie\" class=\"form-control input-connect\" id=\"imageSerie\" placeholder=\"(Optionnel) Taille: 600x600 (Max) -- URL demandé\">\n\n            </div>\n            <div class=\"form-row\">\n                <div class=\"col\">\n                    <label for=\"description\" class=\"l-connect\">Description *</label>\n                    <textarea class=\"form-control input-connect\" rows=\"8\" formControlName=\"description\" placeholder=\"Décrivez la série\"></textarea>\n                </div>\n                <div class=\"col\">\n                    <label for=\"dateSortie\" class=\"l-connect\">Date de sortie *</label>\n                    <input type=\"text\" class=\"form-control input-connect\" formControlName=\"dateSortie\" placeholder=\"aaaa-mm-jj\">\n                </div>\n            </div>\n\n\n            <div class=\"form-row\">\n                <div class=\"col\">\n                    <label for=\"nbSaisons\" class=\"l-connect\">Nombre de Saisons *</label>\n                    <input type=\"text\" formControlName=\"nbSaisons\" class=\"form-control input-connect\" placeholder=\"1\">\n                </div>\n                <div class=\"col\">\n                    <label for=\"nbEpisodes\" class=\"l-connect\">Nombre d'Episodes *</label>\n                    <input type=\"text\" class=\"form-control input-connect\" formControlName=\"nbEpisodes\" placeholder=\"10\">\n                </div>\n            </div>\n\n        </fieldset>\n        <fieldset class=\"m-4 p-5 field\">\n            <h3>Réalisation</h3>\n            <div class=\"form-row\">\n                <div class=\"col\">\n                    <label for=\"prenomRealisateur\" class=\"l-connect\">Prénom *</label>\n                    <input type=\"text\" formControlName=\"prenomRealisateur\" class=\"form-control input-connect\" id=\"prenomRealisateur\" placeholder=\"Prénom\">\n                </div>\n                <div class=\"col\">\n                    <label for=\"nomRealisateur\" class=\"l-connect\">Nom *</label>\n                    <input type=\"text\" class=\"form-control input-connect\" id=\"nomRealisateur\" formControlName=\"nomRealisateur\" placeholder=\"Nom\">\n                </div>\n            </div>\n        </fieldset>\n\n        <div>\n            <button type=\"submit\" class=\"btn btn-md btn-success text-white\" >Ajouter</button>\n        </div>\n    </form>\n</div>"
 
 /***/ }),
 
@@ -1277,8 +1286,13 @@ var SerieFormComponent = /** @class */ (function () {
         });
     };
     SerieFormComponent.prototype.createSerie = function () {
-        this.serieService.insertSerie(this.form.value).subscribe();
-        this.route.navigate(['/dashboard']);
+        if (this.form.valid) {
+            this.serieService.insertSerie(this.form.value).subscribe();
+            this.route.navigate(['/dashboard']);
+        }
+        else {
+            alert('Veuillez renseigner tous les champs munis d\'une * ');
+        }
     };
     SerieFormComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -1386,7 +1400,7 @@ module.exports = ".bold{\n    font-weight: bold;\n}\n\n\n\n\n.buttonRetour{\n   
 /***/ "./src/app/series/serie/serie/serie.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container content\">\n  <div class=\"card cardSerie bg-light\" *ngIf=\"serie !== undefined\">\n    <img class=\"card-img-top imageSerie img-responsive\" src=\"{{serie.imageSerie}}\" alt={{serie.titre}}>\n    <div class=\"card-body\">\n      <div class=\"text-center\">\n        <h4 class=\"text-dark\">\n          <span class=\"bold\">{{serie.titre}}</span>\n          <span *ngIf=\"isSeen && authService.loggedIn()\" class=\"badge bg-warning\">Vu</span>\n        </h4>\n      </div>\n     \n      <hr>\n      <p>Créé par: {{serie.prenomRealisateur}}\n        <span class=\"bold\">{{serie.nomRealisateur}}</span>\n      </p>\n      <hr>\n      <p>\n        <span class=\"bold\">Description:</span> {{serie.description}}</p>\n      <hr>\n      <p>\n        <span class=\"bold\">Nombre de saisons:</span> {{serie.nbSaisons}}</p>\n      <hr>\n      <p>\n        <span class=\"bold\">Nombre d'épisodes:</span> {{serie.nbEpisodes}}</p>\n      <hr>\n      <p>\n        <span class=\"bold\">Date de sortie:</span> {{serie.dateSortie | date:'yyyy-MM-dd'}}</p>\n      <div class=\"row\">\n        <div>\n          <a *ngIf=\"authService.loggedIn() &&!isSeen\" class=\"btn btn-md btn-success text-white\" (click)=\"addInPlaylist()\"> Ajouter à la Playlist</a>\n\n\n        </div>\n        <div>\n          <a *ngIf=\"authService.loggedIn() && isSeen\" class=\"btn btn-md btn-danger text-white\" (click)=\"removeInPlaylist()\">Supprimer de la Playlist</a>\n        </div>\n      </div>\n      <div class=\"row\">\n        <div class=\"col-md-6\">\n          <app-critique>\n            <!--Liste des commentaires-->\n          </app-critique>\n        </div>\n\n        <div class=\"col-md-6\" *ngIf=\"isSeen\">\n          <app-episode-list>\n            <!--Liste des épisodes de la séries-->\n            <!--Visible uniquement si on visionne la série-->\n          </app-episode-list>\n        </div>\n      </div>\n      <div class=\"text-center buttonRetour\">\n        <a class=\"btn btn-md btn-secondary text-warning\" routerLink=\"/catalog\" routerLinkActive=\"active\">Retour au Catalogue</a>\n      </div>\n    </div>\n  </div>\n\n</div>"
+module.exports = "<div class=\"container content\">\n  <div class=\"card cardSerie bg-light\" *ngIf=\"serie !== undefined\">\n    <img class=\"card-img-top imageSerie img-responsive\" src=\"{{serie.imageSerie}}\" alt={{serie.titre}}>\n    <div class=\"card-body\">\n      <div class=\"text-center\">\n        <h4 class=\"text-dark\">\n          <span class=\"bold\">{{serie.titre}}</span>\n          <span *ngIf=\"isSeen && authService.loggedIn()\" class=\"badge bg-warning\">Vu</span>\n        </h4>\n      </div>\n     \n      <hr>\n      <p>Créé par: {{serie.prenomRealisateur}}\n        <span class=\"bold\">{{serie.nomRealisateur}}</span>\n      </p>\n      <hr>\n      <p>\n        <span class=\"bold\">Description:</span> {{serie.description}}</p>\n      <hr>\n      <p>\n        <span class=\"bold\">Nombre de saisons:</span> {{serie.nbSaisons}}</p>\n      <hr>\n      <p>\n        <span class=\"bold\">Nombre d'épisodes:</span> {{serie.nbEpisodes}}</p>\n      <hr>\n      <p>\n        <span class=\"bold\">Date de sortie:</span> {{serie.dateSortie | date:'yyyy-MM-dd'}}</p>\n      <div class=\"row\">\n        <div>\n          <a *ngIf=\"authService.loggedIn() &&!isSeen\" class=\"btn btn-md btn-success text-white\" (click)=\"addInPlaylist()\"> Ajouter à la Playlist</a>\n\n\n        </div>\n        <div>\n          <a *ngIf=\"authService.loggedIn() && isSeen\" class=\"btn btn-md btn-danger text-white\" (click)=\"removeInPlaylist()\">Supprimer de la Playlist</a>\n        </div>\n      </div>\n      <div class=\"row\">\n        <div class=\"col-md-6\">\n          <app-critique>\n            <!--Liste des commentaires-->\n          </app-critique>\n        </div>\n\n        <div class=\"col-md-6\" *ngIf=\"isSeen\">\n          <app-episode-list>\n            <!--Liste des épisodes de la séries-->\n            <!--Visible uniquement si on visionne la série-->\n          </app-episode-list>\n        </div>\n      </div>\n      <div class=\"text-center buttonRetour\">\n        <a class=\"btn btn-md btn-secondary text-warning\" routerLink=\"/catalogue\" routerLinkActive=\"active\">Retour au Catalogue</a>\n      </div>\n    </div>\n  </div>\n\n</div>"
 
 /***/ }),
 
@@ -1522,7 +1536,7 @@ var SeriesComponent = /** @class */ (function () {
         }, function (err) {
             if (err instanceof __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["d" /* HttpErrorResponse */]) {
                 if (err.status === 401) {
-                    _this.router.navigate(['/signin']);
+                    _this.router.navigate(['/connexion']);
                 }
             }
         });
@@ -1539,7 +1553,7 @@ var SeriesComponent = /** @class */ (function () {
         }, function (err) {
             if (err instanceof __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["d" /* HttpErrorResponse */]) {
                 if (err.status === 401) {
-                    _this.router.navigate(['/signin']);
+                    _this.router.navigate(['/connexion']);
                 }
             }
         });
@@ -1786,6 +1800,9 @@ var EpisodeService = /** @class */ (function () {
     // CRUD
     EpisodeService.prototype.insertEpisode = function (episode) {
         return this.http.post('/api/episodes/insert', episode);
+    };
+    EpisodeService.prototype.deleteEpisode = function (id) {
+        return this.http.delete('api/episodes/delete/' + id);
     };
     EpisodeService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),

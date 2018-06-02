@@ -32,7 +32,7 @@ export class EpisodeListComponent implements OnInit {
 
   req: any = {};
   nomEpisode: any;
-  saison: any;
+  saison: number;
 
   constructor(private route: ActivatedRoute, private serieService: SerieService,
     private userService: UserService, private episodeService: EpisodeService) { }
@@ -135,11 +135,9 @@ export class EpisodeListComponent implements OnInit {
 
   public addEpisode() {
 
-    if (this.nomEpisode.value === null || this.saison.value === null) {
+    if (this.nomEpisode === undefined || this.saison === undefined) {
       alert('Veuillez remplir les 2 champs');
     } else {
-
-
 
       const episode: any = {};
       episode.nomEpisode = this.nomEpisode;
@@ -149,13 +147,23 @@ export class EpisodeListComponent implements OnInit {
       console.log('saison Ep: ' + episode.saison);
       console.log('idSerie Ep: ' + episode.idSerie);
       this.episodeService.insertEpisode(episode).subscribe(res => {
-
+        this.getEpisodeSeen(this.id);
         this.getEpisodeNotSeen(this.id);
         this.getNbEpisodeLeftToSee(this.id);
       }
       );
 
     }
+  }
+
+
+  public deleteEpisode(id: number) {
+    this.episodeService.deleteEpisode(id).subscribe(res => {
+      this.getEpisodeSeen(this.id);
+        this.getEpisodeNotSeen(this.id);
+        this.getNbEpisodeLeftToSee(this.id);
+    });
+
   }
 
 }

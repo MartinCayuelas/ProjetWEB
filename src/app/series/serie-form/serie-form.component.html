@@ -1,5 +1,5 @@
 <div class=" container content text-center bg-light">
-    <form class="form-addSerie" [formGroup]="form" novalidate>
+    <form class="form-addSerie" (submit)="createSerie()" [formGroup]="form" novalidate>
         <div class="text-center">
             <h3 class="text-dark">
                 Nouvelle Serie
@@ -26,7 +26,7 @@
                     <textarea class="form-control input-connect" rows="8" formControlName="description" placeholder="Décrivez la série"></textarea>
                 </div>
                 <div class="col">
-                    <label for="dateSortie" class="l-connect">Date de sortie</label>
+                    <label for="dateSortie" class="l-connect">Date de sortie *</label>
                     <input type="text" class="form-control input-connect" formControlName="dateSortie" placeholder="aaaa-mm-jj">
                 </div>
             </div>
@@ -59,7 +59,7 @@
         </fieldset>
 
         <div>
-            <a class="btn btn-md btn-success text-white " (click)="createSerie()" routerLink="/catalogue" routerLinkActive="active">Ajouter</a>
+            <button type="submit" class="btn btn-md btn-success text-white" >Ajouter</button>
         </div>
     </form>
 </div>

@@ -26,4 +26,14 @@ episodeRoute.post('/insert', token.verifyToken, token.isAdmin, (req, res) => {
 });
 
 
+episodeRoute.delete('/delete/:id', token.verifyToken, token.isAdmin, (req, res) => {
+
+    console.log("La route insert Serie");
+    ep.deleteEpisode(req, req.params.id, ep => {
+        return res.status(200).json(ep);
+    });
+});
+
+
+
 module.exports = episodeRoute;
