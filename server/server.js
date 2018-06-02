@@ -15,6 +15,11 @@ app.use(cors());
 
 const port = process.env.PORT || 4000;
 
+var sqlinjection = require('sql-injection');
+ 
+app.configure(function() {
+    app.use(sqlinjection);  // add sql-injection middleware here
+});
 
 // requires
 //require('./config/db');
