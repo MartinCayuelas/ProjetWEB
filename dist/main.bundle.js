@@ -109,7 +109,7 @@ module.exports = "\n.monFooter{\n    margin-top: 50px;\n    padding: 5px;\n}\n\n
 /***/ "./src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar>\n  \n</app-navbar>\n\n<router-outlet>\n  <!-- Ici que ce fait le routage-->\n</router-outlet>\n\n<footer class=\"footer bg-dark monFooter\">\n  <div class=\"container\">\n    <span class=\"text-white\">&copy; WatchMe&Co 2018, Martin Cayuelas <i class=\"fas fa-tablet-alt\"></i></span>\n  </div>\n</footer>\n"
+module.exports = "<app-navbar>\n  \n</app-navbar>\n\n<router-outlet>\n  <!-- Ici que ce fait le routage-->\n</router-outlet>\n\n<footer class=\"footer bg-dark monFooter\">\n  <div class=\"container\">\n    <span class=\"text-white\">&copy; WatchMe - 2018 - Martin Cayuelas <i class=\"fas fa-tablet-alt\"></i></span>\n  </div>\n</footer>\n"
 
 /***/ }),
 
