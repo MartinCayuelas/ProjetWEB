@@ -25,7 +25,6 @@ export class HomeComponent implements OnInit {
     });
 
     this.serieService.getTopSeries().subscribe(series => {
-      console.log('La route GetAllTop');
       this.topSeries = series;
 
     });

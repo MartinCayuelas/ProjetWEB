@@ -29,17 +29,14 @@ export class AccountComponent implements OnInit {
     this.userService.getCurrent().subscribe(user => {
       this.userCurrent = user;
 
-      console.log('idUser Get Curennt Account:' + this.userCurrent.idUser);
 
       this.userService.getNbEpisodes(this.userCurrent.idUser).subscribe(stats => {
         this.nbEpisodes = stats.nbVus;
         this.minutesSeen = (this.nbEpisodes * 45);
-        console.log('nbepisodes:' + this.nbEpisodes);
 
       });
       this.userService.getNbSeries(this.userCurrent.idUser).subscribe(stats => {
         this.nbSeries = stats.nbVus;
-        console.log('nbepisodes:' + this.nbSeries);
 
 
       });

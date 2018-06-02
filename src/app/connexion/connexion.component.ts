@@ -22,10 +22,8 @@ export class ConnexionComponent implements OnInit {
   }
 
   public signIn(): void {
-    console.log('Je vais appeler le serviceAuth pour SignIn');
     this.authService.signIn(this.model).subscribe(
       res => {
-        console.log(res);
         localStorage.setItem('token', res.token);
 
         this.router.navigate(['/accueil']);

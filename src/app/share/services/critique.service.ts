@@ -14,7 +14,7 @@ export class CritiqueService {
 
   }
 
-  public createCritique(crit: Critique): Observable<Critique> {
+  public createCritique(crit): Observable<Critique> {
     return this.http.post<Critique>('/api/critiques/insert', crit);
 
   }

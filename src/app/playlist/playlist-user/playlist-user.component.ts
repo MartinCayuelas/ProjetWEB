@@ -29,8 +29,6 @@ export class PlaylistUserComponent implements OnInit {
     private episodeService: EpisodeService, public serieService: SerieService) { }
 
   ngOnInit() {
-    console.log('Je suis NgInit de Playlist');
-
 
     this.id = parseInt(this.route.snapshot.paramMap.get('idUser'), 0); // Récupération du paramètre dans l'URL
 

@@ -14,7 +14,6 @@ export class EpisodeService {
 
   // Getter
   public getAllEpisodesBySerie(idSerie: number): Observable<any> {
-    console.log('episodes en Serivce');
     return this.http.get<any>('/api/episodes/getAllEpisodes/' + idSerie);
   }
 

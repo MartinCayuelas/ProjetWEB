@@ -2,11 +2,11 @@
 
     <ul class="card bg-dark scrollUl">
         <div class="text-center text-white hRewiev">
-            <h4> Reviews </h4>
+            <h4> Critiques </h4>
         </div>
         <div>
             <div class="card bg-light text-dark rewiev " *ngFor="let crit of critiques">
-                <div class="card-body col-10">
+                <div class="card-body col-10" *ngIf="crit !== undefined">
                     {{crit.note}}
                     <i class="fas fa-star"></i> | {{crit.commentaire}}
                     <hr>
@@ -20,22 +20,17 @@
 
     <div *ngIf="authService.loggedIn()" class="card bg-light text-dark text-center rewiev">
 
-        <form class="card-body" [formGroup]="form">
+        <form class="card-body" >
 
-            <label class="">Note</label>
-            <select (change)="onChangeNote($event)" class ="form-control" formControlName="note">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-            </select>
-            <input type="text" class="inputCrit form-control" formControlName="commentaire" id="commentaire" placeholder="Votre commentaire" (change)="onChangeDescription($event)">
-            <div class="buttonCom">
-                <button class="btn btn-success text-white"  (click)="saveCritique()">Envoyer
-                    <i class="fas fa-location-arrow"></i>
-                </button>
-            </div>
+            <form class="card-body">
+
+                <div class="form-group">
+                <input id="note" class="form-control" type="number" min="1" max="5" [(ngModel)]="note" name="note" placeholder="note" required/>
+                
+                <input id="commentaire" class="form-control"  [(ngModel)]="commentaire" name="commentaire" placeholder="commentaire" required/>
+                 </div>
+                <button type="submit" class="btn btn-sm btn-success pt-2"  (click)="saveCritique()">Ajouter</button>
+              </form>
         </form>
     </div>
 </div>

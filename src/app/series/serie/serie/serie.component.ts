@@ -57,16 +57,19 @@ export class SerieComponent implements OnInit {
   }
 
   isSeenSerie(): void {
-    this.userService.isSeenSerieByUser(this.req).subscribe(res => {
-      this.seen = res.vu;
-      console.log('seen? 1 ou 0:' + this.seen);
+    if (this.authService.loggedIn()) {
 
-      if (this.seen > 0) {
-        this.isSeen = true;
-      } else {
-        this.isSeen = false;
-      }
-    });
+
+      this.userService.isSeenSerieByUser(this.req).subscribe(res => {
+        this.seen = res.vu;
+
+        if (this.seen > 0) {
+          this.isSeen = true;
+        } else {
+          this.isSeen = false;
+        }
+      });
+    }
   }
 
 

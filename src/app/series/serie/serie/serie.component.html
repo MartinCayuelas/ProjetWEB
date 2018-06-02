@@ -5,7 +5,7 @@
       <div class="text-center">
         <h4 class="text-dark">
           <span class="bold">{{serie.titre}}</span>
-          <span *ngIf="isSeen && authService.loggedIn()" class="badge bg-warning">Vu</span>
+          <span *ngIf="authService.loggedIn() && isSeen" class="badge bg-warning">Vu</span>
         </h4>
       </div>
      
@@ -42,7 +42,7 @@
           </app-critique>
         </div>
 
-        <div class="col-md-6" *ngIf="isSeen">
+        <div class="col-md-6" *ngIf="authService.loggedIn() && isSeen">
           <app-episode-list>
             <!--Liste des épisodes de la séries-->
             <!--Visible uniquement si on visionne la série-->

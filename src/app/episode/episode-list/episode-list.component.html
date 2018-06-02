@@ -16,7 +16,7 @@
 
         <div class="form-group">
           <input id="nameEp" class="form-control"  [(ngModel)]="nomEpisode" name="nomEpisode" placeholder="NomEpisode" required/>
-          <input id="season" class="form-control" [(ngModel)]="saison" name="saison" placeholder="Saison" required/>
+          <input id="season" class="form-control" type="number" min="1" [(ngModel)]="saison" name="saison" placeholder="Saison" required/>
         </div>
         <button class="btn btn-sm btn-success pt-2"  (click)="addEpisode()">Ajouter</button>
       </form>

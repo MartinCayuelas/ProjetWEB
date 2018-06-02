@@ -22,12 +22,12 @@
                 </div>
                 <div class="col">
                     <label for="nbSaisons" class="l-connect">Nombres de Saisons</label>
-                    <input type="text" value="{{serie.nbSaisons}}" class="form-control input-connect" (change)="setNbSaisons($event)">
+                    <input type="number" min="1" value="{{serie.nbSaisons}}" class="form-control input-connect" (change)="setNbSaisons($event)">
 
                 </div>
                 <div class="col">
                     <label for="nbEpisodes" class="l-connect">Nombres d'Episodes</label>
-                    <input type="text" class="form-control input-connect" value="{{serie.nbEpisodes}}" (change)="setNbEpisodes($event)">
+                    <input type="number" min="1" class="form-control input-connect" value="{{serie.nbEpisodes}}" (change)="setNbEpisodes($event)">
                 </div>
             </div>
         </fieldset>

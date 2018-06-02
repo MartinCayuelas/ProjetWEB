@@ -23,12 +23,10 @@ export class SerieService {
     }
 
     public getEpisodesSeen(idSerie: number): Observable<any> {
-        console.log('episodesSeeen');
         return this.http.get<any>('/api/series/' + idSerie + '/episodesSeen');
     }
 
     public getEpisodesNotSeen(idSerie: number): Observable<any> {
-        console.log('episodesSeeen');
         return this.http.get<any>('/api/series/' + idSerie + '/episodesNotSeen');
     }
 

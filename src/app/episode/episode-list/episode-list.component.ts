@@ -39,8 +39,7 @@ export class EpisodeListComponent implements OnInit {
 
   ngOnInit() {
     this.id = parseInt(this.route.snapshot.paramMap.get('idSerie'), 0); // Récupération du paramètre dans l'URL
-    // this.idUser = parseInt(this.route.snapshot.paramMap.get('idUser'), 0);
-    console.log('episodes en demande');
+
     this.episodeService.getAllEpisodesBySerie(this.id).subscribe(eps => {
       this.episodes = eps;
     });
@@ -49,7 +48,6 @@ export class EpisodeListComponent implements OnInit {
     this.getEpisodeNotSeen(this.id);
     this.userService.getCurrent().subscribe(user => {
       this.current = user;
-      console.log('current roel: ' + this.current.role);
     });
 
   }
@@ -58,9 +56,6 @@ export class EpisodeListComponent implements OnInit {
     this.req.idUser = this.idUser;
     this.req.idE = id;
     if (event.target.checked) {
-      console.log('idU:' + this.idUser);
-      console.log('idE:' + id);
-
       this.episodeService.addVision(this.req).subscribe(
         res => {
 
@@ -69,7 +64,6 @@ export class EpisodeListComponent implements OnInit {
 
       );
     } else {
-      console.log('idE:' + this.req.idE);
       this.episodeService.removeVision(this.req).subscribe(
         res => {
 
@@ -94,14 +88,11 @@ export class EpisodeListComponent implements OnInit {
   getNbEpisodeLeftToSee(idSerie: number) {
     this.serieService.getNbEpisodesBySerie(idSerie).subscribe(episodes => {
       this.nbEpisodes = episodes.nbEpisodes;
-      console.log('nbEpisodes: ' + this.nbEpisodes);
     });
 
     this.userService.getNbEpisodesBySerieSeen(idSerie).subscribe(nb => {
       this.nbEpisodesVu = nb.vu;
-      console.log('nbEpisodesVu: ' + this.nbEpisodesVu);
       this.Mypercent = 100 * this.nbEpisodesVu / this.nbEpisodes;
-      console.log('MyPercent: ' + this.Mypercent);
 
       this.nbEpisodesToSee = (this.nbEpisodes - this.nbEpisodesVu);
       if (this.nbEpisodesToSee === 0) {
@@ -109,7 +100,6 @@ export class EpisodeListComponent implements OnInit {
       } else {
         this.completed = false;
       }
-      console.log('nbEpisodesToSee: ' + this.nbEpisodesToSee);
     });
   }
   /*
@@ -143,13 +133,14 @@ export class EpisodeListComponent implements OnInit {
       episode.nomEpisode = this.nomEpisode;
       episode.saison = this.saison;
       episode.idSerie = this.id;
-      console.log('Name Ep: ' + episode.nomEpisode);
-      console.log('saison Ep: ' + episode.saison);
-      console.log('idSerie Ep: ' + episode.idSerie);
       this.episodeService.insertEpisode(episode).subscribe(res => {
         this.getEpisodeSeen(this.id);
         this.getEpisodeNotSeen(this.id);
         this.getNbEpisodeLeftToSee(this.id);
+
+        this.nomEpisode = undefined;
+        this.saison = undefined;
+
       }
       );
 
@@ -160,8 +151,8 @@ export class EpisodeListComponent implements OnInit {
   public deleteEpisode(id: number) {
     this.episodeService.deleteEpisode(id).subscribe(res => {
       this.getEpisodeSeen(this.id);
-        this.getEpisodeNotSeen(this.id);
-        this.getNbEpisodeLeftToSee(this.id);
+      this.getEpisodeNotSeen(this.id);
+      this.getNbEpisodeLeftToSee(this.id);
     });
 
   }

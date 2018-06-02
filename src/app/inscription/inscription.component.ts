@@ -48,7 +48,6 @@ export class InscriptionComponent implements OnInit {
       // files is a FileList of File objects. List some properties.
       for (let i = 0, f; f = files[i]; i++) {
 
-        console.log('files: ' + f.name);
         this.form.get('avatar').setValue(f.name);
       }
     }*/

@@ -27,17 +27,18 @@ export class CritiqueComponent implements OnInit {
 
     this.critiqueService.getCritiques(this.id).subscribe(critiques => {
       this.critiques = critiques;
-
+/*
       this.form = this.fb.group({
         idCommentaire: [null],
-        note: [null, Validators.required],
-        commentaire: [null, Validators.required],
+        note: ['', Validators.required],
+        commentaire: ['', Validators.required],
         idSerie: [this.id],
       });
-
+*/
     });
   }
 
+/*
   onChangeNote(event) {
     this.note = event.target.value;
     this.form.get('note').setValue(this.note);
@@ -47,17 +48,20 @@ export class CritiqueComponent implements OnInit {
     this.commentaire = event.target.value;
     this.form.get('commentaire').setValue(this.commentaire);
   }
-
+*/
   saveCritique(): void {
-
-    if (this.form.valid) {
-      this.critiqueService.createCritique(this.form.value).subscribe(res => {
+    if (this.commentaire !== undefined || this.note !== undefined) {
+      const req: any = {};
+      req.idCommentaire = null;
+      req.note = this.note;
+      req.commentaire = this.commentaire;
+      req.idSerie = this.id;
+      this.critiqueService.createCritique(req).subscribe(res => {
         this.getCritiques();
-      }
+        this.commentaire = undefined;
+        this.note = undefined;
+      });
 
-      );
-      this.form.get('commentaire').reset();
-      this.form.get('note').reset();
     } else {
       alert('Veuillez remplir les 2 champs');
     }

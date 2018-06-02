@@ -174,8 +174,29 @@ module.exports.deleteSerie = function (req, idSerie, callback) {
     console.log("idSerie___deleteSerie:" + idSerie);
     req.getConnection(function (err, connection) {
         var sql = "DELETE FROM Serie WHERE idSerie = ?";
-        var sqlS = "DELETE FROM regarder WHERE idSerie = ?";
-        connection.query(sqlS, [idSerie], function (err, rows, fields) {
+        var sqlR = "DELETE FROM regarder WHERE idSerie = ?";
+        var sqlE = "DELETE FROM Episode WHERE idSerie = ?";
+        var sqlV = 'DELETE FROM visionne WHERE idEpisode IN (SELECT episode.idEpisode FROM episode WHERE idSerie=?)';
+        
+        connection.query(sqlV, [idSerie], function (err, rows, fields) {
+            if (err) {
+                console.log(err);
+                return res.status(300).json("Impossible de supprimer la serie");
+            }
+            console.log("Requete deleteSerie OK");
+            console.log(rows);
+            callback(rows[0]);
+        });
+        connection.query(sqlR, [idSerie], function (err, rows, fields) {
+            if (err) {
+                console.log(err);
+                return res.status(300).json("Impossible de supprimer la serie");
+            }
+            console.log("Requete deleteSerie OK");
+            console.log(rows);
+            callback(rows[0]);
+        });
+        connection.query(sqlE, [idSerie], function (err, rows, fields) {
             if (err) {
                 console.log(err);
                 return res.status(300).json("Impossible de supprimer la serie");

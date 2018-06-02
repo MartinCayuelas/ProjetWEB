@@ -29,8 +29,6 @@ export class SerieUpdateComponent implements OnInit {
         this.serie.imageSerie = 'fav.png';
       }
 
-      console.log(this.serie.titre);
-      console.log(this.serie.imageSerie);
     });
   }
 
