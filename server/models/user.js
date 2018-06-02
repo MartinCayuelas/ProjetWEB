@@ -157,7 +157,6 @@ module.exports.removeRegarder = function (req, idUser, callback) {
 
 
 module.exports.isSeenSerie = function (req, idUser, callback) {
-    // console.log("iduser getNbSeriesById:" + idUser);
     const serie = [
         idUser,
         req.params.idSerie,
@@ -175,7 +174,6 @@ module.exports.isSeenSerie = function (req, idUser, callback) {
 
 
 module.exports.getUserById = function (req, idUser, callback) {
-    // console.log("iduser:" + idUser);
     req.getConnection(function (err, connection) {
         connection.query('select * from Utilisateur where idUser = ?', [idUser], function (err, rows, fields) {
             if (err) {
@@ -188,7 +186,6 @@ module.exports.getUserById = function (req, idUser, callback) {
 }
 
 module.exports.getRoleByLogin = function (req, login, callback) {
-    // console.log("iduser:" + idUser);
     req.getConnection(function (err, connection) {
         connection.query('select role from Utilisateur where login = ?', [login], function (err, rows, fields) {
             if (err) {
@@ -202,7 +199,6 @@ module.exports.getRoleByLogin = function (req, login, callback) {
 
           
 module.exports.getUserByLogin = function (req, login, callback) {
-    // console.log("LoginUser:" + login);
     req.getConnection(function (err, connection) {
         connection.query('select * from Utilisateur where login = ?', [login], function (err, rows, fields) {
             if (err) {
