@@ -161,7 +161,7 @@ module.exports.insertSerie = function (req, callback) {
         connection.query(queryInsert, serie, function (err, rows, fields) {
             if (err) {
                 console.log(err);
-                return res.status(500).json('erreur insertSerie');
+                return err.status(500).json('erreur insertSerie');
             }
             console.log("Requete Insert Serie effectuée");
             callback(rows);
