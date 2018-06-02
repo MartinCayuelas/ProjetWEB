@@ -17,7 +17,7 @@
             <div class="form-group">
 
                 <label for="imageSerie" class="l-connect">Affiche *</label>
-                <input type="text" formControlName="imageSerie" class="form-control input-connect" id="imageSerie" placeholder="(Optionnel) Taille: 600x600 (Max) -- URL demandé">
+                <input type="text" formControlName="imageSerie" class="form-control input-connect" id="imageSerie" placeholder="Taille: 600x600 (Recommandé MAX) -- URL demandé">
 
             </div>
             <div class="form-row">
@@ -57,6 +57,7 @@
                 </div>
             </div>
         </fieldset>
+        <div *ngIf="!errorSerie.submitted" class="alert alert-danger" >Erreur : {{errorSerie.message}}</div>
 
         <div>
             <button type="submit" class="btn btn-md btn-success text-white" >Ajouter</button>

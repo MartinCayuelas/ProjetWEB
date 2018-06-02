@@ -1,10 +1,11 @@
 
+
 module.exports.getAllSeries = function (req, callback) {
     req.getConnection(function (err, connection) {
         connection.query('select * from Serie ORDER BY titre', function (err, rows, fields) {
             if (err) {
                 console.log(err);
-                return res.status(300).json("Impossible de récupérer les series");
+                return err.status(500).json("Impossible de récupérer les series");
             }
             console.log("Requete getAllSeries effectuée");
             console.log(rows);
@@ -18,7 +19,7 @@ module.exports.getAllSeriesNb = function (req, callback) {
         connection.query('select COUNT(*) AS nb from Serie', function (err, rows, fields) {
             if (err) {
                 console.log(err);
-                return res.status(300).json("Impossible de récupérer les series");
+                return err.status(500).json("Impossible de récupérer les series");
             }
             console.log("Requete getAllSeries effectuée");
             console.log(rows);
@@ -33,7 +34,7 @@ module.exports.getAllSeriesNews = function (req, callback) {
         connection.query('select * from Serie ORDER BY dateSortie DESC LIMIT 3', function (err, rows, fields) {
             if (err) {
                 console.log(err);
-                return res.status(300).json("Impossible de récupérer les nouveautés");
+                return err.status(500).json("Impossible de récupérer les nouveautés");
             }
             console.log("Requete getAllSeries effectuée");
             console.log(rows);
@@ -47,7 +48,7 @@ module.exports.getAllSeriesTop = function (req, callback) {
         connection.query('SELECT Serie.titre, Serie.imageSerie, Serie.idSerie, COUNT(*) as nbVu FROM Serie, regarder WHERE Serie.idSerie = regarder.idSerie GROUP BY Serie.titre, Serie.imageSerie, Serie.idSerie ORDER BY nbVu DESC LIMIT 3', function (err, rows, fields) {
             if (err) {
                 console.log(err);
-                return res.status(300).json("Impossible de récupérer les nouveautés");
+                return err.status(500).json("Impossible de récupérer les nouveautés");
             }
             console.log("Requete getAllSeries TOPs effectuée");
             console.log(rows);
@@ -64,7 +65,7 @@ module.exports.getNbEpisodesBySerie = function (req, idSerie, callback) {
         connection.query('select Episode.idSerie, COUNT(*) AS nbEpisodes from Episode where idSerie = ?', [idSerie], function (err, rows, fields) {
             if (err) {
                 console.log('Error' + err);
-                return res.status(300).json("Impossible de récupérer le nombre d'épiodes");
+                return err.status(500).json("Impossible de récupérer le nombre d'épiodes");
             }
             console.log("Requete getNbEpisodes OK");
             console.log(rows);
@@ -83,7 +84,7 @@ module.exports.getEpisodesSeen = function (req, idSerie, callback) {
         connection.query('select * from Episode,visionne, Utilisateur where Utilisateur.idUser = visionne.idUser AND Episode.idEpisode = visionne.idEpisode AND Utilisateur.login = ? AND Episode.idSerie = ? GROUP BY saison, numeroEpisode', ep, function (err, rows, fields) {
             if (err) {
                 console.log('Error' + err);
-                return res.status(300).json("Impossible de récupérer les Episodes");
+                return err.status(500).json("Impossible de récupérer les Episodes");
             }
             console.log("Requete EpisodesSeen OK");
             console.log(rows);
@@ -103,7 +104,7 @@ module.exports.getEpisodesNotSeen = function (req, idSerie, callback) {
         connection.query('SELECT * FROM Episode WHERE Episode.idSerie = ? AND Episode.idEpisode NOT IN (SELECT e.idEpisode  FROM Episode e, visionne, Utilisateur WHERE Utilisateur.login = ? AND Utilisateur.idUser = visionne.idUser AND visionne.idEpisode = e.idEpisode AND e.idSerie = ?) GROUP BY saison, numeroEpisode', ep, function (err, rows, fields) {
             if (err) {
                 console.log('Error' + err);
-                return res.status(300).json("Impossible de récupérer les Episodes");
+                return err.status(500).json("Impossible de récupérer les Episodes");
             }
             console.log("Requete EpisodesSeen OK");
             console.log(rows);
@@ -131,7 +132,7 @@ module.exports.getSerieById = function (req, idSerie, callback) {
         connection.query('select * from Serie where idSerie = ?', [idSerie], function (err, rows, fields) {
             if (err) {
                 console.log(err);
-                return res.status(300).json("Impossible de récupérer les series");
+                return err.status(500).json("Impossible de récupérer les series");
             }
             console.log("Requete getSerie by ID OK");
             console.log(rows);
@@ -181,7 +182,7 @@ module.exports.deleteSerie = function (req, idSerie, callback) {
         connection.query(sqlV, [idSerie], function (err, rows, fields) {
             if (err) {
                 console.log(err);
-                return res.status(300).json("Impossible de supprimer la serie");
+                return err.status(500).json("Impossible de supprimer la serie");
             }
             console.log("Requete deleteSerie OK");
             console.log(rows);
@@ -190,7 +191,7 @@ module.exports.deleteSerie = function (req, idSerie, callback) {
         connection.query(sqlR, [idSerie], function (err, rows, fields) {
             if (err) {
                 console.log(err);
-                return res.status(300).json("Impossible de supprimer la serie");
+                return err.status(500).json("Impossible de supprimer la serie");
             }
             console.log("Requete deleteSerie OK");
             console.log(rows);
@@ -199,7 +200,7 @@ module.exports.deleteSerie = function (req, idSerie, callback) {
         connection.query(sqlE, [idSerie], function (err, rows, fields) {
             if (err) {
                 console.log(err);
-                return res.status(300).json("Impossible de supprimer la serie");
+                return err.status(500).json("Impossible de supprimer la serie");
             }
             console.log("Requete deleteSerie OK");
             console.log(rows);
@@ -208,7 +209,7 @@ module.exports.deleteSerie = function (req, idSerie, callback) {
         connection.query(sql, [idSerie], function (err, rows, fields) {
             if (err) {
                 console.log(err);
-                return res.status(300).json("Impossible de supprimer la serie");
+                return err.status(500).json("Impossible de supprimer la serie");
             }
             console.log("Requete deleteSerie OK");
             console.log(rows);
@@ -234,7 +235,7 @@ module.exports.updateSerie = function (req, idSerie, callback) {
         connection.query(queryD, serie, function (err, rows, fields) {
             if (err) {
                 console.log(err);
-                return res.status(300).json("Impossible de modifier la serie");
+                return err.status(500).json("Impossible de modifier la serie");
             }
             console.log("Requete updateSerie OK");
             console.log(rows);

@@ -7,7 +7,7 @@ module.exports.getAllEpisodes = function (req, idSerie, callback) {
         connection.query('select * from Episode where idSerie = ? ORDER BY saison, numeroEpisode', [idSerie], function (err, rows, fields) {
             if (err) {
                 console.log(err);
-                return res.status(300).json("Impossible de récupérer les episodes");
+                return err.status(500).json("Impossible de récupérer les episodes");
             }
             console.log("Requete getEpisodes OK");
             console.log(rows);
@@ -39,7 +39,7 @@ module.exports.insertEpisode = function (req, callback) {
         connection.query(queryInsert, ep, function (err, rows, fields) {
             if (err) {
                 console.log(err);
-                return res.status(500).json('erreur insertSerie');
+                return err.status(500).json('erreur insertSerie');
             }
             console.log("Requete Insert Serie effectuée");
             callback(rows);
@@ -57,7 +57,7 @@ module.exports.deleteEpisode = function (req, idEpisode, callback) {
         connection.query(sqlE, [idEpisode], function (err, rows, fields) {
             if (err) {
                 console.log(err);
-                return res.status(300).json("Impossible de supprimer l'épisode'");
+                return err.status(500).json("Impossible de supprimer l'épisode'");
             }
             console.log("Requete deleteEpisode OK");
             console.log(rows);
@@ -66,7 +66,7 @@ module.exports.deleteEpisode = function (req, idEpisode, callback) {
         connection.query(sql, [idEpisode], function (err, rows, fields) {
             if (err) {
                 console.log(err);
-                return res.status(300).json("Impossible de supprimer l'épisode");
+                return err.status(500).json("Impossible de supprimer l'épisode");
             }
             console.log("Requete deleteEpisode OK");
             console.log(rows);

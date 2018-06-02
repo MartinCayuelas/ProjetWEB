@@ -36,7 +36,6 @@ module.exports = {
 
 
     isAdmin: function (req, res, next) {
-        console.log("Test Admin");
         req.getConnection(function (err, connection) {
             query = "select role from Utilisateur where login = ?";
             connection.query(query, [req.body.login], function (err, rows, fields) {

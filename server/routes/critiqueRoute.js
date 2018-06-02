@@ -28,4 +28,11 @@ critiqueRoute.post('/insert', token.verifyToken, (req, res) =>  {
     });
 });
 
+
+critiqueRoute.delete('/delete/:id', token.verifyToken, token.isAdmin, (req, res) => {
+    crit.deleteCritique(req, req.params.id, serie => {
+        return res.status(200).json(serie);
+    });
+});
+
 module.exports = critiqueRoute;

@@ -9,7 +9,7 @@ module.exports.getAllUsers = function (req, callback) {
         connection.query('select * from Utilisateur', function (err, rows, fields) {
             if (err) {
                 console.log(err);
-                return res.status(300).json("Impossible de récupérer les users");
+                return err.status(500).json("Impossible de récupérer les users");
             }
             console.log("Requete getAllUsers effectuée");
             callback(rows);
@@ -23,7 +23,7 @@ module.exports.getAllUsersNb = function (req, callback) {
         connection.query('select COUNT(*) AS nb from Utilisateur', function (err, rows, fields) {
             if (err) {
                 console.log(err);
-                return res.status(300).json("Impossible de récupérer les utils (NB)");
+                return err.status(500).json("Impossible de récupérer les utils (NB)");
             }
             console.log("Requete getAlluserNB effectuée");
             console.log(rows);
@@ -43,7 +43,7 @@ module.exports.deleteUser = function (req, idUser,callback) {
         connection.query(sqlV, [idUser], function (err, rows, fields) {
             if (err) {
                 console.log(err);
-                return res.status(300).json("Impossible de supprimer l'utilisateur");
+                return err.status(500).json("Impossible de supprimer l'utilisateur");
             }
             console.log("Requete deleteUser OK");
             console.log(rows);
@@ -52,7 +52,7 @@ module.exports.deleteUser = function (req, idUser,callback) {
         connection.query(sqlC, [idUser], function (err, rows, fields) {
             if (err) {
                 console.log(err);
-                return res.status(300).json("Impossible de supprimer l'utilisateur");
+                return err.status(500).json("Impossible de supprimer l'utilisateur");
             }
             console.log("Requete deleteUser OK");
             console.log(rows);
@@ -61,7 +61,7 @@ module.exports.deleteUser = function (req, idUser,callback) {
         connection.query(sqlR, [idUser], function (err, rows, fields) {
             if (err) {
                 console.log(err);
-                return res.status(300).json("Impossible de supprimer l'utilisateur");
+                return err.status(500).json("Impossible de supprimer l'utilisateur");
             }
             console.log("Requete deleteUser OK");
             console.log(rows);
@@ -70,7 +70,7 @@ module.exports.deleteUser = function (req, idUser,callback) {
         connection.query(sql, [idUser], function (err, rows, fields) {
             if (err) {
                 console.log(err);
-                return res.status(300).json("Impossible de supprimer l'utilisateur");
+                return err.status(500).json("Impossible de supprimer l'utilisateur");
             }
             console.log("Requete deleteUser OK");
             console.log(rows);
@@ -115,7 +115,7 @@ module.exports.removeVision = function (req, idUser, callback) {
         connection.query(sqlS, ep, function (err, rows, fields) {
             if (err) {
                 console.log(err);
-                return res.status(300).json("Impossible de supprimer le visionnage");
+                return err.status(500).json("Impossible de supprimer le visionnage");
             }
             console.log("Requete deleteVision OK");
             console.log(rows);
@@ -162,7 +162,7 @@ module.exports.removeRegarder = function (req, idUser, callback) {
         connection.query(sqlR, serie, function (err, rows, fields) {
             if (err) {
                 console.log(err);
-                return res.status(300).json("Impossible de supprimer le 'regardage' de serie");
+                return err.status(500).json("Impossible de supprimer le 'regardage' de serie");
             }
             console.log("Requete deleteRegarder OK");
             console.log(rows);
@@ -171,7 +171,7 @@ module.exports.removeRegarder = function (req, idUser, callback) {
        connection.query(sqlS, serie, function (err, rows, fields) {
             if (err) {
                 console.log(err);
-                return res.status(300).json("Impossible de supprimer le 'regardage' de serie");
+                return err.status(500).json("Impossible de supprimer le 'regardage' de serie");
             }
             console.log("Requete deleteRegarder OK");
             console.log(rows);
@@ -192,7 +192,7 @@ module.exports.isSeenSerie = function (req, idUser, callback) {
         connection.query('SELECT regarder.idUser, COUNT(*) AS vu  from regarder WHERE  regarder.idUser = ? AND regarder.idSerie = ?', serie, function (err, rows, fields) {
             if (err) {
                 console.log(err);
-                return res.status(300).json("Impossible de récupérer le isSeen");
+                return err.status(500).json("Impossible de récupérer le isSeen");
             }
             console.log("Requete isSeen OK");
             // console.log(rows);
@@ -208,7 +208,7 @@ module.exports.getUserById = function (req, idUser, callback) {
         connection.query('select * from Utilisateur where idUser = ?', [idUser], function (err, rows, fields) {
             if (err) {
                 console.log(err);
-                return res.status(300).json("Impossible de récupérer l'utilisateur");
+                return err.status(500).json("Impossible de récupérer l'utilisateur");
             }
             console.log("Requete getUser by ID OK");
             console.log(rows);
@@ -239,7 +239,7 @@ module.exports.getUserByLogin = function (req, login, callback) {
         connection.query('select * from Utilisateur where login = ?', [login], function (err, rows, fields) {
             if (err) {
                 console.log(err);
-                return res.status(300).json("Impossible de récupérer l'utilisateur");
+                return err.status(500).json("Impossible de récupérer l'utilisateur");
             }
             //  console.log("Requete getUser by ID OK");
             // console.log(rows);
@@ -256,7 +256,7 @@ module.exports.getPlayList = function (req, idUser, callback) {
         connection.query('select * from Serie, regarder where Serie.idSerie=regarder.idSerie AND regarder.idUser = ?', [idUser], function (err, rows, fields) {
             if (err) {
                 console.log(err);
-                return res.status(300).json("Impossible de playList");
+                return err.status(500).json("Impossible de playList");
             }
             console.log("Requete Playlist OK");
             //console.log(rows);
@@ -290,7 +290,7 @@ module.exports.getNbSeriesById = function (req, idUser, callback) {
         connection.query('SELECT regarder.idUser, COUNT(*) AS nbVus  from regarder WHERE  regarder.idUser = ?', [idUser], function (err, rows, fields) {
             if (err) {
                 console.log(err);
-                return res.status(300).json("Impossible de récupérer les séries (NB) de l'utilisateur");
+                return err.status(500).json("Impossible de récupérer les séries (NB) de l'utilisateur");
             }
             console.log("Requete NbSerie by ID OK");
             // console.log(rows);
@@ -306,7 +306,7 @@ module.exports.getNbEpisodesById = function (req, idUser, callback) {
         connection.query('SELECT visionne.idUser, COUNT(*) AS nbVus  from  visionne WHERE  visionne.idUser = ?', [idUser], function (err, rows, fields) {
             if (err) {
                 console.log(err);
-                return err.status(300).json("Impossible de récupérer les episodes (NB) User");
+                return err.status(500).json("Impossible de récupérer les episodes (NB) User");
             }
             console.log("Requete nbEpisodes by ID OK");
             //console.log(rows);

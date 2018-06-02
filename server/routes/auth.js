@@ -50,7 +50,7 @@ router.post('/signUp', guardLogin, guardEmail, (req, res) => {
         connection.query(queryInsert, user, function (err, rows, fields) {
             if (err) {
                 console.log(err);
-                return res.status(500).json('erreur inscription');
+                return err.status(500).json('erreur inscription');
             }
             console.log("Requete Insert User effectuée");
             return res.status(200).json({ "submitted": true, "message": "You are registered !" });
@@ -68,7 +68,7 @@ router.post('/signIn', (req, res) => {
         let query = 'select * from Utilisateur where login = ?';
         connexion.query(query, [req.body.login], function (err, rows, fields) {
             if (err) {
-                return res.sendStatus(401);
+                return err.sendStatus(401);
             }
             console.log(rows[0]);
             let user = rows[0]; //Récupération de l'utilisateur

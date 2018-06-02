@@ -3,6 +3,7 @@ import { Serie } from '../../share/models/serie.model';
 import { SerieService } from '../../share/services/serie.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
@@ -13,6 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class SerieFormComponent implements OnInit {
 
   public form: FormGroup;
+  public errorSerie = { 'submitted': true, 'message': '' };
 
   constructor(private fb: FormBuilder, private route: Router, private serieService: SerieService) {
 
@@ -36,8 +38,20 @@ export class SerieFormComponent implements OnInit {
 
   createSerie(): void {
     if (this.form.valid) {
-      this.serieService.insertSerie(this.form.value).subscribe();
-      this.route.navigate(['/dashboard']);
+      this.serieService.insertSerie(this.form.value).subscribe(res => {
+        alert('Ajout Réussi!');
+        this.route.navigate(['/dashboard']);
+      }
+        ,
+        error => {
+          if (error instanceof HttpErrorResponse) {
+            this.errorSerie = error.error;
+            this.errorSerie.message = error.error.message;
+            this.errorSerie.submitted = error.error.submitted;
+          }
+        }
+      );
+
     } else {
       alert('Veuillez renseigner tous les champs munis d\'une * ');
     }

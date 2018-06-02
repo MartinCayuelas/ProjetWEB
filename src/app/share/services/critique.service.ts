@@ -18,4 +18,8 @@ export class CritiqueService {
     return this.http.post<Critique>('/api/critiques/insert', crit);
 
   }
+
+  public deleteCritique(idC) {
+    return this.http.delete('/api/critiques/delete/' + idC);
+  }
 }

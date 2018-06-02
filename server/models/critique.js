@@ -7,7 +7,7 @@ module.exports.getAllCritiques = function (req, idSerie, callback) {
         connection.query('select idCritique, note, commentaire, idSerie, Utilisateur.login from Critique, Utilisateur where Utilisateur.idUser = Critique.idUser AND idSerie = ? ORDER BY idCritique', [idSerie], function (err, rows, fields) {
             if (err) {
                 console.log(err);
-                return res.status(300).json("Impossible de récupérer les critiques");
+                return err.status(500).json("Impossible de récupérer les critiques");
             }
             console.log("Requete critiquesGET OK");
             console.log(rows);
@@ -33,7 +33,7 @@ module.exports.insertCritique = function (req, idUser,callback) {
         connection.query(queryInsert, crit, function (err, rows, fields) {
             if (err) {
                 console.log(err);
-                return res.status(500).json('erreur insertCrit');
+                return err.status(500).json('erreur insertCrit');
             }
             console.log("Requete Insert crit effectuée");
             callback(rows);
@@ -41,3 +41,22 @@ module.exports.insertCritique = function (req, idUser,callback) {
 
     });
 }
+
+module.exports.deleteCritique = function (req, idC, callback) {
+    console.log("Requete delete incoming...");
+    console.log('idC: ' + idC);
+    let queryDelete = "DELETE FROM Critique WHERE idCritique = ?";
+    req.getConnection(function (err, connection) {
+        connection.query(queryDelete, [idC], function (err, rows, fields) {
+            if (err) {
+                console.log(err);
+                return err.status(500).json('erreur delete');
+            }
+            console.log("Requete delete crit effectuée");
+            callback(rows[0]);
+        });
+
+    });
+}
+
+

@@ -6,6 +6,24 @@ const serieRoutes = express.Router();
 
 var serie = require('../models/serie');
 var admin = require('./auth');
+
+
+
+
+// vérifification si la série existe déjà
+function guardSerie(req, res, next) {
+    req.getConnection(function (err, connection) {
+        query = "select * from Serie where titre = ?";
+        connection.query(query, [req.body.titre], function (err, rows, fields) {
+            if (rows.length > 0) {
+                return res.status(409).json({ "submitted": false, "message": "Série existante!" });
+            }
+            next();
+        });
+    });
+}
+
+
 // Renvoie toute les activités de la base de donnees
 serieRoutes.get('/getAllSeries', (req, res) => {
     console.log("La route GetAll");
@@ -84,7 +102,7 @@ serieRoutes.get('/:id', (req, res) => {
 });
 
 
-serieRoutes.post('/insert', token.verifyToken, token.isAdmin, (req, res) => {
+serieRoutes.post('/insert', token.verifyToken, token.isAdmin, guardSerie, (req, res) => {
     console.log("La route insert Serie");
     serie.insertSerie(req, serie => {
         return res.status(200).json(serie);
@@ -97,9 +115,6 @@ serieRoutes.delete('/delete/:id', token.verifyToken, token.isAdmin, (req, res) =
         return res.status(200).json(serie);
     });
 });
-
-
-
 
 
 

@@ -496,7 +496,7 @@ module.exports = ".buttonCom{\n    margin-top: 15px;\n    \n}\n\n.hRewiev{\n    
 /***/ "./src/app/critique/critique.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container content\">\n\n    <ul class=\"card bg-dark scrollUl\">\n        <div class=\"text-center text-white hRewiev\">\n            <h4> Critiques </h4>\n        </div>\n        <div>\n            <div class=\"card bg-light text-dark rewiev \" *ngFor=\"let crit of critiques\">\n                <div class=\"card-body col-10\" *ngIf=\"crit !== undefined\">\n                    {{crit.note}}\n                    <i class=\"fas fa-star\"></i> | {{crit.commentaire}}\n                    <hr>\n                    <p>\n                        <small>By {{crit.login}}</small>\n                    </p>\n                </div>\n            </div>\n        </div>\n    </ul>\n\n    <div *ngIf=\"authService.loggedIn()\" class=\"card bg-light text-dark text-center rewiev\">\n\n        <form class=\"card-body\" >\n\n            <form class=\"card-body\">\n\n                <div class=\"form-group\">\n                <input id=\"note\" class=\"form-control\" type=\"number\" min=\"1\" max=\"5\" [(ngModel)]=\"note\" name=\"note\" placeholder=\"note\" required/>\n                \n                <input id=\"commentaire\" class=\"form-control\"  [(ngModel)]=\"commentaire\" name=\"commentaire\" placeholder=\"commentaire\" required/>\n                 </div>\n                <button type=\"submit\" class=\"btn btn-sm btn-success pt-2\"  (click)=\"saveCritique()\">Ajouter</button>\n              </form>\n        </form>\n    </div>\n</div>"
+module.exports = "<div class=\"container content\">\n\n    <ul class=\"card bg-dark scrollUl\">\n        <div class=\"text-center text-white hRewiev\">\n            <h4> Critiques </h4>\n        </div>\n        <div>\n            <div class=\"card bg-light text-dark rewiev \" *ngFor=\"let crit of critiques\">\n                <div class=\"card-body col-10\" *ngIf=\"crit !== undefined\">\n                    {{crit.note}}\n                    <i class=\"fas fa-star\"></i> | {{crit.commentaire}}\n                    <hr>\n                    <p>\n                        <small>By {{crit.login}}</small> <span *ngIf=\"current !== undefined && current.role !== 0 \"><button class=\"btn btn-sm btn-danger\" (click)=\"deleteCritique(crit.idCritique)\"><i class=\"fas fa-times-circle\"></i></button></span>\n                    </p>\n                </div>\n            </div>\n        </div>\n    </ul>\n\n    <div *ngIf=\"authService.loggedIn()\" class=\"card bg-light text-dark text-center rewiev\">\n\n        <form class=\"card-body\" >\n\n            <form class=\"card-body\">\n\n                <div class=\"form-group\">\n                <input id=\"note\" class=\"form-control\" type=\"number\" min=\"1\" max=\"5\" [(ngModel)]=\"note\" name=\"note\" placeholder=\"note\" required/>\n                \n                <input id=\"commentaire\" class=\"form-control\"  [(ngModel)]=\"commentaire\" name=\"commentaire\" placeholder=\"commentaire\" required/>\n                 </div>\n                <button type=\"submit\" class=\"btn btn-sm btn-success pt-2\"  (click)=\"saveCritique()\">Ajouter</button>\n              </form>\n        </form>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -510,6 +510,7 @@ module.exports = "<div class=\"container content\">\n\n    <ul class=\"card bg-d
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__share_services_critique_service__ = __webpack_require__("./src/app/share/services/critique.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__("./node_modules/@angular/forms/esm5/forms.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__share_services_auth_service__ = __webpack_require__("./src/app/share/services/auth.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__share_services_user_service__ = __webpack_require__("./src/app/share/services/user.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -524,12 +525,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var CritiqueComponent = /** @class */ (function () {
-    function CritiqueComponent(authService, fb, route, router, critiqueService) {
+    function CritiqueComponent(authService, fb, route, router, userService, critiqueService) {
         this.authService = authService;
         this.fb = fb;
         this.route = route;
         this.router = router;
+        this.userService = userService;
         this.critiqueService = critiqueService;
     }
     CritiqueComponent.prototype.ngOnInit = function () {
@@ -537,14 +540,9 @@ var CritiqueComponent = /** @class */ (function () {
         this.id = parseInt(this.route.snapshot.paramMap.get('idSerie'), 0); // Récupération du paramètre dans l'URL
         this.critiqueService.getCritiques(this.id).subscribe(function (critiques) {
             _this.critiques = critiques;
-            /*
-                  this.form = this.fb.group({
-                    idCommentaire: [null],
-                    note: ['', Validators.required],
-                    commentaire: ['', Validators.required],
-                    idSerie: [this.id],
-                  });
-            */
+        });
+        this.userService.getCurrent().subscribe(function (res) {
+            _this.current = res;
         });
     };
     /*
@@ -552,7 +550,6 @@ var CritiqueComponent = /** @class */ (function () {
         this.note = event.target.value;
         this.form.get('note').setValue(this.note);
       }
-    
       onChangeDescription(event) {
         this.commentaire = event.target.value;
         this.form.get('commentaire').setValue(this.commentaire);
@@ -576,6 +573,12 @@ var CritiqueComponent = /** @class */ (function () {
             alert('Veuillez remplir les 2 champs');
         }
     };
+    CritiqueComponent.prototype.deleteCritique = function (idc) {
+        var _this = this;
+        this.critiqueService.deleteCritique(idc).subscribe(function (res) {
+            _this.getCritiques();
+        });
+    };
     CritiqueComponent.prototype.getCritiques = function () {
         var _this = this;
         this.critiqueService.getCritiques(this.id).subscribe(function (critiques) {
@@ -589,7 +592,8 @@ var CritiqueComponent = /** @class */ (function () {
             styles: [__webpack_require__("./src/app/critique/critique.component.css")]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__share_services_auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */],
-            __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */], __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */], __WEBPACK_IMPORTED_MODULE_2__share_services_critique_service__["a" /* CritiqueService */]])
+            __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */], __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */], __WEBPACK_IMPORTED_MODULE_5__share_services_user_service__["a" /* UserService */],
+            __WEBPACK_IMPORTED_MODULE_2__share_services_critique_service__["a" /* CritiqueService */]])
     ], CritiqueComponent);
     return CritiqueComponent;
 }());
@@ -1231,7 +1235,7 @@ module.exports = ".form-addSerie{\n    \n    border-radius: 5px;\n    color: #34
 /***/ "./src/app/series/serie-form/serie-form.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\" container content text-center bg-light\">\n    <form class=\"form-addSerie\" (submit)=\"createSerie()\" [formGroup]=\"form\" novalidate>\n        <div class=\"text-center\">\n            <h3 class=\"text-dark\">\n                Nouvelle Serie\n            </h3>\n        </div>\n\n        <fieldset class=\"p-5 m-4 field\">\n\n            <h3>Informations Générales</h3>\n\n            <div class=\"form-group\">\n                <label for=\"titre\" class=\"l-connect\">Titre *</label>\n                <input type=\"text\" formControlName=\"titre\" class=\"form-control input-connect\" id=\"titre\" placeholder=\"Titre\">\n            </div>\n            <div class=\"form-group\">\n\n                <label for=\"imageSerie\" class=\"l-connect\">Affiche *</label>\n                <input type=\"text\" formControlName=\"imageSerie\" class=\"form-control input-connect\" id=\"imageSerie\" placeholder=\"(Optionnel) Taille: 600x600 (Max) -- URL demandé\">\n\n            </div>\n            <div class=\"form-row\">\n                <div class=\"col\">\n                    <label for=\"description\" class=\"l-connect\">Description *</label>\n                    <textarea class=\"form-control input-connect\" rows=\"8\" formControlName=\"description\" placeholder=\"Décrivez la série\"></textarea>\n                </div>\n                <div class=\"col\">\n                    <label for=\"dateSortie\" class=\"l-connect\">Date de sortie *</label>\n                    <input type=\"date\" class=\"form-control input-connect\" formControlName=\"dateSortie\" placeholder=\"aaaa-mm-jj\">\n                </div>\n            </div>\n\n\n            <div class=\"form-row\">\n                <div class=\"col\">\n                    <label for=\"nbSaisons\" class=\"l-connect\">Nombre de Saisons *</label>\n                    <input type=\"number\"  min=\"1\" formControlName=\"nbSaisons\" class=\"form-control input-connect\" placeholder=\"1\">\n                </div>\n                <div class=\"col\">\n                    <label for=\"nbEpisodes\" class=\"l-connect\">Nombre d'Episodes *</label>\n                    <input type=\"number\"  min=\"1\" class=\"form-control input-connect\" formControlName=\"nbEpisodes\" placeholder=\"10\">\n                </div>\n            </div>\n\n        </fieldset>\n        <fieldset class=\"m-4 p-5 field\">\n            <h3>Réalisation</h3>\n            <div class=\"form-row\">\n                <div class=\"col\">\n                    <label for=\"prenomRealisateur\" class=\"l-connect\">Prénom *</label>\n                    <input type=\"text\" formControlName=\"prenomRealisateur\" class=\"form-control input-connect\" id=\"prenomRealisateur\" placeholder=\"Prénom\">\n                </div>\n                <div class=\"col\">\n                    <label for=\"nomRealisateur\" class=\"l-connect\">Nom *</label>\n                    <input type=\"text\" class=\"form-control input-connect\" id=\"nomRealisateur\" formControlName=\"nomRealisateur\" placeholder=\"Nom\">\n                </div>\n            </div>\n        </fieldset>\n\n        <div>\n            <button type=\"submit\" class=\"btn btn-md btn-success text-white\" >Ajouter</button>\n        </div>\n    </form>\n</div>"
+module.exports = "<div class=\" container content text-center bg-light\">\n    <form class=\"form-addSerie\" (submit)=\"createSerie()\" [formGroup]=\"form\" novalidate>\n        <div class=\"text-center\">\n            <h3 class=\"text-dark\">\n                Nouvelle Serie\n            </h3>\n        </div>\n\n        <fieldset class=\"p-5 m-4 field\">\n\n            <h3>Informations Générales</h3>\n\n            <div class=\"form-group\">\n                <label for=\"titre\" class=\"l-connect\">Titre *</label>\n                <input type=\"text\" formControlName=\"titre\" class=\"form-control input-connect\" id=\"titre\" placeholder=\"Titre\">\n            </div>\n            <div class=\"form-group\">\n\n                <label for=\"imageSerie\" class=\"l-connect\">Affiche *</label>\n                <input type=\"text\" formControlName=\"imageSerie\" class=\"form-control input-connect\" id=\"imageSerie\" placeholder=\"Taille: 600x600 (Recommandé MAX) -- URL demandé\">\n\n            </div>\n            <div class=\"form-row\">\n                <div class=\"col\">\n                    <label for=\"description\" class=\"l-connect\">Description *</label>\n                    <textarea class=\"form-control input-connect\" rows=\"8\" formControlName=\"description\" placeholder=\"Décrivez la série\"></textarea>\n                </div>\n                <div class=\"col\">\n                    <label for=\"dateSortie\" class=\"l-connect\">Date de sortie *</label>\n                    <input type=\"date\" class=\"form-control input-connect\" formControlName=\"dateSortie\" placeholder=\"aaaa-mm-jj\">\n                </div>\n            </div>\n\n\n            <div class=\"form-row\">\n                <div class=\"col\">\n                    <label for=\"nbSaisons\" class=\"l-connect\">Nombre de Saisons *</label>\n                    <input type=\"number\"  min=\"1\" formControlName=\"nbSaisons\" class=\"form-control input-connect\" placeholder=\"1\">\n                </div>\n                <div class=\"col\">\n                    <label for=\"nbEpisodes\" class=\"l-connect\">Nombre d'Episodes *</label>\n                    <input type=\"number\"  min=\"1\" class=\"form-control input-connect\" formControlName=\"nbEpisodes\" placeholder=\"10\">\n                </div>\n            </div>\n\n        </fieldset>\n        <fieldset class=\"m-4 p-5 field\">\n            <h3>Réalisation</h3>\n            <div class=\"form-row\">\n                <div class=\"col\">\n                    <label for=\"prenomRealisateur\" class=\"l-connect\">Prénom *</label>\n                    <input type=\"text\" formControlName=\"prenomRealisateur\" class=\"form-control input-connect\" id=\"prenomRealisateur\" placeholder=\"Prénom\">\n                </div>\n                <div class=\"col\">\n                    <label for=\"nomRealisateur\" class=\"l-connect\">Nom *</label>\n                    <input type=\"text\" class=\"form-control input-connect\" id=\"nomRealisateur\" formControlName=\"nomRealisateur\" placeholder=\"Nom\">\n                </div>\n            </div>\n        </fieldset>\n        <div *ngIf=\"!errorSerie.submitted\" class=\"alert alert-danger\" >Erreur : {{errorSerie.message}}</div>\n\n        <div>\n            <button type=\"submit\" class=\"btn btn-md btn-success text-white\" >Ajouter</button>\n        </div>\n    </form>\n</div>"
 
 /***/ }),
 
@@ -1244,6 +1248,7 @@ module.exports = "<div class=\" container content text-center bg-light\">\n    <
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__share_services_serie_service__ = __webpack_require__("./src/app/share/services/serie.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("./node_modules/@angular/forms/esm5/forms.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1257,11 +1262,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var SerieFormComponent = /** @class */ (function () {
     function SerieFormComponent(fb, route, serieService) {
         this.fb = fb;
         this.route = route;
         this.serieService = serieService;
+        this.errorSerie = { 'submitted': true, 'message': '' };
     }
     SerieFormComponent.prototype.ngOnInit = function () {
         this.form = this.fb.group({
@@ -1277,9 +1284,18 @@ var SerieFormComponent = /** @class */ (function () {
         });
     };
     SerieFormComponent.prototype.createSerie = function () {
+        var _this = this;
         if (this.form.valid) {
-            this.serieService.insertSerie(this.form.value).subscribe();
-            this.route.navigate(['/dashboard']);
+            this.serieService.insertSerie(this.form.value).subscribe(function (res) {
+                alert('Ajout Réussi!');
+                _this.route.navigate(['/dashboard']);
+            }, function (error) {
+                if (error instanceof __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["d" /* HttpErrorResponse */]) {
+                    _this.errorSerie = error.error;
+                    _this.errorSerie.message = error.error.message;
+                    _this.errorSerie.submitted = error.error.submitted;
+                }
+            });
         }
         else {
             alert('Veuillez renseigner tous les champs munis d\'une * ');
@@ -1741,6 +1757,9 @@ var CritiqueService = /** @class */ (function () {
     };
     CritiqueService.prototype.createCritique = function (crit) {
         return this.http.post('/api/critiques/insert', crit);
+    };
+    CritiqueService.prototype.deleteCritique = function (idC) {
+        return this.http.delete('/api/critiques/delete/' + idC);
     };
     CritiqueService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),

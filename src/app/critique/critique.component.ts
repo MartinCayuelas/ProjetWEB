@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CritiqueService } from '../share/services/critique.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { AuthService } from '../share/services/auth.service';
+import { UserService } from '../share/services/user.service';
+import { User } from '../share/models/user.model';
 
 @Component({
   selector: 'app-critique',
@@ -13,6 +15,8 @@ import { AuthService } from '../share/services/auth.service';
 })
 export class CritiqueComponent implements OnInit {
 
+  public current: User;
+
   public critiques: Observable<Critique[]>;
   public note: number;
   public commentaire: String;
@@ -20,35 +24,31 @@ export class CritiqueComponent implements OnInit {
   public form: FormGroup;
 
   constructor(public authService: AuthService, private fb: FormBuilder,
-    private route: ActivatedRoute, private router: Router, private critiqueService: CritiqueService) { }
+    private route: ActivatedRoute, private router: Router, private userService: UserService,
+    private critiqueService: CritiqueService) { }
 
   ngOnInit() {
     this.id = parseInt(this.route.snapshot.paramMap.get('idSerie'), 0); // Récupération du paramètre dans l'URL
 
     this.critiqueService.getCritiques(this.id).subscribe(critiques => {
       this.critiques = critiques;
-/*
-      this.form = this.fb.group({
-        idCommentaire: [null],
-        note: ['', Validators.required],
-        commentaire: ['', Validators.required],
-        idSerie: [this.id],
-      });
-*/
+    });
+
+    this.userService.getCurrent().subscribe(res => {
+      this.current = res;
     });
   }
 
-/*
-  onChangeNote(event) {
-    this.note = event.target.value;
-    this.form.get('note').setValue(this.note);
-  }
-
-  onChangeDescription(event) {
-    this.commentaire = event.target.value;
-    this.form.get('commentaire').setValue(this.commentaire);
-  }
-*/
+  /*
+    onChangeNote(event) {
+      this.note = event.target.value;
+      this.form.get('note').setValue(this.note);
+    }
+    onChangeDescription(event) {
+      this.commentaire = event.target.value;
+      this.form.get('commentaire').setValue(this.commentaire);
+    }
+  */
   saveCritique(): void {
     if (this.commentaire !== undefined || this.note !== undefined) {
       const req: any = {};
@@ -65,6 +65,12 @@ export class CritiqueComponent implements OnInit {
     } else {
       alert('Veuillez remplir les 2 champs');
     }
+  }
+
+  deleteCritique(idc: number) {
+    this.critiqueService.deleteCritique(idc).subscribe( res => {
+      this.getCritiques();
+    });
   }
 
   getCritiques() {
