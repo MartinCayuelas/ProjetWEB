@@ -346,8 +346,7 @@ var appRoutes = [
     { path: 'dashboard/updateSerie/:idSerie', component: __WEBPACK_IMPORTED_MODULE_7__series_serie_update_serie_update_serie_update_component__["a" /* SerieUpdateComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_13__share_admin_guard__["a" /* AdminGuard */]] },
     { path: 'compte', component: __WEBPACK_IMPORTED_MODULE_3__account_account_component__["a" /* AccountComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_12__share_auth_guard__["a" /* AuthGuard */]] },
     { path: '', component: __WEBPACK_IMPORTED_MODULE_2__home_home_component__["a" /* HomeComponent */] },
-    { path: '*', component: __WEBPACK_IMPORTED_MODULE_2__home_home_component__["a" /* HomeComponent */] },
-    { path: 'not-found', component: __WEBPACK_IMPORTED_MODULE_9__not_found_not_found_component__["a" /* NotFoundComponent */] },
+    { path: '**', component: __WEBPACK_IMPORTED_MODULE_9__not_found_not_found_component__["a" /* NotFoundComponent */] },
     { path: 'playlist/serie/:idSerie', component: __WEBPACK_IMPORTED_MODULE_10__series_serie_serie_serie_component__["a" /* SerieComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_12__share_auth_guard__["a" /* AuthGuard */]] }
 ];
 

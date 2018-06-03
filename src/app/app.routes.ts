@@ -38,8 +38,7 @@ export const appRoutes: Routes = [
     { path: 'dashboard/updateSerie/:idSerie', component: SerieUpdateComponent, canActivate: [AdminGuard] },
     { path: 'compte', component: AccountComponent, canActivate: [AuthGuard] },
     { path: '', component: HomeComponent },
-    { path: '*', component: HomeComponent },
-    { path: 'not-found', component: NotFoundComponent },
+    { path: '**', component: NotFoundComponent },
     { path: 'playlist/serie/:idSerie', component: SerieComponent, canActivate: [AuthGuard] }
 ];
 
