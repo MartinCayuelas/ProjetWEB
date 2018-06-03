@@ -5,8 +5,7 @@ require('dotenv').config(); // Pour les variables d'environnements (tel que conn
 var express = require('express'),
   path = require('path'),
   bodyParser = require('body-parser'),
-  cors = require('cors'),
-  morgan = require('morgan');
+  cors = require('cors');
 
 const app = express();
 app.use(bodyParser.json());
@@ -33,12 +32,6 @@ dbOptions = {
 
 app.use(myConnection(mysql, dbOptions, 'single'));
 
-
-
-
-
-app.use(bodyParser.json());
-app.use(cors());
 
 
 // router
