@@ -26,6 +26,7 @@ ng build (Pour compiler le code Angular 5)
 node ./server/server.js (Pour lancer l'application)
 
 ```
+##### NB: Ne pas oubliez de modifier les variables d'environnement (process.env.VotreVariable)
 
 ---
 
