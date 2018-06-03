@@ -64,7 +64,7 @@ var AccountComponent = /** @class */ (function () {
     }
     AccountComponent.prototype.ngOnInit = function () {
         var _this = this;
-        // recupéartion User courrant
+        // recupération User courrant
         this.userService.getCurrent().subscribe(function (user) {
             _this.userCurrent = user;
             // Ses episodes et series (en nombres)
@@ -468,7 +468,7 @@ var ConnexionComponent = /** @class */ (function () {
     ConnexionComponent.prototype.signIn = function () {
         var _this = this;
         this.authService.signIn(this.model).subscribe(function (res) {
-            localStorage.setItem('token', res.token);
+            localStorage.setItem('token', res.token); // on stocke le token dans le localStorage
             _this.router.navigate(['/accueil']);
         }, function (err) {
             alert('Invalid Login or Password');
@@ -1850,6 +1850,7 @@ var SerieService = /** @class */ (function () {
     function SerieService(http) {
         this.http = http;
     }
+    // GEtters
     SerieService.prototype.getAllSeriesDashboard = function () {
         return this.http.get('/api/series/getAllSeriesDashboard');
     };
@@ -1877,6 +1878,7 @@ var SerieService = /** @class */ (function () {
     SerieService.prototype.getTopSeries = function () {
         return this.http.get('/api/series/getAllSeriesTops');
     };
+    // CRUD
     SerieService.prototype.addRegarder = function (req) {
         return this.http.post('/api/users/' + req.idUser + '/addSerieRegarder/' + req.idSerie, req);
     };
@@ -1967,6 +1969,7 @@ var UserService = /** @class */ (function () {
     function UserService(http) {
         this.http = http;
     }
+    // Getters
     UserService.prototype.getAllUsers = function () {
         return this.http.get('/api/users/getAllUsers');
     };
@@ -1997,6 +2000,7 @@ var UserService = /** @class */ (function () {
     UserService.prototype.getNbEpisodes = function (id) {
         return this.http.get('/api/users/' + id + '/nbEpisodes');
     };
+    // Delete
     UserService.prototype.deleteUser = function (id) {
         return this.http.delete('/api/users/delete/' + id);
     };
