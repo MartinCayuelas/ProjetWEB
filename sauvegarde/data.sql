@@ -19,3 +19,4 @@ INSERT INTO `regarder` VALUES (3,1),(4,1),(5,1),(6,1),(7,1),(8,1),(15,1),(16,1),
 
 
 
+INSERT INTO `visionne` VALUES (15,1),(15,2),(1,7);
