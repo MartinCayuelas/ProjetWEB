@@ -41,6 +41,7 @@ export class PlaylistUserComponent implements OnInit {
         if (err instanceof HttpErrorResponse) {
           if (err.status === 401) {
             this.authService.logout();
+            alert('Accès refusé');
             this.router.navigate(['/connexion']);
           }
         }

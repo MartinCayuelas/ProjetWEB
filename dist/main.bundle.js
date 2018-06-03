@@ -63,10 +63,11 @@ var AccountComponent = /** @class */ (function () {
         this.userService = userService;
     }
     AccountComponent.prototype.ngOnInit = function () {
-        // this.id = parseInt(this.route.snapshot.paramMap.get('idUser'), 0); // Récupération du paramètre dans l'URL
         var _this = this;
+        // recupéartion User courrant
         this.userService.getCurrent().subscribe(function (user) {
             _this.userCurrent = user;
+            // Ses episodes et series (en nombres)
             _this.userService.getNbEpisodes(_this.userCurrent.idUser).subscribe(function (stats) {
                 _this.nbEpisodes = stats.nbVus;
                 _this.minutesSeen = (_this.nbEpisodes * 45);
@@ -78,6 +79,7 @@ var AccountComponent = /** @class */ (function () {
             if (err instanceof __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["d" /* HttpErrorResponse */]) {
                 if (err.status === 401) {
                     _this.authService.logout();
+                    alert('Accès refusé');
                     _this.router.navigate(['/connexion']);
                 }
             }
@@ -234,7 +236,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+// Routes
 
+// guards
 
 
 var AppModule = /** @class */ (function () {
@@ -325,6 +329,8 @@ var AppModule = /** @class */ (function () {
 
 
 
+// Routes de l'application
+// Guard servent à restrindre l'accès
 var appRoutes = [
     { path: 'accueil', component: __WEBPACK_IMPORTED_MODULE_2__home_home_component__["a" /* HomeComponent */] },
     { path: 'connexion', component: __WEBPACK_IMPORTED_MODULE_5__connexion_connexion_component__["a" /* ConnexionComponent */] },
@@ -458,15 +464,12 @@ var ConnexionComponent = /** @class */ (function () {
     ConnexionComponent.prototype.ngOnInit = function () {
         this.model.login = '';
         this.model.password = '';
-        // reset login status
-        //  this.authService.logout();
     };
     ConnexionComponent.prototype.signIn = function () {
         var _this = this;
         this.authService.signIn(this.model).subscribe(function (res) {
             localStorage.setItem('token', res.token);
             _this.router.navigate(['/accueil']);
-            //  window.location.reload();
         }, function (err) {
             alert('Invalid Login or Password');
         });
@@ -654,6 +657,7 @@ var DashboardComponent = /** @class */ (function () {
             if (err instanceof __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["d" /* HttpErrorResponse */]) {
                 if (err.status === 401) {
                     _this.authService.logout();
+                    alert('Accès refusé');
                     _this.router.navigate(['/connexion']);
                 }
             }
@@ -1196,6 +1200,7 @@ var PlaylistUserComponent = /** @class */ (function () {
             if (err instanceof __WEBPACK_IMPORTED_MODULE_5__angular_common_http__["d" /* HttpErrorResponse */]) {
                 if (err.status === 401) {
                     _this.authService.logout();
+                    alert('Accès refusé');
                     _this.router.navigate(['/connexion']);
                 }
             }
