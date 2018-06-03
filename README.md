@@ -25,6 +25,8 @@ cd rootFolder
 ng build (Pour compiler le code Angular 5)
 node ./server/server.js (Pour lancer l'application)
 
+ouvrir un navigateur et entrer localhost:4000
+
 ```
 ##### NB: Ne pas oubliez de modifier les variables d'environnement (process.env.VotreVariable)
 
