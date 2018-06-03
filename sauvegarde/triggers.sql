@@ -1,14 +1,13 @@
----TRIGGER 1
 
-CREATE TRIGGER autoInscriptionDate BEFORE INSERT ON utilisateur 
+CREATE TRIGGER autoInscriptionDate BEFORE INSERT ON Utilisateur 
   FOR EACH ROW 
   BEGIN
   SET NEW.inscription = SYSDATE();
   END;
 
 
----TRIGGER 2
-CREATE TRIGGER autoGestionEpisodeIncremente BEFORE INSERT ON episode
+
+CREATE TRIGGER autoGestionEpisodeIncremente BEFORE INSERT ON Episode
   FOR EACH ROW
   BEGIN
     DECLARE existe integer;
