@@ -1,27 +1,50 @@
-# Client
+# ProjetWEB - WOA - IG3 - S6
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
+#### Auteur :
+ CAYUELAS Martin
 
-## Development server
+#### Contexte :
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Ce projet est réalisé dans le cadre d'un projet en architecture web à Polytech Montpellier.
 
-## Code scaffolding
+WatchMe est une application web qui permet la gestion de Séries. Manipuler sa playlist et marquer à vu ses épisodes.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
+### Arborescence :
 
-## Build
+- server : contient la partie serveur du projet
+- src : contient la partie client
+- sauvegarde : contient les fichiers SQL pour installation ainsi que le MCD
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+--- 
 
-## Running unit tests
+### Installation :
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```
+cd rootFolder
+ng build (Pour compiler le code Angular 5)
+node ./server/server.js (Pour lancer l'application)
 
-## Running end-to-end tests
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+---
 
-## Further help
+### Technologies
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+#### Server
+- Node.js
+
+#### Client
+- Angular 5
+
+#### Base de Données
+- MySQL
+
+---
+
+### Fichiers SQL
+
+
+- Le fichier de création de la base de données est scriptWatchMe.sql
+- Le fichier d'insertition des données est data.sql
+- Le fichier triggers.sql contient les triggers
