@@ -3,8 +3,8 @@
   <div class="text-center">
 
     <form name="form" (ngSubmit)="f.form.valid && signIn()" #f="ngForm" novalidate class="form-signin">
-      <fieldset class="bg-warning p-5">
-        <img src="../../assets/images/fav.png" height="75px" width="75px">
+      <fieldset class="bg-warning p-5 field">
+        <img src="../../assets/images/fav.png" class="imgConnexion">
         <div class="form-group mt-3">
           <label for="login" class="l-connect">Login</label>
           <input type="text" id="login" class="form-control input-connect" name="login" [(ngModel)]="model.login" #login="ngModel"
