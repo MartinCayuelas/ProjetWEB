@@ -2,8 +2,9 @@
 
 CREATE TRIGGER autoInscriptionDate BEFORE INSERT ON utilisateur 
   FOR EACH ROW 
+  BEGIN
   SET NEW.inscription = SYSDATE();
-
+  END;
 
 
 ---TRIGGER 2
