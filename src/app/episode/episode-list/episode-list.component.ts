@@ -52,7 +52,7 @@ export class EpisodeListComponent implements OnInit {
 
   }
 
-  changeVision(event, id: number) {
+  changeVision(event, id: number) { // Gestion du click sur la checkbox
     this.req.idUser = this.idUser;
     this.req.idE = id;
     if (event.target.checked) {
@@ -73,19 +73,19 @@ export class EpisodeListComponent implements OnInit {
     }
   }
 
-  getEpisodeSeen(idSerie: number) {
+  getEpisodeSeen(idSerie: number) { // Episode Vus
     this.serieService.getEpisodesSeen(idSerie).subscribe(episodes => {
       this.episodesSeen = episodes;
     });
   }
 
-  getEpisodeNotSeen(idSerie: number) {
+  getEpisodeNotSeen(idSerie: number) { // episodes non vus
     this.serieService.getEpisodesNotSeen(idSerie).subscribe(episodes => {
       this.episodesNotSeen = episodes;
     });
   }
 
-  getNbEpisodeLeftToSee(idSerie: number) {
+  getNbEpisodeLeftToSee(idSerie: number) { // episodes à voir en nombres
     this.serieService.getNbEpisodesBySerie(idSerie).subscribe(episodes => {
       this.nbEpisodes = episodes.nbEpisodes;
     });
@@ -114,7 +114,7 @@ export class EpisodeListComponent implements OnInit {
     });
   }*/
 
-  showForm() {
+  showForm() { // Permet de gérer la visibilité du formulaire d'ajout
     if (this.showFormEp === true) {
       this.showFormEp = false;
     } else {
@@ -123,7 +123,7 @@ export class EpisodeListComponent implements OnInit {
     }
   }
 
-  public addEpisode() {
+  public addEpisode() { // Ajout
 
     if (this.nomEpisode === undefined || this.saison === undefined) {
       alert('Veuillez remplir les 2 champs');
@@ -148,7 +148,7 @@ export class EpisodeListComponent implements OnInit {
   }
 
 
-  public deleteEpisode(id: number) {
+  public deleteEpisode(id: number) { // Suppression
     this.episodeService.deleteEpisode(id).subscribe(res => {
       this.getEpisodeSeen(this.id);
       this.getEpisodeNotSeen(this.id);

@@ -46,17 +46,17 @@ export class SerieComponent implements OnInit {
 
   }
 
-  addInPlaylist() {
+  addInPlaylist() { // Ajout dans la playlist
     this.serieService.addRegarder(this.req).subscribe();
     this.isSeen = true;
   }
 
-  removeInPlaylist() {
+  removeInPlaylist() { // Suppresion d ela serie de la playlist
     this.serieService.removeRegarder(this.req).subscribe();
     this.isSeen = false;
   }
 
-  isSeenSerie(): void {
+  isSeenSerie(): void { // Gestion de la visibilité du "Vu" dans le HTML
     if (this.authService.loggedIn()) {
 
 

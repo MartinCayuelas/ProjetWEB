@@ -10,6 +10,8 @@ export class SerieService {
 
     constructor(private http: HttpClient) { }
 
+    // GEtters
+
     public getAllSeriesDashboard(): Observable<any> {
         return this.http.get<any>('/api/series/getAllSeriesDashboard');
     }
@@ -30,11 +32,6 @@ export class SerieService {
         return this.http.get<any>('/api/series/' + idSerie + '/episodesNotSeen');
     }
 
-
-
-
-
-
     public getAllSeriesNb(): Observable<any> {
         return this.http.get<any>('/api/series/getAllSeriesNb');
     }
@@ -51,6 +48,10 @@ export class SerieService {
         return this.http.get<any>('/api/series/getAllSeriesTops');
     }
 
+
+
+// CRUD
+
     public addRegarder(req: any): Observable<any> {
 
         return this.http.post<any>('/api/users/' + req.idUser + '/addSerieRegarder/' + req.idSerie, req);
@@ -60,9 +61,6 @@ export class SerieService {
 
         return this.http.delete<any>('/api/users/' + req.idUser + '/deleteSerieRegarder/' + req.idSerie);
     }
-
-
-
 
     insertSerie(serie: Serie): Observable<Serie> {
         return this.http.post<Serie>('/api/series/insert', serie);

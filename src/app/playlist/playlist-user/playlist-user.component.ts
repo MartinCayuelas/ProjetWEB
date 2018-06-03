@@ -53,8 +53,7 @@ export class PlaylistUserComponent implements OnInit {
   }
 
 
-
-  loadEpisodes(idSerie: number) {
+  loadEpisodes(idSerie: number) { // Chargement des épisodes
 
     this.episodeService.getAllEpisodesBySerie(idSerie).subscribe(eps => {
       this.episodes = eps;

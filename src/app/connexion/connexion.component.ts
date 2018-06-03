@@ -22,11 +22,11 @@ export class ConnexionComponent implements OnInit {
   public signIn(): void {
     this.authService.signIn(this.model).subscribe(
       res => {
-        localStorage.setItem('token', res.token);
+        localStorage.setItem('token', res.token); // on stocke le token dans le localStorage
 
         this.router.navigate(['/accueil']);
       },
-      err => {
+      err => { // Si erreur
         alert('Invalid Login or Password');
       }
     );

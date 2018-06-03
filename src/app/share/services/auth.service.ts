@@ -32,7 +32,7 @@ export class AuthService {
 
   }
 
-  getToken() {
+  getToken() { // recuperation du token
     return localStorage.getItem('token');
   }
 }

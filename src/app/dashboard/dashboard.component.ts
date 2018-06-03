@@ -20,11 +20,11 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
 
-    this.userService.getCurrent().subscribe(user => {
+    this.userService.getCurrent().subscribe(user => { // recupération de l'utilisateur courrant
       this.current = user;
 
     },
-      err => {
+      err => { // Erreur dans le token
         if (err instanceof HttpErrorResponse) {
           if (err.status === 401) {
             this.authService.logout();

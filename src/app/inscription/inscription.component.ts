@@ -82,7 +82,7 @@ export class InscriptionComponent implements OnInit {
   }
 
 
-  onKey(event: any) {
+  onKey(event: any) { // récupération de l'input Confirmation
     this.valuesConf = '';
     this.valuesConf += event.target.value;
   }

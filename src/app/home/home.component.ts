@@ -19,12 +19,12 @@ export class HomeComponent implements OnInit {
   constructor(private serieService: SerieService, private userService: UserService) { }
 
   ngOnInit() {
-    this.serieService.getNewSeries().subscribe(series => {
+    this.serieService.getNewSeries().subscribe(series => { // Découverte
       this.series = series;
 
     });
 
-    this.serieService.getTopSeries().subscribe(series => {
+    this.serieService.getTopSeries().subscribe(series => {  // Top séries
       this.topSeries = series;
 
     });

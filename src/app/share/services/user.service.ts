@@ -9,6 +9,8 @@ export class UserService {
 
     constructor(private http: HttpClient) { }
 
+    // Getters
+
     public getAllUsers(): Observable<any> {
         return this.http.get<any>('/api/users/getAllUsers');
     }
@@ -57,6 +59,8 @@ export class UserService {
     public getNbEpisodes(id: number): Observable<any> {
         return this.http.get<any>('/api/users/' + id + '/nbEpisodes');
     }
+
+    // Delete
 
     public deleteUser(id: number) {
         return this.http.delete('/api/users/delete/' + id);

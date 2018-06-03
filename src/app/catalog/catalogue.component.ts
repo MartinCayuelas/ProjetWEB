@@ -28,7 +28,7 @@ export class CatalogueComponent implements OnInit {
   constructor(private serieService: SerieService) { }
 
   ngOnInit() {
-    this.serieService.getAllSeries().subscribe(series => {
+    this.serieService.getAllSeries().subscribe(series => { // toutes les séries du catalogue
       this.series = series;
 
     });

@@ -24,7 +24,7 @@ export class AccountComponent implements OnInit {
 
   ngOnInit() {
 
-// recupéartion User courrant
+// recupération User courrant
     this.userService.getCurrent().subscribe(user => {
       this.userCurrent = user;
 
@@ -40,7 +40,7 @@ export class AccountComponent implements OnInit {
 
       });
     },
-      err => { // Si eereur (Token pas bon)
+      err => { // Si erreur (Token pas bon)
         if (err instanceof HttpErrorResponse) {
           if (err.status === 401) {
             this.authService.logout();

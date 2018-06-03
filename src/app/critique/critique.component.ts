@@ -56,7 +56,7 @@ export class CritiqueComponent implements OnInit {
       req.note = this.note;
       req.commentaire = this.commentaire;
       req.idSerie = this.id;
-      this.critiqueService.createCritique(req).subscribe(res => {
+      this.critiqueService.createCritique(req).subscribe(res => { // On appelle le service pour créer la critique
         this.getCritiques();
         this.commentaire = undefined;
         this.note = undefined;
@@ -67,13 +67,13 @@ export class CritiqueComponent implements OnInit {
     }
   }
 
-  deleteCritique(idc: number) {
+  deleteCritique(idc: number) { // Suppression
     this.critiqueService.deleteCritique(idc).subscribe( res => {
       this.getCritiques();
     });
   }
 
-  getCritiques() {
+  getCritiques() { // récupération (GetAll)
     this.critiqueService.getCritiques(this.id).subscribe(critiques => {
       this.critiques = critiques;
     });
