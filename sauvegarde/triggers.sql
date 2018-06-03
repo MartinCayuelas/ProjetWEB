@@ -1,11 +1,11 @@
-
+--Mise à jour automatique de la date d'inscription
 CREATE TRIGGER autoInscriptionDate BEFORE INSERT ON Utilisateur 
   FOR EACH ROW 
   BEGIN
   SET NEW.inscription = SYSDATE();
   END;
 
-
+-- gestion du numero de l'épisode en fonction des episodes de la série déjà existant et de la saison
 
 CREATE TRIGGER autoGestionEpisodeIncremente BEFORE INSERT ON Episode
   FOR EACH ROW
