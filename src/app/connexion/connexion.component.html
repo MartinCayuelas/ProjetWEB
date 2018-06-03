@@ -13,18 +13,14 @@
         </div>
         <div class="form-group mt-3">
           <label for="password" class="l-connect">Mot de passe</label>
-        
-          <input type="password" class="form-control input-connect" name="password" [(ngModel)]="model.password" #password="ngModel" required />
+
+          <input type="password" class="form-control input-connect" name="password" [(ngModel)]="model.password" #password="ngModel"
+            required />
           <div *ngIf="f.submitted && !password.valid" class="help-block">Mot de passe requis</div>
-        
+
         </div>
-        <button class="btn btn-lg btn-dark btn-block" type="submit"  [disabled]="!login.valid || !password.valid">Connexion</button>
+        <button class="btn btn-lg btn-dark btn-block" type="submit" [disabled]="!login.valid || !password.valid">Connexion</button>
       </fieldset>
     </form>
   </div>
-
-
-
-
-
 </div>

@@ -50,7 +50,7 @@ export class SerieService {
 
 
 
-// CRUD
+    // CRUD
 
     public addRegarder(req: any): Observable<any> {
 

@@ -3,6 +3,6 @@ export interface Episode {
     nomEpisode: string;
     numeroEpisode: number;
     saison: number;
-   idSerie: number;
+    idSerie: number;
 
 }

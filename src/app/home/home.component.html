@@ -9,9 +9,9 @@
             <hr>
             <div class="row rowSerie">
                 <div class="col-xs-6 col-md-4 thumbnail thumbHome" *ngFor="let serie of series">
-                    <a routerLink="/catalogue/{{serie.idSerie}}" routerLinkActive="active" >
+                    <a routerLink="/catalogue/{{serie.idSerie}}" routerLinkActive="active">
                         <img src="{{serie.imageSerie}}" alt="{{serie.titre}}" class="imgTop img-fluid thumbnail">
-                        
+
                     </a>
                 </div>
             </div>
@@ -19,7 +19,6 @@
         <hr>
     </div>
 </section>
-
 
 <section>
     <div class="container contentHome">
@@ -30,12 +29,12 @@
         </div>
         <hr>
         <div class="row rowSerie">
-                <div class="col-xs-6 col-md-4 thumbnail thumbHome" *ngFor="let top of topSeries">
-                    <a routerLink="/catalogue/{{top.idSerie}}" routerLinkActive="active" >
-                        <img src="{{top.imageSerie}}" alt="{{top.titre}}" class="imgTop img-fluid thumbnail">
-                    </a>
-                </div>
+            <div class="col-xs-6 col-md-4 thumbnail thumbHome" *ngFor="let top of topSeries">
+                <a routerLink="/catalogue/{{top.idSerie}}" routerLinkActive="active">
+                    <img src="{{top.imageSerie}}" alt="{{top.titre}}" class="imgTop img-fluid thumbnail">
+                </a>
             </div>
+        </div>
         <hr>
     </div>
 

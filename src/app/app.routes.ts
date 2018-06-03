@@ -35,9 +35,10 @@ export const appRoutes: Routes = [
     { path: 'series/:idSerie', component: SerieComponent },
     { path: 'dashboard', component: DashboardComponent, canActivate: [AdminGuard] },
     { path: 'dashboard/addSerie', component: SerieFormComponent, canActivate: [AdminGuard] },
-    { path: 'dashboard/updateSerie/:idSerie', component: SerieUpdateComponent, canActivate: [AdminGuard]},
+    { path: 'dashboard/updateSerie/:idSerie', component: SerieUpdateComponent, canActivate: [AdminGuard] },
     { path: 'compte', component: AccountComponent, canActivate: [AuthGuard] },
     { path: '', component: HomeComponent },
+    { path: '*', component: HomeComponent },
     { path: 'not-found', component: NotFoundComponent },
     { path: 'playlist/serie/:idSerie', component: SerieComponent, canActivate: [AuthGuard] }
 ];

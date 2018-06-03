@@ -35,11 +35,11 @@
             <div class="form-row">
                 <div class="col">
                     <label for="nbSaisons" class="l-connect">Nombre de Saisons *</label>
-                    <input type="number"  min="1" formControlName="nbSaisons" class="form-control input-connect" placeholder="1">
+                    <input type="number" min="1" formControlName="nbSaisons" class="form-control input-connect" placeholder="1">
                 </div>
                 <div class="col">
                     <label for="nbEpisodes" class="l-connect">Nombre d'Episodes *</label>
-                    <input type="number"  min="1" class="form-control input-connect" formControlName="nbEpisodes" placeholder="10">
+                    <input type="number" min="1" class="form-control input-connect" formControlName="nbEpisodes" placeholder="10">
                 </div>
             </div>
 
@@ -57,10 +57,10 @@
                 </div>
             </div>
         </fieldset>
-        <div *ngIf="!errorSerie.submitted" class="alert alert-danger" >Erreur : {{errorSerie.message}}</div>
+        <div *ngIf="!errorSerie.submitted" class="alert alert-danger">Erreur : {{errorSerie.message}}</div>
 
         <div>
-            <button type="submit" class="btn btn-md btn-success text-white" >Ajouter</button>
+            <button type="submit" class="btn btn-md btn-success text-white">Ajouter</button>
         </div>
     </form>
 </div>

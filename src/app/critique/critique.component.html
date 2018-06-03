@@ -11,7 +11,12 @@
                     <i class="fas fa-star"></i> | {{crit.commentaire}}
                     <hr>
                     <p>
-                        <small>By {{crit.login}}</small> <span *ngIf="current !== undefined && current.role !== 0 "><button class="btn btn-sm btn-danger" (click)="deleteCritique(crit.idCritique)"><i class="fas fa-times-circle"></i></button></span>
+                        <small>By {{crit.login}}</small>
+                        <span *ngIf="current !== undefined && current.role !== 0 ">
+                            <button class="btn btn-sm btn-danger" (click)="deleteCritique(crit.idCritique)">
+                                <i class="fas fa-times-circle"></i>
+                            </button>
+                        </span>
                     </p>
                 </div>
             </div>
@@ -20,17 +25,17 @@
 
     <div *ngIf="authService.loggedIn()" class="card bg-light text-dark text-center rewiev">
 
-        <form class="card-body" >
+        <form class="card-body">
 
             <form class="card-body">
 
                 <div class="form-group">
-                <input id="note" class="form-control" type="number" min="1" max="5" [(ngModel)]="note" name="note" placeholder="Note" required/>
-                
-                <input id="commentaire" class="form-control"  [(ngModel)]="commentaire" name="commentaire" placeholder="Commentaire" required/>
-                 </div>
-                <button type="submit" class="btn btn-sm btn-success pt-2"  (click)="saveCritique()">Ajouter</button>
-              </form>
+                    <input id="note" class="form-control" type="number" min="1" max="5" [(ngModel)]="note" name="note" placeholder="Note" required/>
+
+                    <input id="commentaire" class="form-control" [(ngModel)]="commentaire" name="commentaire" placeholder="Commentaire" required/>
+                </div>
+                <button type="submit" class="btn btn-sm btn-success pt-2" (click)="saveCritique()">Ajouter</button>
+            </form>
         </form>
     </div>
 </div>

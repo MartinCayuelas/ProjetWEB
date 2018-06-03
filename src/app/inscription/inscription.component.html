@@ -2,7 +2,7 @@
   <form class="form-signup text-center" [formGroup]="form" novalidate>
     <fieldset class="p-5">
       <div class="form-group">
-        <label for="login" class="l-connect" >Login</label>
+        <label for="login" class="l-connect">Login</label>
         <input type="text" formControlName="login" (click)="clearMessage()" class="form-control input-connect" id="login">
       </div>
       <div class="form-row">
@@ -32,20 +32,15 @@
         <label for="email" class="l-connect">email</label>
         <input type="email" (click)="clearMessage()" class="form-control input-connect" id="email" formControlName="email">
       </div>
-
-
-      
       <div *ngIf="this.form.get('login').value === this.form.get('password').value" class="alert alert-danger">
         Login et Mot de passe doivent être différents!
       </div>
       <div *ngIf="this.form.get('password').value !== this.valuesConf" class="alert alert-danger">Les mots de passe ne correspondent pas</div>
-      <div *ngIf="!errorSignUp.submitted" class="alert alert-danger" >Erreur : {{errorSignUp.message}}</div>
-      
+      <div *ngIf="!errorSignUp.submitted" class="alert alert-danger">Erreur : {{errorSignUp.message}}</div>
+
       <button type="submit" class="btn btn-warning" [disabled]="this.form.get('login').invalid || this.form.get('prenom').invalid || this.form.get('nom').invalid
       || this.form.get('password').invalid || this.form.get('email').invalid || this.form.get('login').value === this.form.get('password').value
       || this.form.get('password').value !== this.valuesConf " (click)="onSubmit()">Inscription</button>
-
-
     </fieldset>
   </form>
 

@@ -61,7 +61,6 @@ export class UserService {
     }
 
     // Delete
-
     public deleteUser(id: number) {
         return this.http.delete('/api/users/delete/' + id);
 
