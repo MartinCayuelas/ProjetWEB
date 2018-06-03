@@ -69,13 +69,13 @@ router.post('/signIn', (req, res) => {
             }
           
             let user = rows[0]; //Récupération de l'utilisateur
-            if (user && bcrypt.compareSync(req.body.password, user.password)) {
+            if (user && bcrypt.compareSync(req.body.password, user.password)) { // comparaison des passwords
 
               
-                let payload = {
+                let payload = { // Ce que va contenir le corps du token
                     "sub":  user.login,
                 }
-                let token = jwt.sign(payload, process.env.secretKey, {expiresIn: '1h' });
+                let token = jwt.sign(payload, process.env.secretKey, {expiresIn: '1h' }); // Construction du token
                 return res.status(200).send({ token });
             } else {
                 res.status(401).send('Invalid Login or Password');

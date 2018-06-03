@@ -22,6 +22,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SerieComponent } from './series/serie/serie/serie.component';
 import { SerieFormComponent } from './series/serie-form/serie-form.component';
+
 // Services
 
 import { UserService } from './share/services/user.service';
@@ -29,10 +30,12 @@ import { SerieService } from './share/services/serie.service';
 import { EpisodeService } from './share/services/episode.service';
 import { CritiqueService } from './share/services/critique.service';
 import { AuthService } from './share/services/auth.service';
-
 import { TokenInterceptorService } from './share/services/token-interceptor.service';
 
+// Routes
 import { appRoutes } from './app.routes';
+
+// guards
 import { AuthGuard } from './share/auth.guard';
 import { AdminGuard } from './share/admin.guard';
 
@@ -72,13 +75,11 @@ import { AdminGuard } from './share/admin.guard';
     AuthService,
     AuthGuard,
     AdminGuard,
-    {
+    { // Activation des interceptors
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
       multi: true
     }
-
-
   ],
   bootstrap: [AppComponent]
 })

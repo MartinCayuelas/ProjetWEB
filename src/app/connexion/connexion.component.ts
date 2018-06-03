@@ -17,8 +17,6 @@ export class ConnexionComponent implements OnInit {
   ngOnInit() {
     this.model.login = '';
     this.model.password = '';
-    // reset login status
-    //  this.authService.logout();
   }
 
   public signIn(): void {
@@ -27,7 +25,6 @@ export class ConnexionComponent implements OnInit {
         localStorage.setItem('token', res.token);
 
         this.router.navigate(['/accueil']);
-      //  window.location.reload();
       },
       err => {
         alert('Invalid Login or Password');

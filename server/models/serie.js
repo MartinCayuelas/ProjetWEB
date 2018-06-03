@@ -25,6 +25,8 @@ module.exports.getAllSeriesNb = function (req, callback) {
 
 }
 
+// Récupère les nouveautés
+
 module.exports.getAllSeriesNews = function (req, callback) {
     req.getConnection(function (err, connection) {
         connection.query('select * from Serie ORDER BY dateSortie DESC LIMIT 3', function (err, rows, fields) {
@@ -37,6 +39,9 @@ module.exports.getAllSeriesNews = function (req, callback) {
     });
 
 }
+
+// Récupère les 3 séries les plus vus
+
 module.exports.getAllSeriesTop = function (req, callback) {
     req.getConnection(function (err, connection) {
         connection.query('SELECT Serie.titre, Serie.imageSerie, Serie.idSerie, COUNT(*) as nbVu FROM Serie, regarder WHERE Serie.idSerie = regarder.idSerie GROUP BY Serie.titre, Serie.imageSerie, Serie.idSerie ORDER BY nbVu DESC LIMIT 3', function (err, rows, fields) {
@@ -62,6 +67,7 @@ module.exports.getNbEpisodesBySerie = function (req, idSerie, callback) {
     });
 }
 
+// Récupère les episodes vus par l'utilisateur
 
 module.exports.getEpisodesSeen = function (req, idSerie, callback) {
     const ep = [
@@ -78,6 +84,7 @@ module.exports.getEpisodesSeen = function (req, idSerie, callback) {
     });
 }
 
+// Récupère les episodes non vus par l'utilisateur
 
 module.exports.getEpisodesNotSeen = function (req, idSerie, callback) {
     const ep = [

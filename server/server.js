@@ -10,14 +10,11 @@ var express = require('express'),
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cors());
+app.use(cors()); 
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 4000; // Connection au PORT
 
 
-
-// requires
-//require('./config/db');
 
 
 const mysql = require('mysql');
@@ -41,6 +38,8 @@ app.use('/api/', api);
 
 
 
+// Récupérer le dossier dist qui contient l'app angular compilée
+
 app.use(express.static(path.join(__dirname, '../dist')));
 app.get('*', function (req, res, next) {
   
@@ -50,7 +49,7 @@ app.get('*', function (req, res, next) {
 
 
 
-
+// Serveur en écoute
 const server = app.listen(port, function () {
   console.log('Listening on port ' + port);
 });

@@ -3,7 +3,7 @@ var jwt = require('jsonwebtoken')
 
 
 
-
+// Renvoie tous les utilsiateurs
 module.exports.getAllUsers = function (req, callback) {
     req.getConnection(function (err, connection) {
         connection.query('select * from Utilisateur', function (err, rows, fields) {
@@ -154,7 +154,7 @@ module.exports.removeRegarder = function (req, idUser, callback) {
     });
 }
 
-
+// Savoir si l'utilsiateur regarde la série en question
 
 module.exports.isSeenSerie = function (req, idUser, callback) {
     const serie = [
@@ -185,6 +185,8 @@ module.exports.getUserById = function (req, idUser, callback) {
     });
 }
 
+
+// Récupération pour savoir si on est admin ou pas
 module.exports.getRoleByLogin = function (req, login, callback) {
     req.getConnection(function (err, connection) {
         connection.query('select role from Utilisateur where login = ?', [login], function (err, rows, fields) {
@@ -197,6 +199,7 @@ module.exports.getRoleByLogin = function (req, login, callback) {
     });
 }
 
+// On récupère l'utilisateur avec son login
           
 module.exports.getUserByLogin = function (req, login, callback) {
     req.getConnection(function (err, connection) {
@@ -211,7 +214,7 @@ module.exports.getUserByLogin = function (req, login, callback) {
 }
 
 
-
+// Playlist de l' User
 module.exports.getPlayList = function (req, idUser, callback) {
     req.getConnection(function (err, connection) {
         connection.query('select * from Serie, regarder where Serie.idSerie=regarder.idSerie AND regarder.idUser = ?', [idUser], function (err, rows, fields) {
@@ -241,6 +244,8 @@ module.exports.getNbEpisodesBySerieByUser = function (req, idSerie, idUser, call
     });
 }
 
+// Nombre de séries vu par User
+
 module.exports.getNbSeriesById = function (req, idUser, callback) {
     req.getConnection(function (err, connection) {
         connection.query('SELECT regarder.idUser, COUNT(*) AS nbVus  from regarder WHERE  regarder.idUser = ?', [idUser], function (err, rows, fields) {
@@ -253,6 +258,7 @@ module.exports.getNbSeriesById = function (req, idUser, callback) {
     });
 }
 
+// Nombre d'épisodes vu par User
 
 module.exports.getNbEpisodesById = function (req, idUser, callback) {
     req.getConnection(function (err, connection) {

@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const router = require('express').Router();
 module.exports = {
 
+// Verification du token reçu par la requete HTTP
 
     verifyToken: function (req, res, next) {
         if (!req.headers.authorization) {
@@ -23,8 +24,9 @@ module.exports = {
                 return res.status(401).send('Unauthorized request');
             }
 
-            req.body.login = payload.sub;
-            next();
+            req.body.login = payload.sub; // On affecte la valeur pour pouvoir la réutiliser dans la fonction appelée par
+                                            // next();
+            next(); // Passe à la fonction suivante
         } catch (e) {
             if (e instanceof jwt.JsonWebTokenError) {
                 return res.status(401).send('Invalid Token');
@@ -33,6 +35,7 @@ module.exports = {
 
     },
 
+    // Fonctiond de controle utilisé dans les fonctions nécessitant un accès admin
 
     isAdmin: function (req, res, next) {
         req.getConnection(function (err, connection) {

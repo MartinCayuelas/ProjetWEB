@@ -23,13 +23,12 @@ export class AccountComponent implements OnInit {
     private router: Router, private userService: UserService) { }
 
   ngOnInit() {
-    // this.id = parseInt(this.route.snapshot.paramMap.get('idUser'), 0); // Récupération du paramètre dans l'URL
 
-
+// recupéartion User courrant
     this.userService.getCurrent().subscribe(user => {
       this.userCurrent = user;
 
-
+      // Ses episodes et series (en nombres)
       this.userService.getNbEpisodes(this.userCurrent.idUser).subscribe(stats => {
         this.nbEpisodes = stats.nbVus;
         this.minutesSeen = (this.nbEpisodes * 45);
@@ -41,10 +40,11 @@ export class AccountComponent implements OnInit {
 
       });
     },
-      err => {
+      err => { // Si eereur (Token pas bon)
         if (err instanceof HttpErrorResponse) {
           if (err.status === 401) {
             this.authService.logout();
+            alert('Accès refusé');
             this.router.navigate(['/connexion']);
           }
         }

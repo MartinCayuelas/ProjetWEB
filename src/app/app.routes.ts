@@ -20,6 +20,9 @@ import { SerieFormComponent } from './series/serie-form/serie-form.component';
 import { AuthGuard } from './share/auth.guard';
 import { AdminGuard } from './share/admin.guard';
 
+// Routes de l'application
+// Guard servent à restrindre l'accès
+
 export const appRoutes: Routes = [
     { path: 'accueil', component: HomeComponent },
     { path: 'connexion', component: ConnexionComponent },

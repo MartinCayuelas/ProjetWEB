@@ -1,3 +1,6 @@
+
+// Routeur gère toutes les routes
+
 // Modules
 const express = require('express');
 const router = express();
