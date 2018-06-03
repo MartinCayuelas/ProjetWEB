@@ -18,7 +18,7 @@ WatchMe est une application web qui permet la gestion de Séries. Manipuler sa p
 
 --- 
 
-### Installation :
+### Installation/Compilation :
 
 ```
 cd rootFolder
